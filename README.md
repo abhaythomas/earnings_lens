@@ -1,6 +1,5 @@
 # 📊 EarningsLens — Adaptive RAG for Earnings Call Analysis
 
-# 📊 EarningsLens — Adaptive RAG for Earnings Call Analysis
 
 🔗 **[Live Demo](https://earningslens-b4fjpwzptyqempqmzuhuff.streamlit.app/)**
 
