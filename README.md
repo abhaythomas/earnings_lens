@@ -1,5 +1,9 @@
 # 📊 EarningsLens — Adaptive RAG for Earnings Call Analysis
 
+# 📊 EarningsLens — Adaptive RAG for Earnings Call Analysis
+
+🔗 **[Live Demo](https://earningslens-b4fjpwzptyqempqmzuhuff.streamlit.app/)**
+
 An intelligent Q&A system that lets you ask questions about earnings call transcripts and get grounded, cited answers. Built with **LangGraph** for agentic self-correcting retrieval.
 
 Unlike basic RAG (retrieve → generate), EarningsLens uses an **Adaptive RAG** architecture that verifies its own answers and self-corrects when retrieval or generation fails.
