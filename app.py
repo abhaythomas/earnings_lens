@@ -111,55 +111,69 @@ if question:
 
     # Run the graph
     with st.chat_message("assistant"):
-        with st.spinner("Analyzing transcripts..."):
-            result = st.session_state.graph.invoke({
-                "question": question,
-                "original_question": question,
-                "documents": None,
-                "answer": None,
-                "route": None,
-                "documents_relevant": None,
-                "is_grounded": None,
-                "is_useful": None,
-                "generation_count": 0,
+        try:
+            with st.spinner("Analyzing transcripts..."):
+                result = st.session_state.graph.invoke({
+                    "question": question,
+                    "original_question": question,
+                    "documents": None,
+                    "answer": None,
+                    "route": None,
+                    "documents_relevant": None,
+                    "is_grounded": None,
+                    "is_useful": None,
+                    "generation_count": 0,
+                })
+
+            answer = result.get("answer", "I couldn't find an answer. Try rephrasing your question.")
+            st.markdown(answer)
+
+            # Extract metadata for display
+            sources = list(set(
+                doc.metadata.get("source", "unknown")
+                for doc in (result.get("documents") or [])
+            ))
+
+            # Build graph path from what happened
+            graph_path = ["Router"]
+            if result.get("route") == "direct":
+                graph_path.append("Direct Answer")
+            else:
+                graph_path.append("Retrieve")
+                graph_path.append(f"Grade ({len(result.get('documents') or [])} relevant)")
+                if result.get("generation_count", 0) > 1:
+                    graph_path.append(f"Rewrite (x{result['generation_count'] - 1})")
+                graph_path.append("Generate")
+                if result.get("is_grounded") is not None:
+                    graph_path.append(f"Hallucination Check ({'✅' if result['is_grounded'] else '❌'})")
+                if result.get("is_useful") is not None:
+                    graph_path.append(f"Usefulness Check ({'✅' if result['is_useful'] else '❌'})")
+
+            metadata = {"sources": sources, "graph_path": graph_path}
+
+            if sources:
+                with st.expander("📄 Sources cited"):
+                    for source in sources:
+                        st.markdown(f"- `{source}`")
+            with st.expander("🔀 Graph path"):
+                st.markdown(" → ".join(graph_path))
+
+            # Save to history
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": answer,
+                "metadata": metadata,
             })
 
-        answer = result.get("answer", "I couldn't find an answer. Try rephrasing your question.")
-        st.markdown(answer)
+        except Exception as e:
+            error_msg = str(e)
+            if "rate_limit" in error_msg.lower() or "429" in error_msg:
+                answer = "⏳ Rate limit reached — the free Groq API allows a limited number of requests per minute. Please wait 30-60 seconds and try again."
+            else:
+                answer = f"Something went wrong: {error_msg}. Please try again."
 
-        # Extract metadata for display
-        sources = list(set(
-            doc.metadata.get("source", "unknown")
-            for doc in (result.get("documents") or [])
-        ))
-
-        # Build graph path from what happened
-        graph_path = ["Router"]
-        if result.get("route") == "direct":
-            graph_path.append("Direct Answer")
-        else:
-            graph_path.append("Retrieve")
-            graph_path.append(f"Grade ({len(result.get('documents') or [])} relevant)")
-            if result.get("generation_count", 0) > 1:
-                graph_path.append(f"Rewrite (x{result['generation_count'] - 1})")
-            graph_path.append("Generate")
-            if result.get("is_grounded") is not None:
-                graph_path.append(f"Hallucination Check ({'✅' if result['is_grounded'] else '❌'})")
-            if result.get("is_useful") is not None:
-                graph_path.append(f"Usefulness Check ({'✅' if result['is_useful'] else '❌'})")
-
-        metadata = {"sources": sources, "graph_path": graph_path}
-
-        if sources:
-            with st.expander("📄 Sources cited"):
-                for source in sources:
-                    st.markdown(f"- `{source}`")
-        with st.expander("🔀 Graph path"):
-            st.markdown(" → ".join(graph_path))
-
-        # Save to history
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": answer,
-            "metadata": metadata,
-        })
+            st.warning(answer)
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": answer,
+            })

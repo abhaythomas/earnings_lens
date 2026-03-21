@@ -62,7 +62,7 @@ def decide_after_grading(state: dict) -> str:
         return "generate"
     else:
         # No relevant documents — rewrite and try again
-        if state["generation_count"] >= 3:
+        if state["generation_count"] >= 2:
             return "give_up"  # Prevent infinite loops
         return "rewrite_query"
 
@@ -72,7 +72,7 @@ def decide_after_hallucination_check(state: dict) -> str:
     if state["is_grounded"]:
         return "check_usefulness"
     else:
-        if state["generation_count"] >= 3:
+        if state["generation_count"] >= 2:
             return "end"
         return "rewrite_query"
 
@@ -82,7 +82,7 @@ def decide_after_usefulness_check(state: dict) -> str:
     if state["is_useful"]:
         return "end"
     else:
-        if state["generation_count"] >= 3:
+        if state["generation_count"] >= 2:
             return "end"
         return "rewrite_query"
 

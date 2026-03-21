@@ -97,34 +97,38 @@ def retrieve(state: dict) -> dict:
 def grade_documents(state: dict) -> dict:
     """
     Filters retrieved documents — keeps only those that are actually
-    relevant to the question. This prevents the generator from being
-    distracted by irrelevant chunks that happened to be similar
-    in embedding space but aren't truly helpful.
+    relevant to the question. Uses a SINGLE LLM call to grade all
+    documents at once (instead of one call per document) to minimize
+    API usage and avoid rate limits.
 
     Returns: state with "documents" filtered and "documents_relevant" flag
     """
     question = state["question"]
     documents = state["documents"]
 
+    # Format all documents with indices for batch grading
+    docs_text = "\n\n".join(
+        f"[Document {i+1}]\n{doc.page_content[:500]}"
+        for i, doc in enumerate(documents)
+    )
+
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are a relevance grader for an earnings call analysis system.
-Given a user question and a retrieved document chunk, determine if the chunk contains information relevant to answering the question.
+Given a user question and multiple retrieved document chunks, determine which chunks contain information relevant to answering the question.
 
-Answer ONLY "yes" or "no"."""),
-        ("human", "Question: {question}\n\nDocument chunk:\n{document}"),
+Reply with ONLY the numbers of relevant documents, comma-separated. Example: "1, 3, 5"
+If none are relevant, reply with "none"."""),
+        ("human", "Question: {question}\n\nDocuments:\n{documents}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
+    result = chain.invoke({"question": question, "documents": docs_text}).strip().lower()
 
     relevant_docs = []
-    for doc in documents:
-        result = chain.invoke({
-            "question": question,
-            "document": doc.page_content,
-        }).strip().lower()
-
-        if "yes" in result:
-            relevant_docs.append(doc)
+    if "none" not in result:
+        for i, doc in enumerate(documents):
+            if str(i + 1) in result:
+                relevant_docs.append(doc)
 
     print(f"📋 Grader: {len(relevant_docs)}/{len(documents)} chunks are relevant")
 
