@@ -30,6 +30,7 @@ from nodes import (
     check_hallucination,
     check_usefulness,
     rewrite_query,
+    compare_companies,
 )
 
 # ── Define the State ─────────────────────────────────────────────────
@@ -41,19 +42,26 @@ class GraphState(TypedDict):
     original_question: str                 # The original question (never changes)
     documents: Optional[List[Document]]    # Retrieved document chunks
     answer: Optional[str]                  # Generated answer
-    route: Optional[str]                   # "retrieve" or "direct"
+    route: Optional[str]                   # "retrieve", "direct", or "compare"
     documents_relevant: Optional[bool]     # Did grading find relevant docs?
     is_grounded: Optional[bool]            # Is the answer grounded in sources?
     is_useful: Optional[bool]              # Does the answer address the question?
     generation_count: int                  # How many times we've generated (loop limit)
+    companies_compared: Optional[list]     # Companies in a comparison query
 
 
 # ── Conditional Edge Functions ───────────────────────────────────────
 # These functions decide which node to go to next based on state.
 
 def decide_route(state: dict) -> str:
-    """After routing: go to retrieval or direct answer."""
-    return "retrieve" if state["route"] == "retrieve" else "direct_answer"
+    """After routing: go to retrieval, comparison, or direct answer."""
+    route = state.get("route", "retrieve")
+    if route == "compare":
+        return "compare"
+    elif route == "retrieve":
+        return "retrieve"
+    else:
+        return "direct_answer"
 
 
 def decide_after_grading(state: dict) -> str:
@@ -117,18 +125,20 @@ def build_graph() -> StateGraph:
     workflow.add_node("check_hallucination", check_hallucination)
     workflow.add_node("check_usefulness", check_usefulness)
     workflow.add_node("rewrite_query", rewrite_query)
+    workflow.add_node("compare", compare_companies)
 
     # ── Add edges ────────────────────────────────────────────────────
 
     # Entry point
     workflow.set_entry_point("route_question")
 
-    # After routing: retrieve or answer directly
+    # After routing: retrieve, compare, or answer directly
     workflow.add_conditional_edges(
         "route_question",
         decide_route,
         {
             "retrieve": "retrieve",
+            "compare": "compare",
             "direct_answer": "direct_answer",
         },
     )
@@ -177,6 +187,9 @@ def build_graph() -> StateGraph:
     # Direct answer goes straight to end
     workflow.add_edge("direct_answer", END)
 
+    # Compare goes straight to end (it handles its own retrieval internally)
+    workflow.add_edge("compare", END)
+
     return workflow.compile()
 
 
@@ -195,6 +208,7 @@ def query(question: str) -> dict:
         "is_grounded": None,
         "is_useful": None,
         "generation_count": 0,
+        "companies_compared": None,
     })
     return result
 

@@ -1,0 +1,275 @@
+DATE
+Wednesday, July 23, 2025, at 5:30 p.m. EDT
+CALL PARTICIPANTS
+Chief Executive Officer — Elon Musk
+Chief Financial Officer — Vaibhav Taneja
+Vice President, Vehicle Software — Ashok Elluswamy
+Vice President, Vehicle Engineering — Lars Moravy
+Vice President, Energy — Mike Snyder
+Vice President, Investor Relations — Travis Axelrod
+Need a quote from one of our analysts? Email pr@fool.com
+
+RISKS
+Vaibhav Taneja stated, "The first among those changes is the repeal of the IRA EV credit of $7,500 by the end of this quarter." This limits near-term US vehicle supply and may impact delivery guarantees for late-quarter orders in Q2 2025.
+Vaibhav Taneja disclosed that tariff costs increased by about $300 million sequentially, with roughly two-thirds of the impact in automotive and less in energy for Q2 2025.
+Regulatory credit sales are set to decline as zero-emission penalties are eliminated, which will quickly impact total revenues (as discussed on the Q2 2025 earnings call).
+Vaibhav Taneja noted that federal budget legislation has certain adverse impacts even for the energy business, most notably on the residential storage business due to the early expiration of consumer credits by the end of this year.
+TAKEAWAYS
+Robotaxi Launch and Expansion: Tesla (
+TSLA
++1.14%
+) launched its first commercial robotaxi service in Austin with paying customers and the company has a goal of expanding the service to cover half the U.S. population by the end of 2025, subject to regulatory approvals.
+Robotaxi Miles and Safety Metrics: Ashok Elluswamy disclosed Robotaxis in Austin have exceeded 7,000 miles with no notable safety-critical interventions as of Q2 2025.
+Autonomous Ride-Hailing Rollout: Expansion to markets including the San Francisco Bay Area, Nevada, Arizona, and Florida is pending regulatory approval as of Q2 2025, with service areas in Austin planned to expand more than tenfold.
+FSD Adoption Acceleration: Since the move to FSD version 12 in North America, FSD subscription rates have increased by 45%, and overall penetration has increased by 25% since the release of FSD 12 and B-38 in North America.
+Model Y Performance: Model Y became the best-selling car in Turkey, Netherlands, Switzerland, and Austria in June; it remains, per Musk, "the best-selling car of any kind in the world."
+Automotive Revenue Growth: Automotive revenue rose 19% sequentially on a 14% increase in deliveries, primarily due to improved average selling prices (“ASPs”) from new Model Y sales and a favorable mix, despite a reduction in regulatory credit revenue.
+Tariffs Impact: Tariff costs increased by approximately $300 million sequentially, with two-thirds impacting the automotive segment and further increases anticipated in subsequent quarters due to manufacturing and sales cycle latency.
+Automotive Product Portfolio: Production of lower-cost models began as planned in the first half; The ramp will occur in Q3 2025 and proceed more slowly than initially expected due to the focus on maximizing deliveries before the EV credit expires.
+Energy Business Performance: The company achieved record power deployment in Q2 2025, with sequential improvement in energy and solar margins, and attained the highest gross profit for the segment to date.
+Energy Business Tariff and Legislative Headwinds: Despite headwinds from tariffs and early expiration of consumer credits, customers -- especially in industrial storage -- have been willing to absorb some tariff impacts.
+Operating Expenses: Operating expenses grew sequentially on higher R&D investment in AI, greater stock-based compensation, and depreciation from AI compute infrastructure, with expectations for continued growth in these areas.
+Free Cash Flow: Free cash flow was $146 million, as increased operating cash flows were offset by higher capital expenditures.
+CapEx Outlook: Management expects capital expenditures to exceed $9 billion for 2025.
+Regulatory Credit Revenue Decline: A legislative change eliminating emission penalties is expected to reduce new regulatory credit revenue quickly, per DevOps Ninja.
+Optimus Production Timeline: Elon Musk projected prototypes of the Optimus three humanoid robot within three months and planned start of production early next year, with a medium-confidence target of ramping to about 100,000 units per month within five years.
+Dojo and AI Infrastructure: Musk said Dojo two will be operating at scale sometime next year, with scale being somewhere around a hundred k h one hundred equivalent, and a new AI factory will hopefully be in production around the end of next year.
+Supercharging and Service Profitability: Supercharging, insurance, and service centers all contributed to sequential margin improvement in service and other businesses.
+Bitcoin-Linked Volatility: A $284 million mark-to-market gain from Redcom Holdings drove sequential growth in other income, after a $125 million loss in the prior quarter; such swings are attributed to Bitcoin price volatility.
+FSD Safety Report: Management highlighted the newly published vehicle safety report showing that cars on FSD are “statistically safer” than those without, with management citing a ten times safer statistic.
+SUMMARY
+Tesla reported major operational milestones in Q2 2025, notably the commercial rollout and geographic expansion of its robotaxi service in Austin, and set aggressive targets for reaching half the US population by year-end. Significant sequential gains in automotive revenue and margin were attributed to higher ASPs, an improved product mix, and increased FSD adoption rates, while The impact of tariffs and expiring EV credits is expected to pressure future US deliveries and regulatory credit revenue in the near term. The energy business achieved record power deployment and its highest gross profit to date, registering customer willingness to bear tariff headwinds, especially in industrial storage, even as legislative changes are set to negatively affect residential storage demand.
+
+Vaibhav Taneja described artificial intelligence and autonomy as by far the biggest differentiator for Tesla, Inc. and emphasized the acceleration of FSD adoption since version twelve’s release.
+Prototype Optimus three robots are projected within three months, with mass production slated to begin early next year and scalability to 100,000 units per month over five years as a target for Optimus robot production is considered a “reasonable aspiration,” according to Musk.
+Ashok Elluswamy confirmed that all new vehicles delivered from North American factories can autonomously drive from the assembly line to the loading docks, with customer–direct autonomous delivery envisioned in select geographies by year-end.
+Musk projected that robotaxi economics could reach sub-thirty cent per mile potential over time. especially for purpose-built vehicles such as the CyberCab, and stated, next year, but confidently next year, people would be able to add or subtract their car to the Tesla, Inc. fleet.
+Management confirmed Dojo two supercomputer and a new AI factory are both targeted for production by the end of next year, expanding Tesla, Inc.’s real-world AI capabilities.
+INDUSTRY GLOSSARY
+FSD (Full Self-Driving): Tesla’s advanced driver assistance system designed to achieve autonomous vehicle operation through continuous software and AI upgrades.
+Optimus: Tesla’s humanoid robotics program aimed at automating physical tasks in factories and potentially, external environments.
+Megapack: Tesla’s large-scale lithium-ion battery system used for energy storage applications in grid and utility projects.
+ASPs (Average Selling Prices): The average transaction price for vehicles sold within a certain timeframe, reflecting product mix and pricing power.
+IRA EV credit: Federal tax incentive -- Inflation Reduction Act electric vehicle credit -- worth $7,500 per eligible vehicle, set to expire, affecting Tesla’s U.S. vehicle demand and affordability.
+Dojo: Tesla’s custom-built supercomputer infrastructure, designed for training and inference workloads for AI and autonomy development.
+Redcom Holdings: An investment holding referenced in relation to mark-to-market gains/losses linked to Bitcoin and other financial assets.
+CyberCab: Tesla’s planned cost-optimized, purpose-built robotaxi vehicle designed for autonomous ride-hailing at a lower operating cost per mile.
+Full Conference Call Transcript
+Elon Musk: Thanks, Travis. So we have had a very exciting quarter. We were able to successfully launch a robotaxi, providing our first drives with no one in the driver's seat, with paying customers in Austin. As some may have noted, we have already expanded our service area in Austin. It's bigger and longer, and it's going to get even bigger and longer. We are expecting to greatly increase the service area to well in excess of what competitors are doing, hopefully in a week or two. We are getting the regulatory permission to launch in the Bay Area, Nevada, Arizona, Florida, and a number of other places.
+
+As we get the approvals and prove out safety, we will be launching the autonomous ride-hailing across most of the country. I think we will probably have autonomous ride-hailing in probably half the population of the US by the end of the year. That's at least our goal, subject to regulatory approvals. I think we will technically be able to do it. Assuming we have regulatory approvals, it's probably addressing half the population of the US by the end of the year. We are being very cautious. We do not want to take any chances, so we are going to go cautiously. But the service areas and the number of vehicles in operation will increase at a hyper-exponential rate.
+
+Some other notable things: Model Y in June became the best-selling car in Turkey, Netherlands, Switzerland, and Austria. It is, I believe, the best-selling car of any kind in the world still. Autonomy is a big factor there. Even with just supervised self-driving, it's a huge selling point. It's worth noting that we do not actually yet have approval for supervised FSD in Europe. We think our sales in Europe will improve significantly once we are able to give customers the same experience that they have in the US. This is a very important point to convey. We have been working with the Netherlands, and I think we are close to getting approval there.
+
+Then it's got to go to the EU. It's quite Kafkaesque. But we will get the approvals. I think some people in Europe will have the experience that some have in the US, hopefully at least partially in this quarter. We also have some regulatory challenges in China, which we are hoping to unblock shortly. We cannot provide the service there currently. Within the US, as we are confident about safety in different geographic areas, we will loosen up on how much someone has to be laser-focused on the road. That's a common complaint.
+
+It does create an odd safety issue where people will disengage Autopilot, then do something like change the radio or look at their phone, drive with their knee, and then reengage Autopilot, which is less safe than simply keeping Autopilot on. That experience will improve in the next several weeks. The production release of Autopilot is actually several months behind what people experience on a robotaxi in Austin. Now that we have the robotaxi in Austin launched, we will be adding back those elements so that there will be a step-change improvement in the Autopilot experience for people outside of Austin. As you can tell, autonomy is the story. We need the physical product without which you cannot have autonomy.
+
+But once you have a physical product, the autonomy is what amplifies the value to stratospheric levels. We launched the Tesla Diner, which has been a huge hit. It got worldwide attention, which is unusual for a diner. This is a pretty special diner. If you are in the LA area, it's worth visiting. It's a shining beacon of hope in an otherwise bleak urban landscape. Really quite a lovely experience. Great job by the team there. On the full self-driving front, we continue to make significant improvements just with the software. We are expecting to increase the parameter count to what we think can probably tenfold the parameter count.
+
+This is a tricky thing to do because as you increase the parameter count, you get to choke on memory bandwidth. But we currently think we can tenfold the parameter count from what people are currently experiencing. So there's still a lot of improvement on the existing hardware to happen. Energy is growing really well despite headwinds from tariffs and supply chain challenges. We have upgrades to the Megapack that would make it even better. We had record power deployment in Q2. I think battery demand is gigantic. The US sustained power output for the US grid is around one terawatt, but average usage is less than half a terawatt.
+
+If you add batteries to the mix, you can run the power plants 24/7 at full capacity, thus doubling the energy output per year of the United States. That's a big deal. Optimus, we are evolving the Optimus design and getting it to the point where it is a phenomenal design. We are on Optimus version two right now, sort of two and a half. Optimus three is an exquisite design in my opinion. As I have said many times before, it will be the biggest product ever. It's a very hard problem to solve. You have to design every part of it from physics first principles. There's nothing off the shelf that actually works.
+
+We have to train Optimus to use its sensors with a neural net. We will be applying the same techniques we apply for a car, which is essentially a four-wheeled robot. Optimus is a robot with arms and legs. The same principles that apply to optimizing AI inference of the car apply to Optimus because they are both robots in different forms. Tesla is by far the best in the world at real-world AI. A clear proof point for that would be if you compare it to Waymo. Waymo's car is best with god knows how many sensors. Isn't Google good at AI? Yes. But they are not good at real-world AI. Tesla is much better than Google. By far.
+
+Tesla has the best inference efficiency. A key figure for AI is the intelligence per gigabyte. People talk about parameters, but we should talk about gigabytes because with parameters, you can have four-bit parameters, eight-bit parameters, sixteen-bit parameters. The actual constraints in the hardware are how many gigabytes of RAM and how many gigabytes per second can you transfer from RAM. Therefore, it is not a parameter constraint. It is a byte constraint. Tesla has the highest intelligence density of any AI by far. I have a lot of insight into this with XAI. XAI's Grok is the smartest AI overall, but it's a giant beast. Tesla has the best intelligence density.
+
+Intelligence density will be a big deal in the future. With Optimus three, which is really the right design, there's no significant flaws with the Optimus three design. We are going to retool a bunch of things. There will probably be prototypes of Optimus three by the end of this year, and then scale production next year. We will scale Optimus production as fast as possible and try to get to a million units a year as quickly as possible. We think we can get there in less than five years. That's a reasonable aspiration. In conclusion, so far 2025 has been an exciting year. A lot of major milestones.
+
+Made clear product demonstrable progress in autonomy that a lot of the experts said we would not achieve. We have done what we said we were going to do. We are not always on time, but we get it done. Great progress by the Tesla team. I do think if Tesla continues to execute well with vehicle autonomy and humanoid robot autonomy, it will be the most valuable company in the world. A lot of execution between here and there. It doesn't just happen. Provided we execute very well, I think Tesla has a shot at being the most valuable company in the world. Obviously, I am extremely optimistic about the future of the company.
+
+The best way to predict the future is to make it happen. We are making it happen here with the team. I would just like to say thanks to all of our supporters, and I think we are good for an incredibly exciting future.
+
+Travis Axelrod: Great. Thanks very much, Elon. DevOps Ninja has some great remarks as well.
+
+Vaibhav Taneja: Travis, as Elon mentioned, Q2 was an interesting quarter in a few respects. We started ramping up the production of the new Model Y at all our factories. We rolled out our robotaxi service in Austin and delivered a car completely autonomously from the factory to the customer's home. It is a seminal point to get to this stage. It took a lot of effort, and I really want to thank everybody at Tesla, Inc. for making this happen. It wasn't an easy thing to do, but we did it. It took time, but we have just begun the next phase for the company.
+
+The one big bill has a lot of changes that would affect our business in the near term. The first among those changes is the repeal of the IRA EV credit of $7,500 by the end of this quarter. Given the abrupt change, we have limited supply of vehicles in the US this quarter. As we are already within lead times to order parts for cars, we have rolled out all our planned incentives already and will start pairing them back as we start to sell.
+
+If you are in the US and looking to buy a car, let's roll now as we may not be able to guarantee delivery for orders placed in the later part of August and beyond. The bill also made changes to certain emission standards by reducing the amount of penalty to zero. This, in turn, will have an impact on the new sales of renewal credits to other OEMs and in turn will lead to lower RMBs. While we have not planned our business around such sales, it will impact our total revenues quite fast. On the automotive product portfolio, the entire lineup is updated. Globally, we are seeing an increase in the number of test drives.
+
+We started the production of the lower-cost model as planned in the first half of 2025. However, given our focus on building and delivering as many vehicles as possible in reverse, before the EV credit expires and the additional complexity of ramping a new product, the ramp will happen next quarter slower than initially expected. One thing which is grossly underappreciated, as Elon mentioned, is that all our vehicles in the lineup are capable of autonomy. This is by far the biggest differentiator between us and the competition. Our vehicles top safety standards as is, but with FSD, they are and will continue to set a new standard for safety within regular transportation.
+
+We published a vehicle safety report earlier today. You can see a car on FSD is statistically safer than a car not on FSD. We have started seeing an uptick in FSD adoption in North America in recent months, which is a very promising trend. Just to give you perspective, since we moved to version twelve of FSD, we have seen the adoption rates really increase. On the automotive revenue front, despite the reduction in regulatory credit revenue, the total automotive revenue increased by 19% sequentially even though total deliveries only improved 14%. This was primarily due to improved ASPs because of the new Model Y.
+
+This helped in improving margin sequentially as well, along with improved mix and higher fixed cost absorption, despite an increase in cost of tariffs. We have started seeing the impact of tariffs in our P&L. Sequentially, the cost of tariffs increased around $300 million with approximately two-thirds of that impact in automotive and less in energy. However, given the latency in manufacturing and sales, the full impacts will come through in the following quarters. So costs will increase in the near term. While we are doing our best to manage these impacts, we are in an unpredictable environment on the tariff front.
+
+The margins for the energy generation and solar businesses improved sequentially while deployment reduced primarily due to the ramp of power deployments at high margins. We were able to achieve our highest gross profit for the business yet. Note that the overall deployments will continue to vary quarter to quarter. Industrial storage will make a difference in this drive towards AI and data center growth. The energy requirements are increasing at a rapid scale as AI applications are very energy hungry. The quickest path to scale up energy is to deploy storage.
+
+This is something that our customers have started realizing, and despite this business having the largest impacts from tariffs, we are seeing customers willing to accept some of the tariff impacts. The big bill has certain adverse impacts even for the energy business, most notably on the residential storage business due to the early expiration of consumer credits by the end of this year. The challenges of the storage business definitely made both from the wealth and from tariffs, and we are doing our best to try and manage through this. But we will see shifts in demand and profitability.
+
+The margins for our service and other businesses improved sequentially, primarily due to higher profits from supercharging and improvement in insurance and service center profitability. Operating expenses also grew sequentially as we continued our investment in AI projects, including additional expenses related to employee-related costs, including higher stock-based compensation and depreciation for AI compute. Our operating expenses, especially R&D-related spend, will continue to grow. We believe even in the current environment, it is the right strategy to keep making investments in these areas to position us for the long term. Other income grew sequentially primarily from the mark-to-market adjustment on Redcom Holdings, which was a $284 million gain in Q2, while we got a $125 million loss in Q1.
+
+Just want to remind people that this would keep creating volatility based on the Bitcoin price. While operating cash flows increased sequentially, so did our CapEx, resulting in $146 million of free cash flow. We continue to make investments in various aspects of that fashion, like Cybertruck, semi lines, and other infrastructure spend and the expansion of our AI initiatives. Our latest expectation for the year in terms of CapEx is in excess of $9 billion. To summarize, we have near-term challenges in our business due to the negative impacts of the bill and tariffs. However, the investments that we have made for AI, robotics, and our lead in energy set us up for a bright future.
+
+I would like to thank the whole Tesla, Inc. team, our customers, our investors, and supporters for their continued belief in us.
+
+Travis Axelrod: Great. Thanks very much, DevOps Ninja. So now we're going to move on to Say.com questions. The first question is, can you give us some insight into how robotaxis have been performing so far? And what rate do you expect to expand in terms of vehicles, geofence, cities, and supervisors?
+
+Ashok Elluswamy: Robotaxis have been going great so far in Austin. Customers really love the experience. It's super smooth, very safe, and just a great experience overall. We already did a first phase of expansion in Austin, and we will continue to expand in Austin to probably more than tenfold our current operating region. We are also testing in a lot of other cities as Elon mentioned. The next is the San Francisco Bay Area. We are working with the government to get approval here, and meanwhile, we will launch the service with a person in the driver's seat just to expedite while we wait for regulatory approval.
+
+We are also testing in a lot of other cities in the US, including Florida, Nevada, etc.
+
+Travis Axelrod: Great. Thank you very much, Ashok. The next question is, what are the key technical and regulatory hurdles still remaining for unsupervised FSD to be available for personal use? Can you provide a timeline?
+
+Elon Musk: We are getting there. I think it will be available for unsupervised personal use by the end of this year in certain geographies. We are just being very careful about it. This is not something we should rush.
+
+Vaibhav Taneja: No. We want to make sure that everything is safe before we make it available broadly. We are just being extremely paranoid.
+
+Elon Musk: But I am confident that by this year, within a number of cities in the US, it will be available to end users. And for what I suppose is the same hardware in the Austin robotaxi vehicles as those in customer vehicles, they deliver a car autonomously from the factory to a customer. Yes. And every Tesla, Inc. manufactured in the US and in Europe, autonomously drives itself from the end of the line to the loading docks. It's just a software update.
+
+Ashok Elluswamy: Yeah. I think we will end up delivering cars in the Great Western area and the Bay Area by default from the factory by the end of this year. A good car will deliver itself to where you are unless you say you do not want that.
+
+Travis Axelrod: That would be super cool. Great. Thank you, guys. The next question is, what specific factory tasks is Optimus currently performing, and what is the expected timeline for scaling production to enable external sales? How does Tesla, Inc. envision Optimus contributing to revenue in the next two to three years?
+
+Elon Musk: The Optimus three design, as I mentioned earlier, is finally the right design. There are further optimizations, but no fundamental changes are needed for the Optimus three design. It has all the degrees of freedom that you really want or need. We will have prototypes of that in about three months, and it's subtooling in production. We will start production on that at the beginning of next year. The production ramp is simple. It's not going to predict the S-curve of your production ramp. When something has an entire new design, the rate of production will move as fast as the least lucky and least competent element of the entire supply chain as well as internal processes.
+
+The more new stuff that is in a product, the slower the ramp could be because of unexpected supply chain interruptions or mistakes made internally. It's much easier to predict the end of the S-curve or late in the S-curve than the beginning of the S-curve. The beginning of the S-curve of the production ramp is not really material for revenue purposes. The beginning of the S-curve, when you're usually not usually always negative gross margin and you're debugging a lot of issues. That's why I feel fairly confident in predicting things. At least medium confident in predicting where we are at five years, but it's hard to predict where we are in a year or two years.
+
+That's why I think in five years, we could be at the limit. I would be surprised if at the end of five years, sixty months from now, if we are not roughly making a hundred thousand Optimus robots a month in sixty months. I would be shocked.
+
+Travis Axelrod: Alright. Thank you very much. The next question is, can you provide an update on the development and production timeline for Tesla, Inc.'s more affordable models? How will these models balance cost reduction, profitability, and what impact do you expect on demand in the current economic climate?
+
+Elon Musk: Well, I think DevOps Ninja did a good job of answering this question in the opening remarks. As we said, we started production in June, and we're ramping. We probably built some things throughout the quarter, and given that we started in North America and that our goal is to maximize production with higher rates by the end of Q3, we're going to keep pushing hard on our current models to avoid complexity. Then, fortunately, that rolls away. We'll be running with the more affordable models available for everyone in Q4.
+
+The goal with those products was not to negatively impact revenue or gross margin, but just to make a car that everyone loves and wants at a more affordable price.
+
+Travis Axelrod: Great. Thank you, Lars. The next question is, can you talk about the benefits of Tesla, Inc. investing in XAI?
+
+Vaibhav Taneja: This is not the forum to discuss this topic. If there is something we need to discuss, we'll discuss that separately.
+
+Elon Musk: I think, obviously, you know, we are a publicly traded company. Shareholders are welcome to put forward any shareholder proposals that they'd like. I've recently encouraged that. And then have shareholders vote and act in accordance with the shareholder wishes.
+
+Lars Moravy: Great. Thank you very much. The next question is, can you tell us a little bit more about what goes on in the Tesla, Inc. design studio?
+
+Vaibhav Taneja: Do you want me to take that one?
+
+Travis Axelrod: We generally say that what happens in the studio stays in the studio, and that earnings calls are not the place to disclose new product stuff. But we're working to ensure that we have an exciting future for Tesla, Inc. and our product lineup.
+
+Elon Musk: Yeah. There's a lot of exciting things happening in the design studio. It's not static. Really, what's going to happen over the next several years is a fundamental transformation of the company. From a pre-autonomy world to a post-autonomy world. I'm working on a new master plan to articulate that as a team. There will be some teething pains as you transition from a pre-autonomy to a post-autonomy world. But I think the future vision for Tesla, Inc. is incredibly exciting and will profoundly change the world in a good way.
+
+It sounds like sort of pineapple or whatever, but I think if we execute on that plan effectively, which we have to actually do, Tesla, Inc. will be the most valuable company in the world by far.
+
+Travis Axelrod: Great. Thank you. The next question is actually a duplicate on unsupervised FSD customer vehicles, so we'll skip that. And after that is, are there any news for hardware three users getting retrofits or upgrades? Will they get hardware four or some future version of hardware five?
+
+Vaibhav Taneja: What we want to do is get unsupervised done on hardware four first. Once it's done, then we'll go back and look at what we need to do with the hardware three cars. Like I said, the focus is first to get unsupervised out and then we'll go back and see what more work we need to do.
+
+Lars Moravy: Great.
+
+Travis Axelrod: Next question is, can you give an update on Dojo? Could XAI be a customer for Dojo?
+
+Elon Musk: Dojo two, we expect to have Dojo two operating at scale sometime next year. With scale being somewhere around a hundred k h one hundred equivalent. And then AI five, which is really spectacular too. I don't use those words lightly. The AI factory will hopefully be in production around the end of next year. But that has a lot of potential. Thinking about Dojo three and the AI six in first chip, it seems like intuitively, we want to try to find convergence there.
+
+Where it's basically the same chip that is used where you say two of them in a car or Optimus and maybe a larger number on a board account of five twelve on a board or something like that, if you want high bandwidth communication between the chips. That's sort of seems like intuitively the sensible way to go.
+
+Lars Moravy: Great.
+
+Travis Axelrod: The next set of questions have all actually been covered. So we'll end with, how will the BBB elimination of tax credits for solar projects affect your sales pipeline for Megapack?
+
+Lars Moravy: Our sales pipeline is quite diversified across customers and market segments. So we aren't heavily weighted in Megapack projects that are paired with solar. As we talked about in the opening remarks, we're seeing storage quickly being recognized for its ability to unlock grid efficiency and how quickly it can be deployed to help the grid. Although the recent bill was not favorable towards solar, we believe solar projects will still get built because the energy is necessary. The projects are well developed, and they're ready for execution. There's really no alternatives in the near term given gas turbine lead times and pricing.
+
+We also continue to see growth in the data center segment and in standalone storage projects providing capacity to the grid in several markets across the US. Overall, we're forecasting a very strong second half of the year as we increase deployments. Lastly, we continue to invest heavily in US manufacturing to mitigate policy and tariff impacts, expecting our first LFP cell manufacturing facility to be online by the end of the year and launching our third mega factory near Houston in 2026.
+
+Travis Axelrod: Great. Thank you, Mike. We will now be moving to analyst questions. The first question comes from Emmanuel Rosner at Wolfe Research. Emmanuel, please feel free to unmute yourself whenever you're ready.
+
+Emmanuel Rosner: Great. Thank you so much. Can you hear me?
+
+Lars Moravy: Yep.
+
+Emmanuel Rosner: Thanks. So, Elon, are you able to share any KPIs with us in terms of the robotaxi business? How many vehicles are you operating, miles driven autonomously? The number of safety-critical interventions. Just curious, you know, how the rollout is generally going and any sort of targets that you could share more broadly?
+
+Elon Musk: Sure. Do you want to?
+
+Ashok Elluswamy: We have more than seven thousand miles operating in the Austin area. Just because the service is new, we have a handful of vehicles right now, but we are trying to expand the service in terms of the area and also the number of vehicles both in Austin and other locations. So far, there are no notable safety-critical interventions. Sometimes we have our own restrictions, for example, restricting our speed limit to forty miles per hour. If the vehicle wants to go on higher speed roads, we can stop the vehicle, but those are more of convenience issues as opposed to safety-critical nature. So for the service, it's really well received, and we continue to expand on it.
+
+Emmanuel Rosner: Great. And longer term, from an economics point of view, you've previously talked about working to drive down the cost per mile on the robotaxis, maybe towards thirty or forty cents per mile over time. Now that your service is live, how should we think about the main milestones to getting there?
+
+Elon Musk: The CyberCab is really optimized for autonomy. That has probably sub-thirty cent per mile potential over time. Twenty-five. If you design a car from scratch to be a cost-optimized robotaxi like CyberCab, for example, we're not trying to make it corner incredibly well like a Model 3 would, or Model S or even Model Y. All of our cars that are driven by people are super fun to drive. They've got incredible acceleration, incredible cornering capability. But I think we're confident that very few people in a CyberCab want to be hurtling around. So we reduced the top-end speed, which means we can use more efficient tires. We don't need as much acceleration. We don't need as much big brakes.
+
+We want stopping distance, but we're not expecting it to be heavily used. It's a gentle ride. If you design it for a gentle ride, you have a much more optimized design point. That's why it seems we could achieve that. Especially with Optimus serving, cleaning up the car, and doing maintenance. It's being automatically charged. The actual cost per mile of CyberCab will be very low. The cost per mile of our existing fleet will be higher, but still very competitive. I guess a number of fifty cents. I'm just guessing. Tesla, Inc.'s robotaxi business is gigantic in terms of operations in a pretty short period of time.
+
+My guess is it has a material impact on our financials around the end of next year.
+
+Travis Axelrod: Thank you very much. The next question comes from Adam at Morgan Stanley. Adam, please unmute yourself.
+
+Adam Jonas: Great. Hello, everybody. So, Elon, as Tesla, Inc. moves into this next phase of physical AI, autonomous humanoids, robotaxis, etcetera, world-changing, civilizational species-changing technology with dual purpose, are you comfortable moving Tesla, Inc. in this direction while only having a thirteen percent stake in the company? Is that sustainable? Or do you still insist that something needs to happen, given your current lack of control and the types of technologies you're getting into?
+
+Elon Musk: Yeah. That is a major concern for me, as I've mentioned in the past. I hope that is addressed at the upcoming shareholders meeting. But, yeah, it is a big deal. I want to find that I've got so little control that I can easily be ousted by activist shareholders after having built this army of humanoid robots. I think my control over Tesla, Inc. should be enough to ensure that it goes in a good direction, but not so much control that I can't be thrown out if I go crazy.
+
+Adam Jonas: Okay, Elon. You're not gonna go crazy. We trust you.
+
+Emmanuel Rosner: Well, you can stay a little crazy. A little crazy is okay.
+
+Adam Jonas: Elon, though, we understand the board of directors of a major US investment bank recently toured Optimus production. I don't know if you want to confirm that or not. It's just what we heard. That's cool. When do you think others will be able to get a firsthand view of Optimus like that? And is the second half of this year too soon to have an AI day? Because it seems like everybody else in the world's doing it, and this talent war is getting freaking crazy. I know you've mentioned for recruiting purposes, this is a very important thing that you've done.
+
+I think people have copied you on this, and I'm wondering if this year's too early for that. Thanks, Elon.
+
+Elon Musk: Yes. It's a bit of a tough thing because when we're doing AI day, we find that some of our vendors literally do a frame-by-frame examination of our slides, everything we say, and then copy those. So, you know, I'm saying, like, what's the trade-off, which does help with recruiting? But then competitors look very closely and copy us. That said, we should probably consider the shareholder meeting to be sort of an AI day. We can maybe go into some amount of depth at the annual shareholder meeting. With respect to Optimus and AI and sort of our chip stuff perhaps.
+
+Lars Moravy: Yeah. Tesla, Inc. is really underrated in terms of actual design as well as AI software. There's still not a chip that exists that we would prefer to put in our car over our own. Even though it's been now up for several years. We're confident that the AI and fire chip will be a profound game-changer. In fact, it's so powerful. We'll have to nerf it to some degree for pockets outside of the US because it blows very past the export restrictions. Unless the export restrictions change, we actually will have to nerf our AI live shows. It looks kind of weird. Hopefully, we keep raising the bar on export restrictions. Otherwise, it gets a bit silly.
+
+We'll have a bunch of Optimus robots on stage at the shareholder meeting. The Optimus lab is cool to see. It looks like the set of Westworld. You could see robots in various stages. Some of them in various stages of repair. It's some combination of the Tatooine junkyard and Westworld is what it looks like. It's very cool. Optimus is walking around the office here in Palo Alto. It's just walking around like a small thing. We saw the full Optimus in the Tesla Diner serving popcorn. We'll go from a world where robots are rare to where they're so common that you don't even look up.
+
+Travis Axelrod: Great. Thank you so much. The next question comes from Edison at Deutsche Bank. Edison, please unmute yourself. Please go ahead and unmute yourself. Right. While Edison figures that out, we will go to the next question, which is gonna come from Dan Levy at Barclays. Dan, please go ahead and unmute yourself.
+
+Dan Levy: Great. Thank you. Elon, you've talked about the opportunity to put non-Tesla, Inc. owned vehicles into the robotaxi network. Just talk about the gating factors to enabling that and what timeline we should expect on personally owned vehicles in the robotaxi network?
+
+Elon Musk: We haven't really thought hard about that. We need to make sure it works when the vehicles are fully under our control. It's kind of one step at a time here. We don't want to jump the gun. As I said, we're being paranoid about safety. But I guess next year is I'd say confidently next year. I'm not sure when next year, but confidently next year, people would be able to add or subtract their car to the Tesla, Inc. fleet.
+
+Vaibhav Taneja: One thing to keep in mind is that we will have some criteria. Even when you put your car in an Uber or Lyft fleet, they go through a whole checklist process of making sure things are working.
+
+Elon Musk: Second, Airbnb rules. Yes. Got it. So we will do something like that. Kind of very possible. Yes.
+
+Vaibhav Taneja: We want, like Elon said, we want to be paranoid about security. Small things like tread on the tire can have an impact on safety. That's why we would want to do some proper validation before we let other cars come in.
+
+Travis Axelrod: Dan, do you have a follow-up?
+
+Dan Levy: Yes. Thank you. Could you just unpack the different costs associated with scaling the robotaxi business and how you think about funding those costs? Are the cash flows in the auto business sufficient to fund it? And if not, what other funding sources do you think you'd use? Would you just fund it off the balance sheet?
+
+Elon Musk: As soon as there is a clear cash flow stream associated with any product, you can finance it.
+
+Vaibhav Taneja: In the interim, we will use our balance sheet, but once we get to a certain scale in terms of current revenues, like Elon said, we could get into an easily kind of transaction to try and get funding.
+
+Travis Axelrod: Great. Thanks so much. We will now move on to Mark from Goldman Sachs. Mark, please feel free to unmute yourself.
+
+Mark Delaney: Yes. Good afternoon. Thank you very much for taking the questions. With the FSD trials that Tesla, Inc. has been offering to consumers and the attention on self-driving more generally, are you able to comment more specifically on what you're seeing with FSD subscription trends and take rates and help us better understand how large FSD revenue may be currently?
+
+Vaibhav Taneja: We've definitely seen a marked improvement in the FSD adoption since we've launched version twelve of FSD in North America. The other thing we did last year is we brought down the pricing and made the subscription much more affordable. We have seen a 45% increase since that time, which is an encouraging trend. But honestly, we've just started the story around explaining the benefits of FSD. We released our vehicle safety report. Even if you don't believe in anything else, a car on FSD being ten times safer should be a motivator. Plus, people don't realize even at $99 a month, it's like you're getting a personal chauffeur for almost $3.33 a day.
+
+This is by far the biggest game-changer, which I know we've been talking about it because part of it is we live and breathe it.
+
+Elon Musk: Yeah. I feel like most people still don't know. The vast majority of people don't know it exists. It's still like half of Tesla, Inc. owners who could use it haven't tried it even once. They don't actually go live on it. Obviously, this is something we want to educate them on. When they come in for service, we'll reach out to them, send them videos of how to make it work. It's such a shocking thing. They don't think a car is capable of this. You have to show them and get them comfortable turning it on.
+
+It's so trivial, but it's like saying you've got a cat that can sing and dance, but it just looks like an old cat. Until you see the cat sing and dance and talk, you see it was just a cat. That's Tesla, Inc. FSD. Our car is intelligent.
+
+Vaibhav Taneja: So what we're gonna do to Elon's point, we've been giving both free time to try and try the FSD, but we'll start giving more prompts to say, okay, this particular drive, try FSD. Because it's literally seeing is believing. Like Elon said, it's like a cat. It looks like a normal cat, but this cat can sing and dance. Same thing on as we build.
+
+Travis Axelrod: Great. And that 25% comment was a 25% increase in the penetration since we've seen the release of FSD twelve and B thirty-eight in North America. Great. Mark, did you have a follow-up question?
+
+Mark Delaney: Yeah. Thanks, Travis. Tesla, Inc. has historically said it would use pricing as one tool to help drive auto vehicle growth as long as free cash flow stayed positive given the ability to monetize products like FSD. I'm curious how you're thinking about pricing from here as a potential tool to drive increased volumes, given where you stand with FSD as well as the fact that the IRA purchase tax credits are poised to go away in the US starting in the fourth quarter. Do we expect more meaningful price reductions given that monetization potential? Or do you envision price reductions being more limited compared to cost down given where free cash flow now stands? Thanks.
+
+Elon Musk: Well, we're in this weird transition period where we will lose a lot of incentives in the US. Slab incentives actually in many other parts of the world. But we'll lose them in the US. Across all of it at the relatively early stages of autonomy. On the other hand, autonomy is most advanced and most available from a regulatory standpoint in the US. Does that mean we could have a few rough quarters? Yeah. We probably could have a few rough quarters. I'm not saying that we will, but we could. Q4, Q1, maybe Q2.
+
+But once you get to autonomy at scale in the second half of next year, only by the end of next year, I'd be surprised if Tesla, Inc.'s economics are not very compelling.
+
+Travis Axelrod: Great. The next question is gonna come from Will from Truist. Will, please feel free to unmute yourself when you're ready.
+
+Will Stein: Great. Thanks so much for taking my questions. First, I'd like to ask for a little bit more detail about the lower-cost model that you talked about having started production in the first half, but you said will ramp later. At the last analyst day, as I recall, you talked about some aspects of this, like two-thirds or three-quarters reduction in silicon carbide and not using rare earths in the motor and perhaps other cost downs. You also had this unboxed architecture that I think you said would not be part of this sort of interim approach. Can you update us on what we should expect this thing to actually look like?
+
+Vaibhav Taneja: We're not going to get into the look. You're gonna watch the Model Y.
+
+Elon Musk: Yeah. Let me just lick the car on the back there. Dancing cat. They can certainly dance pretty good. We can talk and see now, so that's the cool part.
+
+Will Stein: Yeah. I mean, fundamentally, the biggest obstacle remains that people just don't have some of the people don't want. The desire to buy the car is very high, just people don't have enough money in the bank account to buy it. Literally, that is the issue. Not a lack of desire, but a lack of ability. The more affordable we can make the car, the better. I think it won't be a very big deal when people can release their car to the fleet and have it earn money for them. Which, like I said, I'm thinking I feel confident in saying that'll happen next year in the US, at least. In the US, where we're legally allowed, appropriate disclaimers.
+
+That'll make the affordability dramatically greater. Just like, you know, if you have an Airbnb and you rent out your home when you're not there or rent out a guest room or guest house or something like that, the affordability of your home is much greater.
+
+Will Stein: Okay. Trying another topic then. We see all these wonderful developments at XAI like Grok, and obviously, Tesla, Inc. is trying to do quite a bit in AI. Elon, how do you manage the division of efforts and recruiting and talent and capital between these two that seem like there's a very high potential that they can, in fact, compete?
+
+Elon Musk: Well, they are doing different things here. XAI is doing terabyte-scale models and multi-terabyte scale models. Tesla, Inc. is a hundred times smaller models. One's real-world AI and one's kind of artificial superintelligence type of thing. The genesis for XAI was there were certain people who simply would not join Tesla, Inc. AI engineers because they wanted to work on ASI. They would join Tesla, Inc. I was like, well, maybe they'll join a new company. I think the total problem is extremely important, but not everyone agrees with me on that. Rather than have them join OpenAI or Google or some other company, I might as well have them a company in that regard. People can make a decision.
+
+Do they want to work on superintelligence at a data center or real-world AI? They're both compelling problems, but some people want to work on one, some want to work on the other.
+
+Travis Axelrod: Great. Unfortunately, that is all the time we have today. Thank you, everyone, so much for your questions, and we will see you next quarter.
+

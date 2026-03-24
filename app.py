@@ -26,6 +26,7 @@ if not os.path.exists("chroma_db"):
         run_ingest()
 
 from graph import build_graph
+from nodes import get_loaded_companies
 
 # ── Page Config ──────────────────────────────────────────────────────
 st.set_page_config(
@@ -46,15 +47,29 @@ with st.sidebar:
 
     st.divider()
 
+    # Company overview — shows what's loaded
+    st.markdown("### 📁 Loaded Companies")
+    companies = get_loaded_companies()
+    if companies:
+        for c in companies:
+            name = c.replace(".txt", "").replace("_", " ")
+            st.markdown(f"- `{name}`")
+        st.caption(f"{len(companies)} transcripts loaded")
+    else:
+        st.caption("No transcripts loaded yet")
+
+    st.divider()
+
     st.markdown("### How it works")
     st.markdown(
-        "1. 🔀 **Router** — decides if retrieval is needed\n"
+        "1. 🔀 **Router** — decides query type (single/compare/general)\n"
         "2. 🔍 **Retriever** — fetches relevant transcript chunks\n"
         "3. 📋 **Grader** — filters out irrelevant chunks\n"
         "4. 💡 **Generator** — produces a cited answer\n"
         "5. 🔎 **Hallucination Check** — verifies grounding\n"
         "6. ✅ **Usefulness Check** — verifies the answer is helpful\n"
-        "7. ✏️ **Rewrite** — self-corrects and retries if needed"
+        "7. ✏️ **Rewrite** — self-corrects and retries if needed\n"
+        "8. ⚖️ **Compare Mode** — side-by-side company analysis"
     )
 
     st.divider()
@@ -64,8 +79,8 @@ with st.sidebar:
         "What did the CEO say about AI investments?",
         "How did revenue change compared to last quarter?",
         "What are the biggest risks mentioned?",
-        "What is the company's guidance for next quarter?",
-        "Compare the profit margins across companies.",
+        "Compare Apple and Microsoft's AI strategy",
+        "Compare revenue growth across all companies",
     ]
     for q in sample_questions:
         if st.button(q, use_container_width=True):
@@ -123,6 +138,7 @@ if question:
                     "is_grounded": None,
                     "is_useful": None,
                     "generation_count": 0,
+                    "companies_compared": None,
                 })
 
             answer = result.get("answer", "I couldn't find an answer. Try rephrasing your question.")
@@ -138,6 +154,11 @@ if question:
             graph_path = ["Router"]
             if result.get("route") == "direct":
                 graph_path.append("Direct Answer")
+            elif result.get("route") == "compare":
+                companies = result.get("companies_compared", [])
+                graph_path.append(f"Compare Mode ({', '.join(companies) if companies else 'multiple companies'})")
+                graph_path.append(f"Retrieved from {len(sources)} sources")
+                graph_path.append("Generated Comparison")
             else:
                 graph_path.append("Retrieve")
                 graph_path.append(f"Grade ({len(result.get('documents') or [])} relevant)")

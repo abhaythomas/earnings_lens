@@ -51,21 +51,20 @@ retriever = vectorstore.as_retriever(
 # ── Node 1: Route Question ──────────────────────────────────────────
 def route_question(state: dict) -> dict:
     """
-    Decides whether the question needs document retrieval or can be
-    answered directly. For an earnings call app, almost everything
-    needs retrieval — but general questions like "what is revenue?"
-    don't need the vector store.
-
-    Returns: state with "route" set to "retrieve" or "direct"
+    Decides the query type:
+    - "compare" if the user wants to compare multiple companies
+    - "retrieve" if the question is about specific company data
+    - "direct" if it's a general knowledge question
     """
     question = state["question"]
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are a router for an earnings call analysis system.
-Decide if the question requires searching earnings call transcripts or can be answered from general knowledge.
+Decide the type of query:
 
 Answer ONLY with one word:
-- "retrieve" if the question is about a specific company, earnings, financials, or something said in a call
+- "compare" if the user wants to compare two or more companies (e.g., "compare Apple and Microsoft", "how does X differ from Y", "X vs Y")
+- "retrieve" if the question is about a specific company's earnings, financials, or something said in a call
 - "direct" if it's a general knowledge question (e.g., "what does EPS mean?")"""),
         ("human", "{question}"),
     ])
@@ -73,9 +72,105 @@ Answer ONLY with one word:
     chain = prompt | llm | StrOutputParser()
     result = chain.invoke({"question": question}).strip().lower()
 
-    route = "retrieve" if "retrieve" in result else "direct"
+    if "compare" in result:
+        route = "compare"
+    elif "retrieve" in result:
+        route = "retrieve"
+    else:
+        route = "direct"
+
     print(f"🔀 Router: {route}")
     return {**state, "route": route}
+
+
+# ── Node 9: Compare Companies ────────────────────────────────────────
+def compare_companies(state: dict) -> dict:
+    """
+    Handles comparison queries by:
+    1. Extracting company names from the question
+    2. Retrieving documents for EACH company separately
+    3. Generating a structured side-by-side comparison
+
+    This gives much better results than a single retrieval because
+    it ensures both companies get equal representation in the context.
+    """
+    question = state["question"]
+    print(f"⚖️  Compare Mode: {question[:80]}...")
+
+    # Step 1: Extract company names from the question
+    extract_prompt = ChatPromptTemplate.from_messages([
+        ("system", """Extract the company names being compared from this question.
+Return ONLY the company names, comma-separated. Example: "Apple, Microsoft"
+If you can't identify specific companies, return "unknown"."""),
+        ("human", "{question}"),
+    ])
+
+    chain = extract_prompt | llm | StrOutputParser()
+    companies_str = chain.invoke({"question": question}).strip()
+    companies = [c.strip() for c in companies_str.split(",") if c.strip()]
+    print(f"   Companies identified: {companies}")
+
+    # Step 2: Retrieve documents for each company separately
+    all_docs = []
+    company_docs = {}
+
+    for company in companies:
+        # Search specifically for this company
+        docs = vectorstore.similarity_search(
+            f"{company} {question}",
+            k=5,
+        )
+        # Filter to docs that actually mention this company
+        relevant = [d for d in docs if company.lower() in d.page_content.lower()
+                    or company.lower() in d.metadata.get("source", "").lower()]
+
+        # If strict filtering found nothing, keep top 3 from similarity search
+        if not relevant:
+            relevant = docs[:3]
+
+        company_docs[company] = relevant
+        all_docs.extend(relevant)
+        print(f"   {company}: found {len(relevant)} relevant chunks")
+
+    # Step 3: Generate structured comparison
+    context_parts = []
+    for company, docs in company_docs.items():
+        company_context = "\n".join(
+            f"[Source: {d.metadata.get('source', 'unknown')}]\n{d.page_content}"
+            for d in docs
+        )
+        context_parts.append(f"=== {company.upper()} ===\n{company_context}")
+
+    full_context = "\n\n".join(context_parts)
+
+    compare_prompt = ChatPromptTemplate.from_messages([
+        ("system", """You are an expert financial analyst. Compare the companies based ONLY on the provided earnings call excerpts.
+
+Rules:
+- Use ONLY information from the provided context
+- Structure your comparison with clear categories (Revenue, Growth, Strategy, Risks, Outlook)
+- Use a side-by-side format where possible
+- Cite the source file for each claim
+- If information is missing for one company, say so explicitly
+- Use specific numbers and quotes when available
+- End with a brief summary of key differences"""),
+        ("human", "Context:\n{context}\n\nComparison question: {question}"),
+    ])
+
+    chain = compare_prompt | llm | StrOutputParser()
+    answer = chain.invoke({"context": full_context, "question": question})
+
+    generation_count = state.get("generation_count", 0) + 1
+    print(f"💡 Comparison generated")
+
+    return {
+        **state,
+        "answer": answer,
+        "documents": all_docs,
+        "route": "compare",
+        "generation_count": generation_count,
+        "companies_compared": companies,
+    }
 
 
 # ── Node 2: Retrieve Documents ───────────────────────────────────────
@@ -276,3 +371,18 @@ Return ONLY the rewritten query, nothing else."""),
     print(f"✏️  Query rewritten: {new_question[:80]}...")
 
     return {**state, "question": new_question}
+
+
+# ── Helper: Get Loaded Companies ─────────────────────────────────────
+def get_loaded_companies() -> list:
+    """
+    Returns a list of unique source files loaded in the vector store.
+    Used by the UI sidebar to show which companies are available.
+    """
+    try:
+        collection = vectorstore._collection
+        all_metadata = collection.get()["metadatas"]
+        sources = list(set(m.get("source", "unknown") for m in all_metadata if m))
+        return sorted(sources)
+    except Exception:
+        return []
