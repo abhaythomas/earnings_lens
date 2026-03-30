@@ -9,6 +9,7 @@ Run with: streamlit run app.py
 """
 
 import os
+import re
 import streamlit as st
 
 # ── Handle API key from Streamlit Cloud secrets or .env ──────────────
@@ -51,10 +52,23 @@ with st.sidebar:
     st.markdown("### 📁 Loaded Companies")
     companies = get_loaded_companies()
     if companies:
-        for c in companies:
-            name = c.replace(".txt", "").replace("_", " ")
+        def extract_company_name(source):
+            name = os.path.basename(source).replace(".txt", "")
+            name = re.sub(r'\s*\([A-Z]+\)', '', name)
+            name = re.sub(r'\s+[A-Z]{2,5}(?=\s+(?:Q[1-4]|Earnings))', '', name)
+            name = re.sub(r'\s+Q[1-4]\b.*', '', name)
+            name = re.sub(r'\s+Earnings.*', '', name)
+            return name.strip()
+
+        seen = set()
+        unique_companies = []
+        for name in sorted(set(extract_company_name(c) for c in companies), key=str.lower):
+            if name.lower() not in seen:
+                seen.add(name.lower())
+                unique_companies.append(name)
+        for name in unique_companies:
             st.markdown(f"- `{name}`")
-        st.caption(f"{len(companies)} transcripts loaded")
+        st.caption(f"{len(unique_companies)} companies · {len(companies)} transcripts loaded")
     else:
         st.caption("No transcripts loaded yet")
 
