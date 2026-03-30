@@ -112,6 +112,12 @@ if "graph" not in st.session_state:
 # ── Chat History ─────────────────────────────────────────────────────
 st.title("📊 EarningsLens")
 st.caption("Adaptive RAG for Earnings Call Analysis — powered by LangGraph + Groq")
+st.markdown(
+    "> 💡 **What's an earnings call?** Every quarter, public companies hop on a call with Wall Street — "
+    "the CEO and CFO talk numbers, drop buzzwords like *synergy*, and analysts ask questions. "
+    "It's basically a company's report card, live and unscripted. "
+    "Ask me anything about them."
+)
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
