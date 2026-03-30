@@ -58,6 +58,7 @@ with st.sidebar:
             name = re.sub(r'\s+[A-Z]{2,5}(?=\s+(?:Q[1-4]|Earnings))', '', name)
             name = re.sub(r'\s+Q[1-4]\b.*', '', name)
             name = re.sub(r'\s+Earnings.*', '', name)
+            name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
             return name.strip()
 
         seen = set()
