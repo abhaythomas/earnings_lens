@@ -54,12 +54,20 @@ with st.sidebar:
     if companies:
         def extract_company_name(source):
             name = os.path.basename(source)
+            # Strip extension
             name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\s*\([A-Z]+\)', '', name)
-            name = re.sub(r'\s+[A-Z]{2,5}(?=\s+(?:Q[1-4]|Earnings))', '', name)
-            name = re.sub(r'\s+Q[1-4]\b.*', '', name)
-            name = re.sub(r'\s+Earnings.*', '', name)
+            # Normalize separators (hyphens/underscores → spaces)
+            name = name.replace('-', ' ').replace('_', ' ')
+            # Remove common SEC/filing prefixes and tokens
+            # e.g. "10Q Q2 2025 Apple" → "Apple"
+            name = re.sub(r'\b10[KkQq]\b', '', name)
+            name = re.sub(r'\b(annual|report|filing|earnings|transcript|call)\b', '', name, flags=re.IGNORECASE)
+            name = re.sub(r'\bQ[1-4]\b', '', name, flags=re.IGNORECASE)
+            name = re.sub(r'\b(19|20)\d{2}\b', '', name)  # Remove years
+            name = re.sub(r'\b[A-Z]{2,5}\b(?=\s|$)', lambda m: '' if m.group() not in ('AI', 'US', 'UK') else m.group(), name)  # Remove ticker symbols
             name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
+            # Collapse multiple spaces
+            name = re.sub(r'\s+', ' ', name)
             return name.strip()
 
         seen = set()
