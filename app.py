@@ -41,7 +41,7 @@ with st.sidebar:
     st.title("📊 EarningsLens")
     st.markdown(
         "**Adaptive RAG for Earnings Call Analysis**\n\n"
-        "Ask questions about earnings call transcripts. "
+        "Ask questions about earnings call transcripts and SEC filings. "
         "The system retrieves relevant excerpts, verifies "
         "answers are grounded, and self-corrects if needed."
     )
@@ -49,11 +49,12 @@ with st.sidebar:
     st.divider()
 
     # Company overview — shows what's loaded
-    st.markdown("### 📁 Loaded Companies")
+    st.markdown("### 📁 Loaded Documents")
     companies = get_loaded_companies()
     if companies:
         def extract_company_name(source):
-            name = os.path.basename(source).replace(".txt", "")
+            name = os.path.basename(source)
+            name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
             name = re.sub(r'\s*\([A-Z]+\)', '', name)
             name = re.sub(r'\s+[A-Z]{2,5}(?=\s+(?:Q[1-4]|Earnings))', '', name)
             name = re.sub(r'\s+Q[1-4]\b.*', '', name)
@@ -69,9 +70,9 @@ with st.sidebar:
                 unique_companies.append(name)
         for name in unique_companies:
             st.markdown(f"- `{name}`")
-        st.caption(f"{len(unique_companies)} companies · {len(companies)} transcripts loaded")
+        st.caption(f"{len(unique_companies)} companies · {len(companies)} sources loaded")
     else:
-        st.caption("No transcripts loaded yet")
+        st.caption("No documents loaded yet")
 
     st.divider()
 
@@ -116,7 +117,7 @@ st.markdown(
     "> 💡 **What's an earnings call?** Every quarter, public companies hop on a call with Wall Street — "
     "the CEO and CFO talk numbers, drop buzzwords like *synergy*, and analysts ask questions. "
     "It's basically a company's report card, live and unscripted. "
-    "Ask me anything about them."
+    "Ask me anything about them — or drop in a 10-Q PDF for deeper analysis."
 )
 
 for message in st.session_state.messages:
@@ -134,10 +135,25 @@ for message in st.session_state.messages:
                 with st.expander("🔀 Graph path"):
                     st.markdown(" → ".join(meta["graph_path"]))
 
+# ── Helper: Format source citation ───────────────────────────────────
+def format_source(doc) -> str:
+    """
+    Returns a human-readable source string.
+    For PDFs, includes the page number: 'apple_10q.pdf (p. 4)'
+    For TXTs, just the filename: 'apple_q4_2024.txt'
+    """
+    source = doc.metadata.get("source", "unknown")
+    page = doc.metadata.get("page_number")
+    doc_type = doc.metadata.get("doc_type", "")
+
+    if doc_type == "pdf" and page:
+        return f"{source} (p. {page})"
+    return source
+
 # ── Handle Input ─────────────────────────────────────────────────────
 # Check for prefilled question from sidebar
 prefill = st.session_state.pop("prefill_question", None)
-question = st.chat_input("Ask about earnings calls...") or prefill
+question = st.chat_input("Ask about earnings calls or SEC filings...") or prefill
 
 if question:
     # Display user message
@@ -148,7 +164,7 @@ if question:
     # Run the graph
     with st.chat_message("assistant"):
         try:
-            with st.spinner("Analyzing transcripts..."):
+            with st.spinner("Analyzing documents..."):
                 result = st.session_state.graph.invoke({
                     "question": question,
                     "original_question": question,
@@ -165,11 +181,15 @@ if question:
             answer = result.get("answer", "I couldn't find an answer. Try rephrasing your question.")
             st.markdown(answer)
 
-            # Extract metadata for display
-            sources = list(set(
-                doc.metadata.get("source", "unknown")
-                for doc in (result.get("documents") or [])
-            ))
+            # ── Build source citations with page numbers for PDFs ──
+            result_docs = result.get("documents") or []
+            seen_sources = set()
+            sources = []
+            for doc in result_docs:
+                label = format_source(doc)
+                if label not in seen_sources:
+                    seen_sources.add(label)
+                    sources.append(label)
 
             # Build graph path from what happened
             graph_path = ["Router"]
@@ -182,7 +202,7 @@ if question:
                 graph_path.append("Generated Comparison")
             else:
                 graph_path.append("Retrieve")
-                graph_path.append(f"Grade ({len(result.get('documents') or [])} relevant)")
+                graph_path.append(f"Grade ({len(result_docs)} relevant)")
                 if result.get("generation_count", 0) > 1:
                     graph_path.append(f"Rewrite (x{result['generation_count'] - 1})")
                 graph_path.append("Generate")
