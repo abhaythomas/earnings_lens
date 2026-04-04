@@ -62,7 +62,7 @@ User Question
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/earningslens.git
+git clone https://github.com/abhaythomas/earningslens.git
 cd earningslens
 
 # Create virtual environment
