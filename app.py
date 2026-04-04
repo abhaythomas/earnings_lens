@@ -56,6 +56,8 @@ with st.sidebar:
             name = os.path.basename(source)
             # Strip extension
             name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
+            # Remove parenthesized tickers first e.g. "(AAPL)", "(MSFT)"
+            name = re.sub(r'\s*\([A-Z]{1,5}\)', '', name)
             # Normalize separators (hyphens/underscores → spaces)
             name = name.replace('-', ' ').replace('_', ' ')
             # Remove common SEC/filing prefixes and tokens
@@ -64,7 +66,6 @@ with st.sidebar:
             name = re.sub(r'\b(annual|report|filing|earnings|transcript|call)\b', '', name, flags=re.IGNORECASE)
             name = re.sub(r'\bQ[1-4]\b', '', name, flags=re.IGNORECASE)
             name = re.sub(r'\b(19|20)\d{2}\b', '', name)  # Remove years
-            name = re.sub(r'\b[A-Z]{2,5}\b(?=\s|$)', lambda m: '' if m.group() not in ('AI', 'US', 'UK') else m.group(), name)  # Remove ticker symbols
             name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
             # Collapse multiple spaces
             name = re.sub(r'\s+', ' ', name)
