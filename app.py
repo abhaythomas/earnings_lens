@@ -12,6 +12,11 @@ import os
 import re
 import streamlit as st
 
+if not os.path.exists("chroma_db") or not os.listdir("chroma_db"):
+    import ingest
+    ingest.main()
+
+
 # ── Handle API key from Streamlit Cloud secrets or .env ──────────────
 # Streamlit Cloud uses st.secrets; local dev uses .env
 try:
