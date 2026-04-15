@@ -36,7 +36,9 @@ except Exception:
 if not os.environ.get("PINECONE_API_KEY"):
     st.error(
         "**PINECONE_API_KEY not found.**\n\n"
-        "Add it to `.env` (local) or Streamlit Cloud secrets (deployed).\n\n"
+        "- **Local:** Add it to your `.env` file\n"
+        "- **Railway:** Add it under Service → Variables tab\n"
+        "- **Streamlit Cloud:** Add it under App Settings → Secrets\n\n"
         "Get your key from: https://app.pinecone.io"
     )
     st.stop()
