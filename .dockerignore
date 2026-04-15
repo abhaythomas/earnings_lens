@@ -1,0 +1,45 @@
+# Virtual environments
+venv/
+venv2/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# v1 files — not needed in the v2 image
+app.py
+graph.py
+nodes.py
+ingest.py
+requirements.txt
+chroma_db/
+
+# Dev / secrets
+.env
+*.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs (generated at runtime — mounted as a volume)
+query_log.jsonl
+logs/
+
+# Docs / extras
+README.md
+screenshots/
+*.md

@@ -17,3 +17,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+query_log.jsonl
+logs/
+venv2/
