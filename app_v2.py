@@ -24,11 +24,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Debug: print to deploy logs so we can verify Railway is injecting env vars
-import sys
-print(f"[startup] PINECONE_API_KEY set: {bool(os.environ.get('PINECONE_API_KEY'))}", file=sys.stderr)
-print(f"[startup] GROQ_API_KEY set: {bool(os.environ.get('GROQ_API_KEY'))}", file=sys.stderr)
-
 # ── Handle API keys ──────────────────────────────────────────────────
 try:
     for key in ["GROQ_API_KEY", "PINECONE_API_KEY"]:
@@ -104,6 +99,10 @@ def load_query_stats() -> dict:
         return {}
 
 
+@st.cache_data(ttl=600)
+def get_companies_cached():
+    return get_loaded_companies_v2()
+
 # ── Page Config ──────────────────────────────────────────────────────
 st.set_page_config(
     page_title="EarningsLens v2",
@@ -144,7 +143,7 @@ with st.sidebar:
 
     # ── Company overview ─────────────────────────────────────────────
     st.markdown("### 📁 Loaded Documents")
-    companies = get_loaded_companies_v2()
+    companies = get_companies_cached()
     if companies:
         def extract_company_name(source):
             name = os.path.basename(source)
