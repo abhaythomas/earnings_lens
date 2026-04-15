@@ -17,6 +17,9 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Local Docker Compose (Railway uses Dockerfile directly via railway.json)
+docker-compose.yml
 query_log.jsonl
 logs/
 venv2/
