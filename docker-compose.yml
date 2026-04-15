@@ -7,6 +7,9 @@ services:
     container_name: earningslens-v2
     ports:
       - "8501:8501"
+    environment:
+      - GROQ_API_KEY
+      - PINECONE_API_KEY
     env_file:
       - path: .env
         required: false
