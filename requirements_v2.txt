@@ -1,0 +1,13 @@
+# Python 3.14+ compatible versions
+langchain>=0.3.25
+langchain-community>=0.3.25
+langchain-groq>=0.3.0
+langchain-huggingface>=0.2.0
+langchain-text-splitters>=0.3.5
+langgraph>=0.3.0
+streamlit>=1.44.0
+python-dotenv>=1.1.0
+sentence-transformers>=3.4.0
+pdfplumber>=0.11.5
+pinecone>=6.0.0
+langchain-pinecone>=0.2.0

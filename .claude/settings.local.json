@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(venv2/Scripts/pip install:*)",
+      "Bash(venv2/Scripts/streamlit run:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose --version)"
+    ]
+  }
+}
