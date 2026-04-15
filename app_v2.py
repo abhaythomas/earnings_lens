@@ -24,6 +24,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Debug: print to deploy logs so we can verify Railway is injecting env vars
+import sys
+print(f"[startup] PINECONE_API_KEY set: {bool(os.environ.get('PINECONE_API_KEY'))}", file=sys.stderr)
+print(f"[startup] GROQ_API_KEY set: {bool(os.environ.get('GROQ_API_KEY'))}", file=sys.stderr)
+
 # ── Handle API keys ──────────────────────────────────────────────────
 try:
     for key in ["GROQ_API_KEY", "PINECONE_API_KEY"]:
