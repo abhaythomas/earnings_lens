@@ -1,7 +1,7 @@
 # 📊 EarningsLens — Adaptive RAG for Earnings Call Analysis
 
 🔗 **[Live Demo — v1 (Streamlit Cloud)](https://earningslens-b4fjpwzptyqempqmzuhuff.streamlit.app/)**
-🔗 **[Live Demo — v2 (Docker + Railway)](https://earningslens-production.up.railway.app/)**
+🔗 **[Live Demo — v2 (Streamlit Cloud)](https://earningslens-rag.streamlit.app/)**
 
 ![EarningsLens Demo](screenshots/demo.png)
 
