@@ -314,7 +314,7 @@ button[kind="secondary"]:hover {
 hr { border-color: rgba(255,255,255,0.05) !important; margin: 1rem 0 !important; }
 
 /* Caption text */
-[data-testid="stCaptionContainer"] { color: #475569 !important; font-size: 0.78rem !important; }
+[data-testid="stCaptionContainer"] { color: #94a3b8 !important; font-size: 0.78rem !important; }
 
 /* Chat input */
 [data-testid="stChatInput"] textarea {
@@ -344,7 +344,7 @@ with st.sidebar:
     # ── Upload ───────────────────────────────────────────────────────
     st.markdown(
         '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
-        'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Upload Document</p>',
+        'color:#64748b;text-transform:uppercase;margin-bottom:0.5rem;">Upload Document</p>',
         unsafe_allow_html=True,
     )
     uploaded = st.file_uploader("PDF", type=["pdf"], label_visibility="collapsed")
@@ -369,7 +369,7 @@ with st.sidebar:
     if stats:
         st.markdown(
             '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
-            'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Session Metrics</p>',
+            'color:#64748b;text-transform:uppercase;margin-bottom:0.5rem;">Session Metrics</p>',
             unsafe_allow_html=True,
         )
         col1, col2 = st.columns(2)
@@ -405,7 +405,7 @@ with st.sidebar:
 
         st.markdown(
             '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
-            'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Indexed Sources</p>',
+            'color:#64748b;text-transform:uppercase;margin-bottom:0.5rem;">Indexed Sources</p>',
             unsafe_allow_html=True,
         )
         pills = " ".join(
@@ -432,7 +432,7 @@ st.markdown("""
                color:#f1f5f9;margin:0 0 4px 0;">
         Earnings Intelligence
     </h1>
-    <p style="color:#475569;font-size:0.88rem;margin:0;">
+    <p style="color:#94a3b8;font-size:0.88rem;margin:0;">
         Ask anything about earnings calls and SEC filings — answers are cited, verified, and self-corrected.
     </p>
 </div>
@@ -457,7 +457,7 @@ for message in st.session_state.messages:
                 with st.expander("Reasoning path"):
                     steps = " › ".join(meta["graph_path"])
                     st.markdown(
-                        f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
+                        f'<span style="font-size:0.78rem;color:#94a3b8;">{steps}</span>',
                         unsafe_allow_html=True,
                     )
             if meta.get("latency_ms"):
@@ -467,7 +467,7 @@ for message in st.session_state.messages:
 if not st.session_state.messages:
     st.markdown("""
     <div style="margin:2.5rem 0 1rem;">
-        <p style="color:#334155;font-size:0.82rem;font-weight:500;
+        <p style="color:#64748b;font-size:0.82rem;font-weight:500;
                   letter-spacing:0.04em;text-transform:uppercase;margin-bottom:1rem;">
             Suggested questions
         </p>
@@ -586,7 +586,7 @@ if question:
             with st.expander("Reasoning path"):
                 steps = " › ".join(graph_path)
                 st.markdown(
-                    f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
+                    f'<span style="font-size:0.78rem;color:#94a3b8;">{steps}</span>',
                     unsafe_allow_html=True,
                 )
             st.caption(f"{round(latency_ms, 1)}ms")
