@@ -512,10 +512,20 @@ if question:
     with st.chat_message("assistant"):
         try:
             with st.spinner("Analyzing documents..."):
+                # Build last 3 turns (6 messages) of history — enough context
+                # without ballooning the prompt size on long conversations
+                history_messages = st.session_state.messages[:-1]  # exclude current user msg
+                recent = history_messages[-6:]
+                chat_history = [
+                    {"role": m["role"], "content": m["content"]}
+                    for m in recent
+                ]
+
                 t_start = time.time()
                 result = st.session_state.graph.invoke({
                     "question": question,
                     "original_question": question,
+                    "chat_history": chat_history,
                     "documents": None,
                     "answer": None,
                     "route": None,
