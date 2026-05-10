@@ -182,118 +182,230 @@ def process_and_ingest_pdf(uploaded_file) -> tuple[int, int]:
 
 # ── Page Config ──────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="EarningsLens v2",
+    page_title="EarningsLens",
     page_icon="📊",
     layout="wide",
 )
 
+# ── Global CSS ────────────────────────────────────────────────────────
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Hide Streamlit chrome */
+#MainMenu, footer, header { visibility: hidden; }
+
+/* Main content area */
+.block-container {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 820px !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] > div:first-child {
+    border-right: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1.75rem;
+}
+
+/* File uploader */
+[data-testid="stFileUploader"] {
+    border: 1px dashed rgba(99,102,241,0.35) !important;
+    border-radius: 10px !important;
+    padding: 0.25rem 0.5rem !important;
+    background: rgba(99,102,241,0.04) !important;
+    transition: border-color 0.2s;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: rgba(99,102,241,0.6) !important;
+}
+
+/* Primary button */
+button[kind="primary"] {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    transition: opacity 0.15s !important;
+}
+button[kind="primary"]:hover { opacity: 0.88 !important; }
+
+/* Secondary / outline buttons */
+button[kind="secondary"] {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 8px !important;
+    color: #94a3b8 !important;
+    font-size: 0.82rem !important;
+    transition: all 0.15s !important;
+}
+button[kind="secondary"]:hover {
+    background: rgba(99,102,241,0.08) !important;
+    border-color: rgba(99,102,241,0.3) !important;
+    color: #c7d2fe !important;
+}
+
+/* Suggestion cards (empty state) */
+.suggestion-card button {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+    color: #94a3b8 !important;
+    font-size: 0.83rem !important;
+    padding: 1rem !important;
+    text-align: left !important;
+    height: auto !important;
+    min-height: 72px !important;
+    transition: all 0.15s !important;
+}
+.suggestion-card button:hover {
+    background: rgba(99,102,241,0.07) !important;
+    border-color: rgba(99,102,241,0.28) !important;
+    color: #e2e8f0 !important;
+    transform: translateY(-1px);
+}
+
+/* Chat messages */
+[data-testid="stChatMessage"] {
+    border-radius: 14px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    margin-bottom: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+/* Expanders */
+[data-testid="stExpander"] {
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 8px !important;
+    background: rgba(255,255,255,0.02) !important;
+}
+[data-testid="stExpander"] summary {
+    font-size: 0.8rem !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+/* Metric cards */
+[data-testid="stMetric"] {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 1rem !important;
+}
+[data-testid="stMetricValue"] { font-size: 1.3rem !important; font-weight: 600 !important; }
+[data-testid="stMetricLabel"] { font-size: 0.75rem !important; color: #64748b !important; }
+
+/* Dividers */
+hr { border-color: rgba(255,255,255,0.05) !important; margin: 1rem 0 !important; }
+
+/* Caption text */
+[data-testid="stCaptionContainer"] { color: #475569 !important; font-size: 0.78rem !important; }
+
+/* Chat input */
+[data-testid="stChatInput"] textarea {
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    background: rgba(255,255,255,0.03) !important;
+    font-size: 0.95rem !important;
+}
+[data-testid="stChatInput"] textarea:focus {
+    border-color: rgba(99,102,241,0.5) !important;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.12) !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # ── Sidebar ──────────────────────────────────────────────────────────
 with st.sidebar:
-    st.title("📊 EarningsLens")
-
-    # Version badge — makes it visually clear this is v2
     st.markdown(
-        '<span style="background:#1d4ed8;color:white;padding:2px 10px;'
-        'border-radius:12px;font-size:12px;font-weight:600;">v2 · Pinecone Cloud</span>',
+        '<div style="margin-bottom:1.25rem;">'
+        '<span style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;color:#f1f5f9;">EarningsLens</span>'
+        '&nbsp;&nbsp;<span style="background:rgba(99,102,241,0.15);color:#818cf8;border:1px solid rgba(99,102,241,0.3);'
+        'padding:1px 8px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.06em;">BETA</span>'
+        '</div>',
         unsafe_allow_html=True,
     )
 
+    # ── Upload ───────────────────────────────────────────────────────
     st.markdown(
-        "\n\n**Adaptive RAG for Earnings Call Analysis**\n\n"
-        "Ask questions about earnings call transcripts and SEC filings. "
-        "The system retrieves relevant excerpts, verifies "
-        "answers are grounded, and self-corrects if needed."
+        '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
+        'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Upload Document</p>',
+        unsafe_allow_html=True,
     )
-
-    st.divider()
-
-    # ── Real-time upload ─────────────────────────────────────────────
-    st.markdown("### 📤 Upload Document")
-    st.caption("Drop a PDF (10-Q, 10-K, transcript) to query it instantly.")
-    uploaded = st.file_uploader("Choose a PDF", type=["pdf"], label_visibility="collapsed")
+    uploaded = st.file_uploader("PDF", type=["pdf"], label_visibility="collapsed")
     if uploaded:
-        if st.button("Ingest into Pinecone", use_container_width=True, type="primary"):
+        if st.button("Analyze document", use_container_width=True, type="primary"):
             with st.spinner(f"Processing {uploaded.name}..."):
                 try:
                     chunks, pages = process_and_ingest_pdf(uploaded)
                     if chunks > 0:
-                        st.success(f"{pages} pages → {chunks} chunks added")
+                        st.success(f"{pages} pages · {chunks} chunks indexed")
                         get_companies_cached.clear()
                         st.rerun()
                     else:
-                        st.warning("No content extracted. Make sure the PDF has selectable text (not scanned).")
+                        st.warning("No text found. Use a text-based PDF, not a scan.")
                 except Exception as e:
-                    st.error(f"Ingestion failed: {e}")
+                    st.error(f"Failed: {e}")
 
     st.divider()
 
-    # ── Observability panel ──────────────────────────────────────────
+    # ── Metrics ──────────────────────────────────────────────────────
     stats = load_query_stats()
     if stats:
-        st.markdown("### 📈 Query metrics")
+        st.markdown(
+            '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
+            'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Session Metrics</p>',
+            unsafe_allow_html=True,
+        )
         col1, col2 = st.columns(2)
-        col1.metric("Total queries", stats["total_queries"])
+        col1.metric("Queries", stats["total_queries"])
         col2.metric("Avg latency", f"{stats['avg_latency_ms']}ms")
         if stats.get("grounded_pct") is not None:
-            st.metric("Grounded answers", f"{stats['grounded_pct']}%")
+            st.metric("Grounded", f"{stats['grounded_pct']}%")
         st.divider()
 
-    # ── Company overview ─────────────────────────────────────────────
-    st.markdown("### 📁 Loaded Documents")
+    # ── Loaded documents ─────────────────────────────────────────────
     companies = get_companies_cached()
-    if companies:
-        def extract_company_name(source):
-            name = os.path.basename(source)
-            name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\s*\([A-Z]{1,5}\)', '', name)
-            name = name.replace('-', ' ').replace('_', ' ')
-            name = re.sub(r'\b10[KkQq]\b', '', name)
-            name = re.sub(r'\b(annual|report|filing|earnings|transcript|call)\b', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\bQ[1-4]\b', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\b(19|20)\d{2}\b', '', name)
-            name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
-            name = re.sub(r'\s+', ' ', name)
-            return name.strip()
 
+    def extract_company_name(source):
+        name = os.path.basename(source)
+        name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\s*\([A-Z]{1,5}\)', '', name)
+        name = name.replace('-', ' ').replace('_', ' ')
+        name = re.sub(r'\b10[KkQq]\b', '', name)
+        name = re.sub(r'\b(annual|report|filing|earnings|transcript|call)\b', '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\bQ[1-4]\b', '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\b(19|20)\d{2}\b', '', name)
+        name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
+        name = re.sub(r'\s+', ' ', name)
+        return name.strip()
+
+    if companies:
         seen = set()
         unique_companies = []
         for name in sorted(set(extract_company_name(c) for c in companies), key=str.lower):
             if name.lower() not in seen:
                 seen.add(name.lower())
                 unique_companies.append(name)
-        for name in unique_companies:
-            st.markdown(f"- `{name}`")
-        st.caption(f"{len(unique_companies)} companies · {len(companies)} sources loaded")
-    else:
-        st.caption("No documents loaded — run ingest_v2.py first")
 
-    st.divider()
-
-    st.markdown("### How it works")
-    st.markdown(
-        "1. 🔀 **Router** — decides query type (single/compare/general)\n"
-        "2. 🔍 **Retriever** — fetches from Pinecone cloud index\n"
-        "3. 📋 **Grader** — filters out irrelevant chunks\n"
-        "4. 💡 **Generator** — produces a cited answer\n"
-        "5. 🔎 **Hallucination Check** — verifies grounding\n"
-        "6. ✅ **Usefulness Check** — verifies the answer is helpful\n"
-        "7. ✏️ **Rewrite** — self-corrects and retries if needed\n"
-        "8. ⚖️ **Compare Mode** — side-by-side company analysis"
-    )
-
-    st.divider()
-
-    st.markdown("### Sample questions")
-    sample_questions = [
-        "What did the CEO say about AI investments?",
-        "How did revenue change compared to last quarter?",
-        "What are the biggest risks mentioned?",
-        "Compare Apple and Microsoft's AI strategy",
-        "Compare revenue growth across all companies",
-    ]
-    for q in sample_questions:
-        if st.button(q, use_container_width=True):
-            st.session_state["prefill_question"] = q
+        st.markdown(
+            '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
+            'color:#475569;text-transform:uppercase;margin-bottom:0.5rem;">Indexed Sources</p>',
+            unsafe_allow_html=True,
+        )
+        pills = " ".join(
+            f'<span style="display:inline-block;background:rgba(255,255,255,0.04);'
+            f'border:1px solid rgba(255,255,255,0.08);color:#94a3b8;'
+            f'padding:2px 9px;border-radius:20px;font-size:11px;margin:2px;">{n}</span>'
+            for n in unique_companies
+        )
+        st.markdown(pills, unsafe_allow_html=True)
+        st.caption(f"{len(unique_companies)} companies · {len(companies)} files")
 
 # ── Initialize ───────────────────────────────────────────────────────
 if "messages" not in st.session_state:
@@ -303,30 +415,71 @@ if "graph" not in st.session_state:
     with st.spinner("Connecting to Pinecone and loading EarningsLens v2..."):
         st.session_state.graph = build_graph_v2()
 
-# ── Chat History ─────────────────────────────────────────────────────
-st.title("📊 EarningsLens")
-st.caption("v2 · Adaptive RAG · LangGraph + Groq + Pinecone Cloud")
-st.markdown(
-    "> 💡 **What's an earnings call?** Every quarter, public companies hop on a call with Wall Street — "
-    "the CEO and CFO talk numbers, drop buzzwords like *synergy*, and analysts ask questions. "
-    "It's basically a company's report card, live and unscripted. "
-    "Ask me anything about them — or drop in a 10-Q PDF for deeper analysis."
-)
+# ── Header ───────────────────────────────────────────────────────────
+st.markdown("""
+<div style="margin-bottom:2rem;">
+    <h1 style="font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;
+               color:#f1f5f9;margin:0 0 4px 0;">
+        Earnings Intelligence
+    </h1>
+    <p style="color:#475569;font-size:0.88rem;margin:0;">
+        Ask anything about earnings calls and SEC filings — answers are cited, verified, and self-corrected.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
+# ── Chat History ─────────────────────────────────────────────────────
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if message["role"] == "assistant" and "metadata" in message:
             meta = message["metadata"]
+            cols = st.columns([1, 1])
             if meta.get("sources"):
-                with st.expander("📄 Sources cited"):
-                    for source in meta["sources"]:
-                        st.markdown(f"- `{source}`")
+                with cols[0].expander("Sources"):
+                    badges = " ".join(
+                        f'<span style="display:inline-block;background:rgba(99,102,241,0.1);'
+                        f'border:1px solid rgba(99,102,241,0.25);color:#a5b4fc;'
+                        f'padding:2px 9px;border-radius:20px;font-size:11px;margin:2px;">{s}</span>'
+                        for s in meta["sources"]
+                    )
+                    st.markdown(badges, unsafe_allow_html=True)
             if meta.get("graph_path"):
-                with st.expander("🔀 Graph path"):
-                    st.markdown(" → ".join(meta["graph_path"]))
+                with cols[1].expander("Reasoning path"):
+                    steps = " › ".join(meta["graph_path"])
+                    st.markdown(
+                        f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
+                        unsafe_allow_html=True,
+                    )
             if meta.get("latency_ms"):
-                st.caption(f"⏱ {meta['latency_ms']}ms")
+                st.caption(f"{meta['latency_ms']}ms")
+
+# ── Empty state ───────────────────────────────────────────────────────
+if not st.session_state.messages:
+    st.markdown("""
+    <div style="margin:2.5rem 0 1rem;">
+        <p style="color:#334155;font-size:0.82rem;font-weight:500;
+                  letter-spacing:0.04em;text-transform:uppercase;margin-bottom:1rem;">
+            Suggested questions
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    suggestions = [
+        ("Revenue & Growth", "How did revenue change compared to last quarter?"),
+        ("AI Strategy", "What did the CEO say about AI investments?"),
+        ("Risk Factors", "What are the biggest risks mentioned in the filings?"),
+        ("Compare", "Compare Apple and Microsoft's AI strategy"),
+    ]
+    col1, col2 = st.columns(2)
+    for i, (title, q) in enumerate(suggestions):
+        col = col1 if i % 2 == 0 else col2
+        with col:
+            st.markdown('<div class="suggestion-card">', unsafe_allow_html=True)
+            if st.button(f"**{title}**\n\n{q}", use_container_width=True, key=f"suggest_{i}"):
+                st.session_state["prefill_question"] = q
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
 
 def format_source(doc) -> str:
@@ -412,13 +565,23 @@ if question:
                 "latency_ms": round(latency_ms, 1),
             }
 
+            resp_cols = st.columns([1, 1])
             if sources:
-                with st.expander("📄 Sources cited"):
-                    for source in sources:
-                        st.markdown(f"- `{source}`")
-            with st.expander("🔀 Graph path"):
-                st.markdown(" → ".join(graph_path))
-            st.caption(f"⏱ {round(latency_ms, 1)}ms")
+                with resp_cols[0].expander("Sources"):
+                    badges = " ".join(
+                        f'<span style="display:inline-block;background:rgba(99,102,241,0.1);'
+                        f'border:1px solid rgba(99,102,241,0.25);color:#a5b4fc;'
+                        f'padding:2px 9px;border-radius:20px;font-size:11px;margin:2px;">{s}</span>'
+                        for s in sources
+                    )
+                    st.markdown(badges, unsafe_allow_html=True)
+            with resp_cols[1].expander("Reasoning path"):
+                steps = " › ".join(graph_path)
+                st.markdown(
+                    f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
+                    unsafe_allow_html=True,
+                )
+            st.caption(f"{round(latency_ms, 1)}ms")
 
             st.session_state.messages.append({
                 "role": "assistant",
