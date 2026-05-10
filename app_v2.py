@@ -26,7 +26,7 @@ load_dotenv()
 
 # ── Handle API keys ──────────────────────────────────────────────────
 try:
-    for key in ["GROQ_API_KEY", "PINECONE_API_KEY"]:
+    for key in ["GROQ_API_KEY", "PINECONE_API_KEY", "LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2", "LANGCHAIN_PROJECT"]:
         if key in st.secrets:
             os.environ[key] = st.secrets[key]
 except Exception:
