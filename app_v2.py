@@ -498,23 +498,7 @@ for message in st.session_state.messages:
 
 # ── Empty state ───────────────────────────────────────────────────────
 if not st.session_state.messages:
-    st.markdown("""
-    <div style="margin: 3rem 0 2.5rem; text-align: left;">
-        <div style="display:inline-flex;align-items:center;justify-content:center;
-                    width:52px;height:52px;border-radius:16px;margin-bottom:1.25rem;
-                    background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(14,165,233,0.15));
-                    border:1px solid rgba(99,102,241,0.3);font-size:1.5rem;">
-            🤖
-        </div>
-        <h2 style="font-size:1.35rem;font-weight:700;color:#f1f5f9;
-                   letter-spacing:-0.02em;margin:0 0 0.4rem 0;">
-            What do you want to know?
-        </h2>
-        <p style="color:#64748b;font-size:0.9rem;margin:0 0 2rem 0;">
-            Ask about revenue, strategy, risks, or compare companies across earnings calls.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div style="margin: 2rem 0 1.5rem;"></div>', unsafe_allow_html=True)
 
     suggestions = [
         ("📈", "Revenue & Growth", "How did revenue change compared to last quarter?"),
