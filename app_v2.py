@@ -472,8 +472,7 @@ st.markdown("""
 
 # ── Chat History ─────────────────────────────────────────────────────
 for message in st.session_state.messages:
-    avatar = "👤" if message["role"] == "user" else "⬡"
-    with st.chat_message(message["role"], avatar=avatar):
+    with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if message["role"] == "assistant" and "metadata" in message:
             meta = message["metadata"]
@@ -538,10 +537,10 @@ question = st.chat_input("Ask about earnings calls or SEC filings...") or prefil
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
-    with st.chat_message("user", avatar="👤"):
+    with st.chat_message("user"):
         st.markdown(question)
 
-    with st.chat_message("assistant", avatar="🤖"):
+    with st.chat_message("assistant"):
         try:
             with st.spinner("Analyzing documents..."):
                 # Build last 3 turns (6 messages) of history — enough context
