@@ -15,8 +15,8 @@ Unlike basic RAG (retrieve → generate), EarningsLens uses an **Adaptive RAG** 
 | | v1 | v2 |
 |--|----|----|
 | Vector store | ChromaDB (local disk) | Pinecone (cloud) |
-| Deployment | Streamlit Cloud | Docker + Railway |
-| Observability | None | Query logging (latency, grounding, route) |
+| Deployment | Streamlit Cloud | Streamlit Cloud |
+| Observability | None | Query logging (latency, grounding, route) + LangSmith tracing |
 | Infrastructure | Local venv | Containerised |
 
 ---
@@ -142,6 +142,7 @@ Free sources:
 | Vector Store (v1) | **ChromaDB** | Local disk, zero cloud dependency |
 | Vector Store (v2) | **Pinecone** | Managed cloud index, survives container restarts |
 | Frontend | **Streamlit** | Chat interface with observability panel |
+| Tracing | **LangSmith** | Full trace of every graph node, LLM call, and latency |
 | Containerisation | **Docker** | Reproducible builds, cloud-deployable |
 | Documents | **LangChain + pdfplumber** | Chunking, retrieval, PDF table extraction |
 
@@ -183,7 +184,7 @@ earningslens/
 
 **Docker for reproducibility:** The full dependency chain (LangChain, LangGraph, sentence-transformers, pdfplumber) is pinned and containerised. `docker compose up --build` produces an identical environment on any machine or cloud host. Torch is installed as CPU-only to keep the image lean (~2GB instead of ~8GB).
 
-**Observability layer:** Every query is logged to `query_log.jsonl` with timestamp, latency, route taken, docs retrieved, and whether the answer was grounded. The sidebar surfaces this as live metrics (avg latency, grounding rate, total queries). In production, this data can be loaded into a monitoring dashboard.
+**Observability layer:** Every query is logged to `query_log.jsonl` with timestamp, latency, route taken, docs retrieved, and whether the answer was grounded. The sidebar surfaces this as live metrics (avg latency, grounding rate, total queries). In production, this data can be loaded into a monitoring dashboard. LangSmith is also integrated for deep tracing — every graph node, LLM prompt, response, and token count is captured per query, making it easy to debug routing decisions and measure per-node latency.
 
 **Groq over local models:** Groq provides access to Llama 3.3 70B for free — a much more capable model than what most consumer hardware can run. The architecture is LLM-agnostic; swap `ChatGroq` for `ChatOllama` to run fully locally.
 
@@ -200,6 +201,7 @@ earningslens/
 - [x] ~~Migrate to cloud vector store (Pinecone)~~ ✅
 - [x] ~~Containerise with Docker~~ ✅
 - [x] ~~Query observability and latency tracking~~ ✅
+- [x] ~~LangSmith tracing for full graph visibility~~ ✅
 - [ ] Time-series analysis across quarterly calls
 - [ ] Financial entity extraction (revenue, EPS, guidance numbers)
 - [ ] Monitoring dashboard from query log data
