@@ -504,7 +504,7 @@ if not st.session_state.messages:
                     width:52px;height:52px;border-radius:16px;margin-bottom:1.25rem;
                     background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(14,165,233,0.15));
                     border:1px solid rgba(99,102,241,0.3);font-size:1.5rem;">
-            ⬡
+            🤖
         </div>
         <h2 style="font-size:1.35rem;font-weight:700;color:#f1f5f9;
                    letter-spacing:-0.02em;margin:0 0 0.4rem 0;">
@@ -557,7 +557,7 @@ if question:
     with st.chat_message("user", avatar="👤"):
         st.markdown(question)
 
-    with st.chat_message("assistant", avatar="⬡"):
+    with st.chat_message("assistant", avatar="🤖"):
         try:
             with st.spinner("Analyzing documents..."):
                 # Build last 3 turns (6 messages) of history — enough context
