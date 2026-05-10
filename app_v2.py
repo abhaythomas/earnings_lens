@@ -207,13 +207,12 @@ html, body, [class*="css"] {
 }
 
 /* Sidebar */
-section[data-testid="stSidebar"] {
-    background-color: #0c0c1a !important;
-}
+section[data-testid="stSidebar"],
+section[data-testid="stSidebar"] > div,
 section[data-testid="stSidebar"] > div:first-child {
-    border-right: 1px solid rgba(99,102,241,0.15);
+    background-color: #111130 !important;
+    border-right: 1px solid rgba(99,102,241,0.2) !important;
     padding-top: 1.75rem;
-    background-color: #0c0c1a !important;
 }
 
 /* File uploader */
