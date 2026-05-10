@@ -257,35 +257,67 @@ button[kind="secondary"]:hover {
 /* Suggestion cards (empty state) */
 .suggestion-card button {
     background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(255,255,255,0.07) !important;
-    border-radius: 12px !important;
-    color: #94a3b8 !important;
-    font-size: 0.83rem !important;
-    padding: 1rem !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 14px !important;
+    color: #cbd5e1 !important;
+    font-size: 0.84rem !important;
+    padding: 1.1rem 1.2rem !important;
     text-align: left !important;
     height: auto !important;
-    min-height: 72px !important;
-    transition: all 0.15s !important;
+    min-height: 80px !important;
+    transition: all 0.18s ease !important;
+    line-height: 1.5 !important;
 }
 .suggestion-card button:hover {
-    background: rgba(99,102,241,0.07) !important;
-    border-color: rgba(99,102,241,0.28) !important;
-    color: #e2e8f0 !important;
-    transform: translateY(-1px);
+    background: rgba(99,102,241,0.1) !important;
+    border-color: rgba(99,102,241,0.4) !important;
+    color: #f1f5f9 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 20px rgba(99,102,241,0.15) !important;
 }
 
-/* Chat messages */
+/* Chat messages — base */
 [data-testid="stChatMessage"] {
-    border-radius: 14px !important;
-    border: 1px solid rgba(255,255,255,0.05) !important;
-    margin-bottom: 0.75rem !important;
-    padding: 0.25rem 0.5rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 1rem !important;
+    padding: 0.6rem 0.75rem !important;
+    gap: 0.75rem !important;
 }
+
+/* User bubble */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+    background: rgba(99,102,241,0.08) !important;
+    border: 1px solid rgba(99,102,241,0.18) !important;
+}
+
+/* Assistant bubble */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+/* Avatar circles */
 [data-testid="stChatMessageAvatarUser"],
-[data-testid="stChatMessageAvatarAssistant"],
-[data-testid="chatAvatarIcon-user"],
-[data-testid="chatAvatarIcon-assistant"] {
-    display: none !important;
+[data-testid="stChatMessageAvatarAssistant"] {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    flex-shrink: 0 !important;
+}
+
+[data-testid="stChatMessageAvatarUser"] {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    box-shadow: 0 0 10px rgba(99,102,241,0.35) !important;
+}
+
+[data-testid="stChatMessageAvatarAssistant"] {
+    background: linear-gradient(135deg, #0ea5e9, #6366f1) !important;
+    box-shadow: 0 0 10px rgba(14,165,233,0.3) !important;
 }
 
 /* Expanders */
@@ -440,7 +472,8 @@ st.markdown("""
 
 # ── Chat History ─────────────────────────────────────────────────────
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    avatar = "👤" if message["role"] == "user" else "⬡"
+    with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
         if message["role"] == "assistant" and "metadata" in message:
             meta = message["metadata"]
@@ -466,26 +499,41 @@ for message in st.session_state.messages:
 # ── Empty state ───────────────────────────────────────────────────────
 if not st.session_state.messages:
     st.markdown("""
-    <div style="margin:2.5rem 0 1rem;">
-        <p style="color:#64748b;font-size:0.82rem;font-weight:500;
-                  letter-spacing:0.04em;text-transform:uppercase;margin-bottom:1rem;">
-            Suggested questions
+    <div style="margin: 3rem 0 2.5rem; text-align: left;">
+        <div style="display:inline-flex;align-items:center;justify-content:center;
+                    width:52px;height:52px;border-radius:16px;margin-bottom:1.25rem;
+                    background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(14,165,233,0.15));
+                    border:1px solid rgba(99,102,241,0.3);font-size:1.5rem;">
+            ⬡
+        </div>
+        <h2 style="font-size:1.35rem;font-weight:700;color:#f1f5f9;
+                   letter-spacing:-0.02em;margin:0 0 0.4rem 0;">
+            What do you want to know?
+        </h2>
+        <p style="color:#64748b;font-size:0.9rem;margin:0 0 2rem 0;">
+            Ask about revenue, strategy, risks, or compare companies across earnings calls.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
     suggestions = [
-        ("Revenue & Growth", "How did revenue change compared to last quarter?"),
-        ("AI Strategy", "What did the CEO say about AI investments?"),
-        ("Risk Factors", "What are the biggest risks mentioned in the filings?"),
-        ("Compare", "Compare Apple and Microsoft's AI strategy"),
+        ("📈", "Revenue & Growth", "How did revenue change compared to last quarter?"),
+        ("🤖", "AI Strategy", "What did the CEO say about AI investments?"),
+        ("⚠️", "Risk Factors", "What are the biggest risks mentioned in the filings?"),
+        ("⚖️", "Compare", "Compare Apple and Microsoft's AI strategy"),
     ]
-    col1, col2 = st.columns(2)
-    for i, (title, q) in enumerate(suggestions):
+    col1, col2 = st.columns(2, gap="small")
+    for i, (icon, title, q) in enumerate(suggestions):
         col = col1 if i % 2 == 0 else col2
         with col:
-            st.markdown('<div class="suggestion-card">', unsafe_allow_html=True)
-            if st.button(f"**{title}**\n\n{q}", use_container_width=True, key=f"suggest_{i}"):
+            st.markdown(f"""
+            <div class="suggestion-card" style="margin-bottom:0.6rem;">
+            """, unsafe_allow_html=True)
+            if st.button(
+                f"{icon}  **{title}**\n\n{q}",
+                use_container_width=True,
+                key=f"suggest_{i}",
+            ):
                 st.session_state["prefill_question"] = q
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
@@ -506,10 +554,10 @@ question = st.chat_input("Ask about earnings calls or SEC filings...") or prefil
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(question)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="⬡"):
         try:
             with st.spinner("Analyzing documents..."):
                 # Build last 3 turns (6 messages) of history — enough context
