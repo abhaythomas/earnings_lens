@@ -7,6 +7,7 @@ langgraph>=0.3.0
 streamlit>=1.44.0
 python-dotenv>=1.1.0
 sentence-transformers>=3.4.0
+torchvision
 pdfplumber>=0.11.5
 pinecone>=6.0.0
 langchain-pinecone>=0.2.0
