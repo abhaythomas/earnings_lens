@@ -15,12 +15,17 @@ The RAG logic (LangGraph, Groq, grading, hallucination check) is untouched.
 Run with: streamlit run app_v2.py
 """
 
+import io
 import os
 import re
 import time
 import json
+import hashlib
 import streamlit as st
+import pdfplumber
 from dotenv import load_dotenv
+from langchain_core.documents import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
 
@@ -103,6 +108,78 @@ def load_query_stats() -> dict:
 def get_companies_cached():
     return get_loaded_companies_v2()
 
+
+# ── Real-time PDF ingestion ──────────────────────────────────────────
+
+_BOILERPLATE_PHRASES = [
+    "edgar online",
+    "united states securities and exchange commission",
+    "form 10-q",
+    "form 10-k",
+    "table of contents",
+]
+
+def _format_table(table: list[list]) -> str:
+    rows = []
+    for row in table:
+        cleaned = [str(cell).strip() if cell else "-" for cell in row]
+        rows.append(" | ".join(cleaned))
+    return "\n".join(rows)
+
+def _is_boilerplate(text: str) -> bool:
+    lowered = text.lower()
+    hits = sum(1 for phrase in _BOILERPLATE_PHRASES if phrase in lowered)
+    return hits >= 2
+
+def process_and_ingest_pdf(uploaded_file) -> tuple[int, int]:
+    """
+    Extract, chunk, and upsert an uploaded PDF into Pinecone in real time.
+
+    Uses stable chunk IDs (sha256 of filename) so re-uploading the same
+    file just overwrites existing vectors — no duplicates.
+
+    Returns: (chunks_upserted, pages_extracted)
+    """
+    from nodes_v2 import get_vectorstore
+
+    filename = uploaded_file.name
+    documents = []
+
+    with pdfplumber.open(io.BytesIO(uploaded_file.read())) as pdf:
+        for page_num, page in enumerate(pdf.pages, start=1):
+            raw_text = page.extract_text() or ""
+            tables = page.extract_tables()
+            table_text = ""
+            if tables:
+                formatted = [_format_table(t) for t in tables if t]
+                table_text = "\n\n[TABLE]\n" + "\n\n[TABLE]\n".join(formatted)
+            full_text = raw_text + table_text
+            if len(full_text.strip()) < 100 or _is_boilerplate(full_text):
+                continue
+            documents.append(Document(
+                page_content=full_text,
+                metadata={"source": filename, "page_number": page_num, "doc_type": "pdf"},
+            ))
+
+    if not documents:
+        return 0, 0
+
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=200,
+        separators=["\n\n", "\n", ". ", " ", ""],
+    )
+    chunks = splitter.split_documents(documents)
+
+    source_hash = hashlib.sha256(filename.encode()).hexdigest()[:12]
+    ids = [f"{source_hash}-chunk-{i:04d}" for i in range(len(chunks))]
+
+    vs = get_vectorstore()
+    vs.add_documents(chunks, ids=ids)
+
+    return len(chunks), len(documents)
+
+
 # ── Page Config ──────────────────────────────────────────────────────
 st.set_page_config(
     page_title="EarningsLens v2",
@@ -169,6 +246,26 @@ with st.sidebar:
         st.caption(f"{len(unique_companies)} companies · {len(companies)} sources loaded")
     else:
         st.caption("No documents loaded — run ingest_v2.py first")
+
+    st.divider()
+
+    # ── Real-time upload ─────────────────────────────────────────────
+    st.markdown("### 📤 Upload Document")
+    st.caption("Drop a PDF (10-Q, 10-K, transcript) to query it instantly.")
+    uploaded = st.file_uploader("Choose a PDF", type=["pdf"], label_visibility="collapsed")
+    if uploaded:
+        if st.button("Ingest into Pinecone", use_container_width=True, type="primary"):
+            with st.spinner(f"Processing {uploaded.name}..."):
+                try:
+                    chunks, pages = process_and_ingest_pdf(uploaded)
+                    if chunks > 0:
+                        st.success(f"{pages} pages → {chunks} chunks added")
+                        get_companies_cached.clear()
+                        st.rerun()
+                    else:
+                        st.warning("No content extracted. Make sure the PDF has selectable text (not scanned).")
+                except Exception as e:
+                    st.error(f"Ingestion failed: {e}")
 
     st.divider()
 
