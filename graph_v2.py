@@ -9,7 +9,7 @@ Everything else — GraphState, all conditional edge functions, all node
 wiring and edges — is IDENTICAL to v1.
 """
 
-from typing import TypedDict, List, Optional
+from typing import TypedDict, List, Optional, Dict, Any
 from langchain_core.documents import Document
 from langgraph.graph import StateGraph, END
 
@@ -32,6 +32,7 @@ from nodes_v2 import (
 class GraphState(TypedDict):
     question: str                          # The user's question (may be rewritten)
     original_question: str                 # The original question (never changes)
+    chat_history: List[Dict[str, Any]]     # Last N turns: [{"role": "user"|"assistant", "content": "..."}]
     documents: Optional[List[Document]]    # Retrieved document chunks
     answer: Optional[str]                  # Generated answer
     route: Optional[str]                   # "retrieve", "direct", or "compare"

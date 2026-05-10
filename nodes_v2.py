@@ -88,15 +88,32 @@ def get_loaded_companies_v2() -> list[str]:
         return []
 
 
+# ── Shared helper ────────────────────────────────────────────────────
+def _format_history(chat_history: list) -> str:
+    """Format chat history into a readable block for prompt injection."""
+    if not chat_history:
+        return ""
+    lines = []
+    for msg in chat_history:
+        role = "User" if msg["role"] == "user" else "Assistant"
+        lines.append(f"{role}: {msg['content']}")
+    return "\n".join(lines)
+
+
 # ── Node 1: Route Question ──────────────────────────────────────────
 def route_question(state: dict) -> dict:
     """
-    Decides the query type:
-    - "compare" if the user wants to compare multiple companies
-    - "retrieve" if the question is about specific company data
-    - "direct" if it's a general knowledge question
+    Decides the query type. Chat history is included so the router can
+    resolve follow-up references — e.g. "what about their margins?" after
+    asking about Apple should still route to "retrieve", not "direct".
     """
     question = state["question"]
+    history = _format_history(state.get("chat_history", []))
+
+    human_msg = (
+        f"Conversation so far:\n{history}\n\nNew question: {question}"
+        if history else question
+    )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are a router for an earnings call analysis system.
@@ -106,11 +123,11 @@ Answer ONLY with one word:
 - "compare" if the user wants to compare two or more companies (e.g., "compare Apple and Microsoft", "how does X differ from Y", "X vs Y")
 - "retrieve" if the question is about a specific company's earnings, financials, or something said in a call
 - "direct" if it's a general knowledge question (e.g., "what does EPS mean?")"""),
-        ("human", "{question}"),
+        ("human", "{input}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
-    result = chain.invoke({"question": question}).strip().lower()
+    result = chain.invoke({"input": human_msg}).strip().lower()
 
     if "compare" in result:
         route = "compare"
@@ -273,16 +290,20 @@ If none are relevant, reply with "none"."""),
 def generate(state: dict) -> dict:
     """
     Generates an answer using ONLY the relevant document chunks as context.
-    The prompt explicitly instructs the LLM not to make up information
-    and to cite which source each piece of information comes from.
+    Chat history is injected so the LLM can resolve pronouns and follow-ups
+    (e.g. "what about their operating margin?" → knows "their" = Apple from
+    the previous turn).
     """
     question = state["question"]
     documents = state["documents"]
+    history = _format_history(state.get("chat_history", []))
 
     context = "\n\n---\n\n".join(
         f"[Source: {doc.metadata.get('source', 'unknown')}]\n{doc.page_content}"
         for doc in documents
     )
+
+    history_block = f"\n\nConversation history:\n{history}" if history else ""
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are an expert financial analyst assistant. Answer the question based ONLY on the provided earnings call transcript excerpts.
@@ -292,12 +313,13 @@ Rules:
 - Cite the source file for each claim (e.g., "According to apple_q4_2024.txt...")
 - If the context doesn't contain enough information, say so clearly
 - Be concise and specific — use numbers and quotes when available
-- Structure your answer with clear points"""),
-        ("human", "Context:\n{context}\n\nQuestion: {question}"),
+- Structure your answer with clear points
+- Use the conversation history only to resolve references (e.g. "they", "it", "that company") — do not repeat previous answers"""),
+        ("human", "Context:\n{context}{history_block}\n\nQuestion: {question}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
-    answer = chain.invoke({"context": context, "question": question})
+    answer = chain.invoke({"context": context, "history_block": history_block, "question": question})
 
     generation_count = state.get("generation_count", 0) + 1
     print(f"💡 Generated answer (attempt {generation_count})")
@@ -308,18 +330,26 @@ Rules:
 # ── Node 5: Direct Answer (no retrieval needed) ─────────────────────
 def direct_answer(state: dict) -> dict:
     """
-    For general knowledge questions that don't need the vector store.
+    For general knowledge questions. History is included so conversational
+    follow-ups like "can you explain that differently?" work correctly.
     """
     question = state["question"]
+    history = _format_history(state.get("chat_history", []))
+
+    human_msg = (
+        f"Conversation so far:\n{history}\n\nQuestion: {question}"
+        if history else question
+    )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are a helpful financial analyst assistant.
-Answer the question from your general knowledge. Be concise."""),
-        ("human", "{question}"),
+Answer the question from your general knowledge. Be concise.
+Use the conversation history only to resolve context — do not repeat previous answers."""),
+        ("human", "{input}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
-    answer = chain.invoke({"question": question})
+    answer = chain.invoke({"input": human_msg})
 
     return {**state, "answer": answer, "route": "direct"}
 
@@ -383,21 +413,30 @@ Answer ONLY "yes" if the answer is useful and addresses the question, or "no" if
 # ── Node 8: Rewrite Query ────────────────────────────────────────────
 def rewrite_query(state: dict) -> dict:
     """
-    If retrieval failed or the answer wasn't useful, rewrites the query
-    to try a different angle. This is the self-correcting part of Adaptive RAG.
+    If retrieval failed or the answer wasn't useful, rewrites the query.
+    History is included so pronouns like "their" or "its" get resolved
+    into explicit company names before the rewrite — otherwise the
+    rewritten query would still be ambiguous for Pinecone.
     """
     question = state["question"]
+    history = _format_history(state.get("chat_history", []))
+
+    human_msg = (
+        f"Conversation so far:\n{history}\n\nOriginal query: {question}"
+        if history else f"Original query: {question}"
+    )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are a query rewriter for an earnings call search system.
 The original query didn't return good results. Rewrite it to be more specific or use different terminology that might match earnings call language.
+If the query contains pronouns like "they", "their", "it", resolve them to explicit company names using the conversation history.
 
 Return ONLY the rewritten query, nothing else."""),
-        ("human", "Original query: {question}"),
+        ("human", "{input}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
-    new_question = chain.invoke({"question": question}).strip()
+    new_question = chain.invoke({"input": human_msg}).strip()
 
     print(f"✏️  Query rewritten: {new_question[:80]}...")
 
