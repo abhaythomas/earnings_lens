@@ -281,6 +281,12 @@ button[kind="secondary"]:hover {
     margin-bottom: 0.75rem !important;
     padding: 0.25rem 0.5rem !important;
 }
+[data-testid="stChatMessageAvatarUser"],
+[data-testid="stChatMessageAvatarAssistant"],
+[data-testid="chatAvatarIcon-user"],
+[data-testid="chatAvatarIcon-assistant"] {
+    display: none !important;
+}
 
 /* Expanders */
 [data-testid="stExpander"] {
