@@ -203,7 +203,8 @@ html, body, [class*="css"] {
 .block-container {
     padding-top: 2.5rem !important;
     padding-bottom: 2rem !important;
-    max-width: 820px !important;
+    padding-left: 2.5rem !important;
+    margin-left: 0 !important;
 }
 
 /* Sidebar */
@@ -437,9 +438,8 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
         if message["role"] == "assistant" and "metadata" in message:
             meta = message["metadata"]
-            cols = st.columns([1, 1])
             if meta.get("sources"):
-                with cols[0].expander("Sources"):
+                with st.expander("Sources"):
                     badges = " ".join(
                         f'<span style="display:inline-block;background:rgba(99,102,241,0.1);'
                         f'border:1px solid rgba(99,102,241,0.25);color:#a5b4fc;'
@@ -448,7 +448,7 @@ for message in st.session_state.messages:
                     )
                     st.markdown(badges, unsafe_allow_html=True)
             if meta.get("graph_path"):
-                with cols[1].expander("Reasoning path"):
+                with st.expander("Reasoning path"):
                     steps = " › ".join(meta["graph_path"])
                     st.markdown(
                         f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
@@ -568,9 +568,8 @@ if question:
                 "latency_ms": round(latency_ms, 1),
             }
 
-            resp_cols = st.columns([1, 1])
             if sources:
-                with resp_cols[0].expander("Sources"):
+                with st.expander("Sources"):
                     badges = " ".join(
                         f'<span style="display:inline-block;background:rgba(99,102,241,0.1);'
                         f'border:1px solid rgba(99,102,241,0.25);color:#a5b4fc;'
@@ -578,7 +577,7 @@ if question:
                         for s in sources
                     )
                     st.markdown(badges, unsafe_allow_html=True)
-            with resp_cols[1].expander("Reasoning path"):
+            with st.expander("Reasoning path"):
                 steps = " › ".join(graph_path)
                 st.markdown(
                     f'<span style="font-size:0.78rem;color:#64748b;">{steps}</span>',
