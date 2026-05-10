@@ -207,6 +207,26 @@ with st.sidebar:
 
     st.divider()
 
+    # ── Real-time upload ─────────────────────────────────────────────
+    st.markdown("### 📤 Upload Document")
+    st.caption("Drop a PDF (10-Q, 10-K, transcript) to query it instantly.")
+    uploaded = st.file_uploader("Choose a PDF", type=["pdf"], label_visibility="collapsed")
+    if uploaded:
+        if st.button("Ingest into Pinecone", use_container_width=True, type="primary"):
+            with st.spinner(f"Processing {uploaded.name}..."):
+                try:
+                    chunks, pages = process_and_ingest_pdf(uploaded)
+                    if chunks > 0:
+                        st.success(f"{pages} pages → {chunks} chunks added")
+                        get_companies_cached.clear()
+                        st.rerun()
+                    else:
+                        st.warning("No content extracted. Make sure the PDF has selectable text (not scanned).")
+                except Exception as e:
+                    st.error(f"Ingestion failed: {e}")
+
+    st.divider()
+
     # ── Observability panel ──────────────────────────────────────────
     stats = load_query_stats()
     if stats:
@@ -246,26 +266,6 @@ with st.sidebar:
         st.caption(f"{len(unique_companies)} companies · {len(companies)} sources loaded")
     else:
         st.caption("No documents loaded — run ingest_v2.py first")
-
-    st.divider()
-
-    # ── Real-time upload ─────────────────────────────────────────────
-    st.markdown("### 📤 Upload Document")
-    st.caption("Drop a PDF (10-Q, 10-K, transcript) to query it instantly.")
-    uploaded = st.file_uploader("Choose a PDF", type=["pdf"], label_visibility="collapsed")
-    if uploaded:
-        if st.button("Ingest into Pinecone", use_container_width=True, type="primary"):
-            with st.spinner(f"Processing {uploaded.name}..."):
-                try:
-                    chunks, pages = process_and_ingest_pdf(uploaded)
-                    if chunks > 0:
-                        st.success(f"{pages} pages → {chunks} chunks added")
-                        get_companies_cached.clear()
-                        st.rerun()
-                    else:
-                        st.warning("No content extracted. Make sure the PDF has selectable text (not scanned).")
-                except Exception as e:
-                    st.error(f"Ingestion failed: {e}")
 
     st.divider()
 
