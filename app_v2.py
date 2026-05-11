@@ -199,6 +199,9 @@ html, body, [class*="css"] {
 /* Hide Streamlit chrome */
 #MainMenu, footer, header { visibility: hidden; }
 
+/* Keep sidebar expand button visible when sidebar is collapsed */
+[data-testid="collapsedControl"] { visibility: visible !important; }
+
 /* Main content area */
 .block-container {
     padding-top: 2.5rem !important;
