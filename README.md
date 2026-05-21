@@ -17,6 +17,7 @@ Unlike basic RAG (retrieve → generate), EarningsLens uses an **Adaptive RAG** 
 | Vector store | ChromaDB (local disk) | Pinecone (cloud) |
 | Deployment | Streamlit Cloud | Streamlit Cloud |
 | Observability | None | Query logging (latency, grounding, route) + LangSmith tracing |
+| Evaluation | None | RAGAS offline eval + live MRR dashboard |
 | Infrastructure | Local venv | Containerised |
 
 ---
@@ -162,7 +163,15 @@ earningslens/
 ├── graph_v2.py             # LangGraph workflow (v2)
 ├── nodes_v2.py             # Node functions (v2) — Pinecone vector store
 ├── ingest_v2.py            # Ingestion pipeline (v2) — uploads to Pinecone
+├── ingest_hf.py            # HuggingFace dataset ingestion — streams transcripts into Pinecone
+├── eval_ragas.py           # RAGAS evaluation pipeline (--generate / --run)
 ├── requirements_v2.txt     # Python dependencies (v2)
+│
+├── pages/
+│   └── RAG_Performance.py  # Evaluation dashboard — RAGAS scores, MRR, latency charts
+│
+├── eval/
+│   └── scores_<date>.json  # Versioned RAGAS eval results (auto-loaded by dashboard)
 │
 ├── app.py                  # Streamlit frontend (v1) — ChromaDB
 ├── graph.py                # LangGraph workflow (v1)
@@ -184,7 +193,9 @@ earningslens/
 
 **Docker for reproducibility:** The full dependency chain (LangChain, LangGraph, sentence-transformers, pdfplumber) is pinned and containerised. `docker compose up --build` produces an identical environment on any machine or cloud host. Torch is installed as CPU-only to keep the image lean (~2GB instead of ~8GB).
 
-**Observability layer:** Every query is logged to `query_log.jsonl` with timestamp, latency, route taken, docs retrieved, and whether the answer was grounded. The sidebar surfaces this as live metrics (avg latency, grounding rate, total queries). In production, this data can be loaded into a monitoring dashboard. LangSmith is also integrated for deep tracing — every graph node, LLM prompt, response, and token count is captured per query, making it easy to debug routing decisions and measure per-node latency.
+**Observability layer:** Every query is logged to `query_log.jsonl` with timestamp, latency, route taken, docs retrieved, and whether the answer was grounded. The sidebar surfaces this as live metrics (avg latency, grounding rate, total queries). LangSmith is also integrated for deep tracing — every graph node, LLM prompt, response, and token count is captured per query, making it easy to debug routing decisions and measure per-node latency.
+
+**Evaluation with RAGAS:** A dedicated RAG Performance Stats page (accessible from the sidebar) tracks evaluation quality over time. `eval_ragas.py` generates a synthetic Q&A dataset by sampling chunks from Pinecone and prompting Groq to create grounded questions, then runs each question through the full LangGraph pipeline and scores the results using four RAGAS metrics: Faithfulness (are answer claims supported by retrieved docs?), Answer Relevancy (does the answer address the question?), Context Recall (did retrieval surface the right chunks?), and Context Precision (were all retrieved chunks necessary?). Scores are saved as versioned JSON files (`eval/scores_<date>.json`) and the dashboard automatically displays the most recent run alongside the 5 best and 5 worst performing questions.
 
 **Groq over local models:** Groq provides access to Llama 3.3 70B for free — a much more capable model than what most consumer hardware can run. The architecture is LLM-agnostic; swap `ChatGroq` for `ChatOllama` to run fully locally.
 
@@ -202,9 +213,11 @@ earningslens/
 - [x] ~~Containerise with Docker~~ ✅
 - [x] ~~Query observability and latency tracking~~ ✅
 - [x] ~~LangSmith tracing for full graph visibility~~ ✅
+- [x] ~~RAGAS offline evaluation pipeline~~ ✅
+- [x] ~~RAG Performance Stats dashboard (MRR, faithfulness, context recall)~~ ✅
+- [x] ~~HuggingFace dataset ingestion (1,289 S&P 500 transcripts, 2024–2025)~~ ✅
 - [ ] Time-series analysis across quarterly calls
 - [ ] Financial entity extraction (revenue, EPS, guidance numbers)
-- [ ] Monitoring dashboard from query log data
 
 ---
 
