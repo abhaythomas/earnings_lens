@@ -129,10 +129,10 @@ Rules:
 - Do not reference "the excerpt" or "the document" in the question — phrase it naturally
 
 Return ONLY valid JSON in this exact format:
-{
+{{
   "question": "...",
   "answer": "..."
-}"""),
+}}"""),
         ("human", "Source: {source}\n\nExcerpt:\n{text}"),
     ])
 
@@ -260,8 +260,8 @@ def run_pipeline_on_dataset(dataset: list[dict]) -> list[dict]:
 
         except Exception as e:
             if "rate_limit" in str(e).lower() or "429" in str(e):
-                print(" ⏳ (rate limit — sleeping 20s)")
-                time.sleep(20)
+                print(" ⏳ (rate limit — sleeping 60s)")
+                time.sleep(60)
                 # retry once
                 try:
                     state = graph.invoke({
@@ -302,7 +302,9 @@ def run_pipeline_on_dataset(dataset: list[dict]) -> list[dict]:
                 print(f" ✗ ({e})")
                 failed += 1
 
-        time.sleep(1.0)  # stay under Groq RPM
+        # Each pipeline run burns ~4-5k tokens (route+grade+generate+hallucination+usefulness).
+        # Groq free tier cap is 12k tokens/min → max ~2-3 questions/min → need 20s+ gap.
+        time.sleep(22.0)
 
     print(f"\n  ✅ Pipeline ran on {len(results)} questions  ({failed} failed)\n")
     return results
@@ -323,10 +325,10 @@ def score_with_ragas(results: list[dict]) -> dict:
     from datasets import Dataset
     from ragas import evaluate
     from ragas.metrics.collections import (
-        faithfulness,
-        answer_relevancy,
-        context_recall,
-        context_precision,
+        Faithfulness,
+        AnswerRelevancy,
+        ContextRecall,
+        ContextPrecision,
     )
     from ragas.llms import LangchainLLMWrapper
     from ragas.embeddings import LangchainEmbeddingsWrapper
@@ -343,12 +345,20 @@ def score_with_ragas(results: list[dict]) -> dict:
     )
 
     # Use the same embedding model as the pipeline
-    embeddings = LangchainEmbeddingsWrapper(
+    embed_model = LangchainEmbeddingsWrapper(
         HuggingFaceEmbeddings(
             model_name="all-MiniLM-L6-v2",
             model_kwargs={"device": "cpu"},
         )
     )
+
+    # Instantiate metrics as objects (required in ragas>=0.4)
+    metrics = [
+        Faithfulness(llm=judge_llm),
+        AnswerRelevancy(llm=judge_llm, embeddings=embed_model),
+        ContextRecall(llm=judge_llm),
+        ContextPrecision(llm=judge_llm),
+    ]
 
     # Build HuggingFace Dataset
     hf_dataset = Dataset.from_list([
@@ -361,14 +371,8 @@ def score_with_ragas(results: list[dict]) -> dict:
         for r in results
     ])
 
-    metrics = [faithfulness, answer_relevancy, context_recall, context_precision]
-    for m in metrics:
-        m.llm = judge_llm
-        if hasattr(m, "embeddings"):
-            m.embeddings = embeddings
-
     print("  Running RAGAS evaluation (this makes multiple LLM calls per row)...")
-    print("  Expected time: ~2-4 min for 40 rows\n")
+    print(f"  Expected time: ~2-4 min for {len(results)} rows\n")
 
     score_result = evaluate(
         hf_dataset,
@@ -468,8 +472,8 @@ def main():
         help="Run RAG pipeline + RAGAS scoring on the eval dataset.",
     )
     parser.add_argument(
-        "--n", type=int, default=40,
-        help="Number of Q&A pairs to generate (default: 40).",
+        "--n", type=int, default=20,
+        help="Number of Q&A pairs to generate (default: 20). Groq free tier supports ~2-3 pipeline runs/min.",
     )
     args = parser.parse_args()
 
