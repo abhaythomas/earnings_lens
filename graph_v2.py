@@ -41,6 +41,7 @@ class GraphState(TypedDict):
     is_useful: Optional[bool]              # Does the answer address the question?
     generation_count: int                  # How many times we've generated (loop limit)
     companies_compared: Optional[list]     # Companies in a comparison query
+    grade_vector: Optional[List[int]]      # Relevance at each retrieved rank: e.g. [1,0,1,0,0]
 
 
 # ── Conditional Edge Functions ───────────────────────────────────────

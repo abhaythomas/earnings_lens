@@ -57,16 +57,12 @@ os.makedirs(_LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(_LOG_DIR, "query_log.jsonl")
 
 def log_query(question: str, latency_ms: float, docs_retrieved: int,
-              route: str, is_grounded: bool | None):
+              route: str, is_grounded: bool | None, grade_vector: list | None = None):
     """
     Append a structured log entry for every query.
 
-    Why log this? It lets you:
-    1. Show a monitoring dashboard ("avg latency: 1.2s, 94% grounded")
-    2. Identify which queries trigger rewrites (is_grounded=False)
-    3. Talk about observability in interviews with real data
-
-    Format: one JSON object per line (JSONL) — easy to load with pandas later.
+    grade_vector: e.g. [1,0,1,0,0] — 1 = relevant at that rank position.
+    Used to compute MRR. Only present on the 'retrieve' route.
     """
     entry = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -75,6 +71,7 @@ def log_query(question: str, latency_ms: float, docs_retrieved: int,
         "docs_retrieved": docs_retrieved,
         "route": route,
         "is_grounded": is_grounded,
+        "grade_vector": grade_vector,
     }
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry) + "\n")
@@ -95,10 +92,26 @@ def load_query_stats() -> dict:
             return {}
         latencies = [e["latency_ms"] for e in entries]
         grounded = [e["is_grounded"] for e in entries if e["is_grounded"] is not None]
+
+        # MRR — retrieve-route queries only
+        rr_scores = []
+        for e in entries:
+            gv = e.get("grade_vector")
+            if not gv:
+                continue
+            for rank, grade in enumerate(gv, start=1):
+                if grade == 1:
+                    rr_scores.append(1 / rank)
+                    break
+            else:
+                rr_scores.append(0)
+
         return {
             "total_queries": len(entries),
             "avg_latency_ms": round(sum(latencies) / len(latencies), 1),
             "grounded_pct": round(100 * sum(grounded) / len(grounded), 1) if grounded else None,
+            "mrr": round(sum(rr_scores) / len(rr_scores), 3) if rr_scores else None,
+            "mrr_queries": len(rr_scores),
         }
     except Exception:
         return {}
@@ -410,8 +423,11 @@ with st.sidebar:
         col1, col2 = st.columns(2)
         col1.metric("Queries", stats["total_queries"])
         col2.metric("Avg latency", f"{stats['avg_latency_ms']}ms")
+        col3, col4 = st.columns(2)
         if stats.get("grounded_pct") is not None:
-            st.metric("Grounded", f"{stats['grounded_pct']}%")
+            col3.metric("Grounded", f"{stats['grounded_pct']}%")
+        if stats.get("mrr") is not None:
+            col4.metric("MRR", f"{stats['mrr']}", help=f"Mean Reciprocal Rank across {stats['mrr_queries']} retrieval queries. Closer to 1.0 is better.")
         st.divider()
 
     # ── Loaded documents ─────────────────────────────────────────────
@@ -644,6 +660,7 @@ if question:
                 docs_retrieved=len(result_docs),
                 route=result.get("route", "unknown"),
                 is_grounded=result.get("is_grounded"),
+                grade_vector=result.get("grade_vector"),
             )
 
             # ── Build graph path ─────────────────────────────────────
