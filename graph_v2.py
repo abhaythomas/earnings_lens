@@ -33,7 +33,7 @@ class GraphState(TypedDict):
     question: str                          # The user's question (may be rewritten)
     original_question: str                 # The original question (never changes)
     chat_history: List[Dict[str, Any]]     # Last N turns: [{"role": "user"|"assistant", "content": "..."}]
-    documents: Optional[List[Document]]    # Retrieved document chunks
+    documents: Optional[List[Document]]    # Retrieved document chunks (after grading)
     answer: Optional[str]                  # Generated answer
     route: Optional[str]                   # "retrieve", "direct", or "compare"
     documents_relevant: Optional[bool]     # Did grading find relevant docs?
@@ -41,6 +41,7 @@ class GraphState(TypedDict):
     is_useful: Optional[bool]              # Does the answer address the question?
     generation_count: int                  # How many times we've generated (loop limit)
     companies_compared: Optional[list]     # Companies in a comparison query
+    grade_vector: Optional[List[int]]      # Relevance at each retrieved rank: e.g. [1,0,1,0,0]
 
 
 # ── Conditional Edge Functions ───────────────────────────────────────

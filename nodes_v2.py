@@ -287,15 +287,26 @@ If none are relevant, reply with "none"."""),
     result = chain.invoke({"question": question, "documents": docs_text}).strip().lower()
 
     relevant_docs = []
+    grade_vector = []
     if "none" not in result:
         for i, doc in enumerate(documents):
             if str(i + 1) in result:
                 relevant_docs.append(doc)
+                grade_vector.append(1)
+            else:
+                grade_vector.append(0)
+    else:
+        grade_vector = [0] * len(documents)
 
-    print(f"📋 Grader: {len(relevant_docs)}/{len(documents)} chunks are relevant")
+    print(f"📋 Grader: {len(relevant_docs)}/{len(documents)} chunks are relevant  grade_vector={grade_vector}")
 
     documents_relevant = len(relevant_docs) > 0
-    return {**state, "documents": relevant_docs, "documents_relevant": documents_relevant}
+    return {
+        **state,
+        "documents": relevant_docs,
+        "documents_relevant": documents_relevant,
+        "grade_vector": grade_vector,
+    }
 
 
 # ── Node 4: Generate Answer ──────────────────────────────────────────
