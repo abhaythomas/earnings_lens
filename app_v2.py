@@ -61,9 +61,8 @@ def log_query(question: str, latency_ms: float, docs_retrieved: int,
     """
     Append a structured log entry for every query.
 
-    grade_vector: list like [1,0,1,0,0] — 1 = relevant at that rank position.
-    Used to compute MRR (Mean Reciprocal Rank) across queries.
-    Only present on the 'retrieve' route; None for 'direct' and 'compare'.
+    grade_vector: e.g. [1,0,1,0,0] — 1 = relevant at that rank position.
+    Used to compute MRR. Only present on the 'retrieve' route.
     """
     entry = {
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -94,7 +93,7 @@ def load_query_stats() -> dict:
         latencies = [e["latency_ms"] for e in entries]
         grounded = [e["is_grounded"] for e in entries if e["is_grounded"] is not None]
 
-        # MRR — only on retrieve-route queries that have a grade_vector
+        # MRR — retrieve-route queries only
         rr_scores = []
         for e in entries:
             gv = e.get("grade_vector")
@@ -105,7 +104,7 @@ def load_query_stats() -> dict:
                     rr_scores.append(1 / rank)
                     break
             else:
-                rr_scores.append(0)  # no relevant doc found in any rank
+                rr_scores.append(0)
 
         return {
             "total_queries": len(entries),
