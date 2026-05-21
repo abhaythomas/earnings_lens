@@ -271,28 +271,6 @@ button[kind="secondary"]:hover {
     color: #c7d2fe !important;
 }
 
-/* Suggestion cards (empty state) */
-.suggestion-card button {
-    background: rgba(255,255,255,0.03) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 14px !important;
-    color: #cbd5e1 !important;
-    font-size: 0.84rem !important;
-    padding: 1.1rem 1.2rem !important;
-    text-align: left !important;
-    height: auto !important;
-    min-height: 80px !important;
-    transition: all 0.18s ease !important;
-    line-height: 1.5 !important;
-}
-.suggestion-card button:hover {
-    background: rgba(99,102,241,0.1) !important;
-    border-color: rgba(99,102,241,0.4) !important;
-    color: #f1f5f9 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 20px rgba(99,102,241,0.15) !important;
-}
-
 /* Chat messages — base */
 [data-testid="stChatMessage"] {
     border-radius: 16px !important;
@@ -563,33 +541,7 @@ def needs_company_clarification(question: str, chat_history: list) -> bool:
 
 
 # ── Handle Input ─────────────────────────────────────────────────────
-prefill = st.session_state.pop("prefill_question", None)
-question = st.chat_input("Ask about earnings calls or SEC filings...") or prefill
-
-# ── Empty state ───────────────────────────────────────────────────────
-if not st.session_state.messages and not question:
-    st.markdown('<div style="margin: 2rem 0 1.5rem;"></div>', unsafe_allow_html=True)
-
-    suggestions = [
-        ("📈", "Revenue & Growth", "How did Apple's revenue grow in Q1 2025?"),
-        ("🤖", "AI Strategy", "What did Nvidia's CEO say about AI investments?"),
-        ("⚠️", "Risk Factors", "What risks did Microsoft highlight in their latest earnings call?"),
-        ("⚖️", "Compare", "Compare Apple and Microsoft's revenue growth"),
-    ]
-    col1, col2 = st.columns(2, gap="small")
-    for i, (icon, title, q) in enumerate(suggestions):
-        col = col1 if i % 2 == 0 else col2
-        with col:
-            st.markdown(f"""
-            <div class="suggestion-card" style="margin-bottom:0.6rem;">
-            """, unsafe_allow_html=True)
-            if st.button(
-                f"{icon}  **{title}**\n\n{q}",
-                use_container_width=True,
-                key=f"suggest_{i}",
-            ):
-                st.session_state["prefill_question"] = q
-            st.markdown('</div>', unsafe_allow_html=True)
+question = st.chat_input("Ask about earnings calls or SEC filings...")
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
