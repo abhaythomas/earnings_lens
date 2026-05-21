@@ -13,6 +13,7 @@ usefulness check, rewrite logic — is IDENTICAL to v1.
 
 import os
 import sys
+import json
 from dotenv import load_dotenv
 
 if sys.stdout.encoding != "utf-8":
@@ -72,13 +73,24 @@ def get_loaded_companies_v2() -> list[str]:
     """
     Return the list of unique source filenames in the Pinecone index.
 
-    In v1 this queried ChromaDB's local metadata collection directly.
-    In v2 we do a broad similarity search and deduplicate the 'source'
-    metadata field from the results.
+    Reads from the local ingestion manifest (data/ingested_manifest.json)
+    written by ingest_v2.py. This is O(1) and works correctly regardless
+    of how many files are in the index — the old Pinecone k=100 probe
+    would silently miss companies once the index grew large.
 
-    This is a lightweight probe — we fetch 100 vectors and deduplicate.
-    For larger indexes, Pinecone's metadata filtering API can be used.
+    Falls back to a Pinecone similarity search if the manifest doesn't exist
+    (e.g. first run before ingest has been executed).
     """
+    manifest_path = os.path.join("data", "ingested_manifest.json")
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path, "r") as f:
+                manifest = json.load(f)
+            return list(manifest.keys())
+        except Exception:
+            pass
+
+    # Fallback: probe Pinecone (only works reliably for small indexes)
     try:
         vs = get_vectorstore()
         results = vs.similarity_search("earnings revenue", k=100)

@@ -199,6 +199,9 @@ html, body, [class*="css"] {
 /* Hide Streamlit chrome */
 #MainMenu, footer, header { visibility: hidden; }
 
+/* Keep sidebar expand button visible when sidebar is collapsed */
+[data-testid="collapsedControl"] { visibility: visible !important; }
+
 /* Main content area */
 .block-container {
     padding-top: 2.5rem !important;
@@ -531,6 +534,54 @@ def format_source(doc) -> str:
     return source
 
 
+def needs_company_clarification(question: str, chat_history: list, companies: list) -> bool:
+    """
+    Returns True if the question needs a company name to answer but doesn't
+    mention one and there's no chat history to resolve it from.
+
+    Only triggers on the first message (empty chat_history). Once a company
+    has been established in the conversation, rewrite_query handles pronoun
+    resolution normally.
+    """
+    if chat_history:
+        return False  # prior turns exist — rewrite_query can resolve context
+
+    q_lower = question.lower()
+
+    # If any loaded company name or common ticker appears, no clarification needed
+    common_tickers = {"aapl", "msft", "nvda", "amzn", "tsla", "googl", "goog",
+                      "meta", "nflx", "amd", "intc", "crm", "orcl", "adbe"}
+    if any(t in q_lower for t in common_tickers):
+        return False
+    for company in companies:
+        if len(company) > 2 and company.lower() in q_lower:
+            return False
+
+    # Questions that only make sense for a specific company
+    company_specific = [
+        "ceo", "cfo", "cto", "coo", "management", "executive",
+        "their", "they said", "the company", "the ceo",
+        "revenue", "earnings", "guidance", "outlook", "margin",
+        "profit", "loss", "quarter", "q1", "q2", "q3", "q4",
+        "filing", "10-k", "10-q", "annual report",
+    ]
+    has_specific_language = any(w in q_lower for w in company_specific)
+
+    # General knowledge questions don't need a company
+    general_starters = (
+        "what is ", "what are ", "what does ", "what do ",
+        "explain ", "define ", "how does ", "how do ",
+        "why is ", "why are ", "what's the difference",
+        "what is eps", "what is ebitda", "what is p/e",
+    )
+    is_general = any(q_lower.startswith(s) for s in general_starters)
+
+    # Compare questions name their own companies
+    is_compare = "compare" in q_lower or " vs " in q_lower or " versus " in q_lower
+
+    return has_specific_language and not is_general and not is_compare
+
+
 # ── Handle Input ─────────────────────────────────────────────────────
 prefill = st.session_state.pop("prefill_question", None)
 question = st.chat_input("Ask about earnings calls or SEC filings...") or prefill
@@ -540,18 +591,24 @@ if question:
     with st.chat_message("user"):
         st.markdown(question)
 
+    # Build history before running clarification check
+    history_messages = st.session_state.messages[:-1]
+    recent = history_messages[-6:]
+    chat_history = [{"role": m["role"], "content": m["content"]} for m in recent]
+
+    if needs_company_clarification(question, chat_history, get_companies_cached()):
+        clarification = (
+            "Which company are you asking about? "
+            "For example: *Apple*, *Microsoft*, *Nvidia* — or paste a ticker symbol."
+        )
+        with st.chat_message("assistant"):
+            st.markdown(clarification)
+        st.session_state.messages.append({"role": "assistant", "content": clarification})
+        st.stop()
+
     with st.chat_message("assistant"):
         try:
             with st.spinner("Analyzing documents..."):
-                # Build last 3 turns (6 messages) of history — enough context
-                # without ballooning the prompt size on long conversations
-                history_messages = st.session_state.messages[:-1]  # exclude current user msg
-                recent = history_messages[-6:]
-                chat_history = [
-                    {"role": m["role"], "content": m["content"]}
-                    for m in recent
-                ]
-
                 t_start = time.time()
                 result = st.session_state.graph.invoke({
                     "question": question,
