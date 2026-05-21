@@ -410,7 +410,7 @@ with st.sidebar:
         st.divider()
 
     st.markdown(
-        '<a href="./RAG_Performance" target="_self" style="display:block;text-align:center;'
+        '<a href="/RAG_Performance" target="_self" style="display:block;text-align:center;'
         'padding:0.45rem 0.75rem;border-radius:8px;border:1px solid rgba(99,102,241,0.3);'
         'color:#a5b4fc;font-size:0.84rem;text-decoration:none;'
         'background:rgba(99,102,241,0.06);">📊 RAG Performance Stats</a>',
