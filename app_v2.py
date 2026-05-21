@@ -409,6 +409,8 @@ with st.sidebar:
             col4.metric("MRR", f"{stats['mrr']}", help=f"Mean Reciprocal Rank across {stats['mrr_queries']} retrieval queries. Closer to 1.0 is better.")
         st.divider()
 
+    st.page_link("pages/RAG_Performance.py", label="📊 RAG Performance Stats", use_container_width=True)
+
 
 # ── Initialize ───────────────────────────────────────────────────────
 if "messages" not in st.session_state:
