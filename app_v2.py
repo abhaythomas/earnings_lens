@@ -198,6 +198,7 @@ st.set_page_config(
     page_title="EarningsLens",
     page_icon="📊",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 # ── Global CSS ────────────────────────────────────────────────────────
@@ -212,8 +213,8 @@ html, body, [class*="css"] {
 /* Hide Streamlit chrome */
 #MainMenu, footer, header { visibility: hidden; }
 
-/* Keep sidebar expand button visible when sidebar is collapsed */
-[data-testid="collapsedControl"] { visibility: visible !important; }
+/* Hide sidebar collapse button — sidebar is always visible */
+[data-testid="collapsedControl"] { display: none !important; }
 
 /* Main content area */
 .block-container {
@@ -430,43 +431,6 @@ with st.sidebar:
             col4.metric("MRR", f"{stats['mrr']}", help=f"Mean Reciprocal Rank across {stats['mrr_queries']} retrieval queries. Closer to 1.0 is better.")
         st.divider()
 
-    # ── Loaded documents ─────────────────────────────────────────────
-    companies = get_companies_cached()
-
-    def extract_company_name(source):
-        name = os.path.basename(source)
-        name = re.sub(r'\.(txt|pdf)$', '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\s*\([A-Z]{1,5}\)', '', name)
-        name = name.replace('-', ' ').replace('_', ' ')
-        name = re.sub(r'\b10[KkQq]\b', '', name)
-        name = re.sub(r'\b(annual|report|filing|earnings|transcript|call)\b', '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\bQ[1-4]\b', '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\b(19|20)\d{2}\b', '', name)
-        name = re.sub(r'\.com\b', '', name, flags=re.IGNORECASE)
-        name = re.sub(r'\s+', ' ', name)
-        return name.strip()
-
-    if companies:
-        seen = set()
-        unique_companies = []
-        for name in sorted(set(extract_company_name(c) for c in companies), key=str.lower):
-            if name.lower() not in seen:
-                seen.add(name.lower())
-                unique_companies.append(name)
-
-        st.markdown(
-            '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
-            'color:#64748b;text-transform:uppercase;margin-bottom:0.5rem;">Indexed Sources</p>',
-            unsafe_allow_html=True,
-        )
-        pills = " ".join(
-            f'<span style="display:inline-block;background:rgba(255,255,255,0.04);'
-            f'border:1px solid rgba(255,255,255,0.08);color:#94a3b8;'
-            f'padding:2px 9px;border-radius:20px;font-size:11px;margin:2px;">{n}</span>'
-            for n in unique_companies
-        )
-        st.markdown(pills, unsafe_allow_html=True)
-        st.caption(f"{len(unique_companies)} companies · {len(companies)} files")
 
 # ── Initialize ───────────────────────────────────────────────────────
 if "messages" not in st.session_state:
