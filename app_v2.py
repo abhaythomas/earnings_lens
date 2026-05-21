@@ -409,7 +409,13 @@ with st.sidebar:
             col4.metric("MRR", f"{stats['mrr']}", help=f"Mean Reciprocal Rank across {stats['mrr_queries']} retrieval queries. Closer to 1.0 is better.")
         st.divider()
 
-    st.page_link("pages/RAG_Performance.py", label="📊 RAG Performance Stats", use_container_width=True)
+    st.markdown(
+        '<a href="./RAG_Performance" target="_self" style="display:block;text-align:center;'
+        'padding:0.45rem 0.75rem;border-radius:8px;border:1px solid rgba(99,102,241,0.3);'
+        'color:#a5b4fc;font-size:0.84rem;text-decoration:none;'
+        'background:rgba(99,102,241,0.06);">📊 RAG Performance Stats</a>',
+        unsafe_allow_html=True,
+    )
 
 
 # ── Initialize ───────────────────────────────────────────────────────
