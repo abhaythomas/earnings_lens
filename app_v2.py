@@ -478,33 +478,6 @@ for message in st.session_state.messages:
             if meta.get("latency_ms"):
                 st.caption(f"{meta['latency_ms']}ms")
 
-# ── Empty state ───────────────────────────────────────────────────────
-if not st.session_state.messages:
-    st.markdown('<div style="margin: 2rem 0 1.5rem;"></div>', unsafe_allow_html=True)
-
-    suggestions = [
-        ("📈", "Revenue & Growth", "How did Apple's revenue grow in Q1 2025?"),
-        ("🤖", "AI Strategy", "What did Nvidia's CEO say about AI investments?"),
-        ("⚠️", "Risk Factors", "What risks did Microsoft highlight in their latest earnings call?"),
-        ("⚖️", "Compare", "Compare Apple and Microsoft's revenue growth"),
-    ]
-    col1, col2 = st.columns(2, gap="small")
-    for i, (icon, title, q) in enumerate(suggestions):
-        col = col1 if i % 2 == 0 else col2
-        with col:
-            st.markdown(f"""
-            <div class="suggestion-card" style="margin-bottom:0.6rem;">
-            """, unsafe_allow_html=True)
-            if st.button(
-                f"{icon}  **{title}**\n\n{q}",
-                use_container_width=True,
-                key=f"suggest_{i}",
-            ):
-                st.session_state["prefill_question"] = q
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
-
-
 def format_source(doc) -> str:
     source = doc.metadata.get("source", "unknown")
     page = doc.metadata.get("page_number")
@@ -553,9 +526,15 @@ def needs_company_clarification(question: str, chat_history: list) -> bool:
 
     q_lower = question.lower()
 
-    # Check against all tickers and company names currently in the manifest
+    # Check against all tickers and company names currently in the manifest.
+    # Also check first word of multi-word company names (e.g. "Apple" matches "Apple Inc.")
     known_terms = get_known_company_terms()
-    if any(term in q_lower for term in known_terms):
+    expanded_terms = set(known_terms)
+    for term in known_terms:
+        first_word = term.split()[0] if term.split() else term
+        if len(first_word) >= 3:
+            expanded_terms.add(first_word)
+    if any(term in q_lower for term in expanded_terms):
         return False
 
     # Questions that only make sense for a specific company
@@ -586,6 +565,31 @@ def needs_company_clarification(question: str, chat_history: list) -> bool:
 # ── Handle Input ─────────────────────────────────────────────────────
 prefill = st.session_state.pop("prefill_question", None)
 question = st.chat_input("Ask about earnings calls or SEC filings...") or prefill
+
+# ── Empty state ───────────────────────────────────────────────────────
+if not st.session_state.messages and not question:
+    st.markdown('<div style="margin: 2rem 0 1.5rem;"></div>', unsafe_allow_html=True)
+
+    suggestions = [
+        ("📈", "Revenue & Growth", "How did Apple's revenue grow in Q1 2025?"),
+        ("🤖", "AI Strategy", "What did Nvidia's CEO say about AI investments?"),
+        ("⚠️", "Risk Factors", "What risks did Microsoft highlight in their latest earnings call?"),
+        ("⚖️", "Compare", "Compare Apple and Microsoft's revenue growth"),
+    ]
+    col1, col2 = st.columns(2, gap="small")
+    for i, (icon, title, q) in enumerate(suggestions):
+        col = col1 if i % 2 == 0 else col2
+        with col:
+            st.markdown(f"""
+            <div class="suggestion-card" style="margin-bottom:0.6rem;">
+            """, unsafe_allow_html=True)
+            if st.button(
+                f"{icon}  **{title}**\n\n{q}",
+                use_container_width=True,
+                key=f"suggest_{i}",
+            ):
+                st.session_state["prefill_question"] = q
+            st.markdown('</div>', unsafe_allow_html=True)
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
