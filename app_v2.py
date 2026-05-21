@@ -514,7 +514,32 @@ def format_source(doc) -> str:
     return source
 
 
-def needs_company_clarification(question: str, chat_history: list, companies: list) -> bool:
+@st.cache_data(ttl=300)
+def get_known_company_terms() -> set:
+    """
+    Build a set of company names and tickers from the ingestion manifest.
+    Used by needs_company_clarification to detect company mentions in questions.
+    Auto-updates as new companies are ingested — no hardcoding needed.
+    """
+    terms = set()
+    manifest_path = os.path.join("data", "ingested_manifest.json")
+    if not os.path.exists(manifest_path):
+        return terms
+    try:
+        with open(manifest_path, "r") as f:
+            manifest = json.load(f)
+        for entry in manifest.values():
+            if isinstance(entry, dict):
+                if entry.get("ticker"):
+                    terms.add(entry["ticker"].lower())
+                if entry.get("company"):
+                    terms.add(entry["company"].lower())
+    except Exception:
+        pass
+    return terms
+
+
+def needs_company_clarification(question: str, chat_history: list) -> bool:
     """
     Returns True if the question needs a company name to answer but doesn't
     mention one and there's no chat history to resolve it from.
@@ -528,21 +553,10 @@ def needs_company_clarification(question: str, chat_history: list, companies: li
 
     q_lower = question.lower()
 
-    # If any known company name or ticker appears, no clarification needed
-    known_names = {
-        # Tickers
-        "aapl", "msft", "nvda", "amzn", "tsla", "googl", "goog",
-        "meta", "nflx", "amd", "intc", "crm", "orcl", "adbe",
-        # Full names
-        "apple", "microsoft", "nvidia", "amazon", "tesla", "google",
-        "alphabet", "meta", "netflix", "intel", "salesforce", "oracle",
-        "adobe", "samsung", "qualcomm", "broadcom", "cisco", "ibm",
-    }
-    if any(name in q_lower for name in known_names):
+    # Check against all tickers and company names currently in the manifest
+    known_terms = get_known_company_terms()
+    if any(term in q_lower for term in known_terms):
         return False
-    for company in companies:
-        if len(company) > 2 and company.lower() in q_lower:
-            return False
 
     # Questions that only make sense for a specific company
     company_specific = [
@@ -583,7 +597,7 @@ if question:
     recent = history_messages[-6:]
     chat_history = [{"role": m["role"], "content": m["content"]} for m in recent]
 
-    if needs_company_clarification(question, chat_history, get_companies_cached()):
+    if needs_company_clarification(question, chat_history):
         clarification = (
             "Which company are you asking about? "
             "For example: *Apple*, *Microsoft*, *Nvidia* — or paste a ticker symbol."
