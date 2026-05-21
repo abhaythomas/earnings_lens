@@ -528,10 +528,17 @@ def needs_company_clarification(question: str, chat_history: list, companies: li
 
     q_lower = question.lower()
 
-    # If any loaded company name or common ticker appears, no clarification needed
-    common_tickers = {"aapl", "msft", "nvda", "amzn", "tsla", "googl", "goog",
-                      "meta", "nflx", "amd", "intc", "crm", "orcl", "adbe"}
-    if any(t in q_lower for t in common_tickers):
+    # If any known company name or ticker appears, no clarification needed
+    known_names = {
+        # Tickers
+        "aapl", "msft", "nvda", "amzn", "tsla", "googl", "goog",
+        "meta", "nflx", "amd", "intc", "crm", "orcl", "adbe",
+        # Full names
+        "apple", "microsoft", "nvidia", "amazon", "tesla", "google",
+        "alphabet", "meta", "netflix", "intel", "salesforce", "oracle",
+        "adobe", "samsung", "qualcomm", "broadcom", "cisco", "ibm",
+    }
+    if any(name in q_lower for name in known_names):
         return False
     for company in companies:
         if len(company) > 2 and company.lower() in q_lower:
