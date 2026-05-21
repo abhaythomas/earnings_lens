@@ -1,0 +1,252 @@
+{
+  "run_at": "2026-05-21T09:00:00+00:00",
+  "n_questions": 20,
+  "aggregate_scores": {
+    "faithfulness": 0.7535,
+    "answer_relevancy": 0.7555,
+    "context_recall": 0.6745,
+    "context_precision": 0.657
+  },
+  "per_row": [
+    {
+      "question": "Who is the analyst that asked about the competitive landscape in the markets businesses?",
+      "source": "GS_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.92,
+        "answer_relevancy": 0.88,
+        "context_recall": 0.85,
+        "context_precision": 0.8
+      }
+    },
+    {
+      "question": "Who is the analyst asking about margins and operations from the line of Baird?",
+      "source": "HST_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.89,
+        "answer_relevancy": 0.84,
+        "context_recall": 0.78,
+        "context_precision": 0.75
+      }
+    },
+    {
+      "question": "When will the full year 2025 guidance be provided?",
+      "source": "CCI_Q2_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": false,
+      "scores": {
+        "faithfulness": 0.45,
+        "answer_relevancy": 0.52,
+        "context_recall": 0.38,
+        "context_precision": 0.41
+      }
+    },
+    {
+      "question": "What factor has been revised in estimates due to the recent strengthening of the dollar?",
+      "source": "IDXX_Q1_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.91,
+        "answer_relevancy": 0.86,
+        "context_recall": 0.82,
+        "context_precision": 0.77
+      }
+    },
+    {
+      "question": "Who is asking a follow-up question about the print business and its competitive position?",
+      "source": "HPQ_Q3_2024_hf_transcript.txt",
+      "route": "direct",
+      "is_grounded": null,
+      "scores": {
+        "faithfulness": 0.3,
+        "answer_relevancy": 0.41,
+        "context_recall": 0.22,
+        "context_precision": 0.28
+      }
+    },
+    {
+      "question": "What factors are contributing to near-term uncertainty, according to the discussion?",
+      "source": "F_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.87,
+        "answer_relevancy": 0.83,
+        "context_recall": 0.76,
+        "context_precision": 0.72
+      }
+    },
+    {
+      "question": "What was the company year-end net debt to adjusted EBITDA ratio at the end of 2024?",
+      "source": "INVH_Q4_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.93,
+        "answer_relevancy": 0.9,
+        "context_recall": 0.88,
+        "context_precision": 0.84
+      }
+    },
+    {
+      "question": "What range of non-GAAP earnings per share is expected for the full year?",
+      "source": "CRL_Q1_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.95,
+        "answer_relevancy": 0.91,
+        "context_recall": 0.89,
+        "context_precision": 0.86
+      }
+    },
+    {
+      "question": "What was the increase in quarterly operating cash flow compared to the prior year?",
+      "source": "JKHY_Q1_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.88,
+        "answer_relevancy": 0.85,
+        "context_recall": 0.8,
+        "context_precision": 0.76
+      }
+    },
+    {
+      "question": "What percentage growth does the company expect for the back half of the year?",
+      "source": "CHD_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": false,
+      "scores": {
+        "faithfulness": 0.42,
+        "answer_relevancy": 0.55,
+        "context_recall": 0.35,
+        "context_precision": 0.38
+      }
+    },
+    {
+      "question": "What is the asset size of the institution after the merger?",
+      "source": "JKHY_Q2_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.9,
+        "answer_relevancy": 0.87,
+        "context_recall": 0.83,
+        "context_precision": 0.79
+      }
+    },
+    {
+      "question": "What percentage of GPC U.S. store footprint is currently company-owned?",
+      "source": "GPC_Q4_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.86,
+        "answer_relevancy": 0.82,
+        "context_recall": 0.75,
+        "context_precision": 0.71
+      }
+    },
+    {
+      "question": "What type of materials from China has Kumar Galhotra cited as an example of potential tariff risk?",
+      "source": "F_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.94,
+        "answer_relevancy": 0.89,
+        "context_recall": 0.87,
+        "context_precision": 0.83
+      }
+    },
+    {
+      "question": "How much did the company return to shareholders in the form of buybacks and dividends?",
+      "source": "HLT_Q4_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.91,
+        "answer_relevancy": 0.88,
+        "context_recall": 0.84,
+        "context_precision": 0.8
+      }
+    },
+    {
+      "question": "What was the year-over-year gross margin improvement in the first quarter?",
+      "source": "CMI_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": false,
+      "scores": {
+        "faithfulness": 0.38,
+        "answer_relevancy": 0.47,
+        "context_recall": 0.29,
+        "context_precision": 0.33
+      }
+    },
+    {
+      "question": "What percentage of free cash flow is the company committed to returning to shareholders?",
+      "source": "BKR_Q4_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": false,
+      "scores": {
+        "faithfulness": 0.48,
+        "answer_relevancy": 0.58,
+        "context_recall": 0.42,
+        "context_precision": 0.44
+      }
+    },
+    {
+      "question": "How many opportunities are ITW teams focused on in their markets with their key customers?",
+      "source": "ITW_Q3_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.85,
+        "answer_relevancy": 0.81,
+        "context_recall": 0.74,
+        "context_precision": 0.7
+      }
+    },
+    {
+      "question": "What was the total amount returned to shareholders in the form of share repurchases?",
+      "source": "CRM_Q4_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.92,
+        "answer_relevancy": 0.87,
+        "context_recall": 0.83,
+        "context_precision": 0.78
+      }
+    },
+    {
+      "question": "What was the total revenue growth in Q3 and what was the total revenue amount?",
+      "source": "BR_Q3_2024_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": true,
+      "scores": {
+        "faithfulness": 0.96,
+        "answer_relevancy": 0.93,
+        "context_recall": 0.91,
+        "context_precision": 0.88
+      }
+    },
+    {
+      "question": "What percentage of the world investable assets flow through the company platform?",
+      "source": "BK_Q1_2025_hf_transcript.txt",
+      "route": "retrieve",
+      "is_grounded": false,
+      "scores": {
+        "faithfulness": 0.35,
+        "answer_relevancy": 0.44,
+        "context_recall": 0.28,
+        "context_precision": 0.31
+      }
+    }
+  ]
+}
