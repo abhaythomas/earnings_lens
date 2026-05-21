@@ -519,10 +519,10 @@ if not st.session_state.messages:
     st.markdown('<div style="margin: 2rem 0 1.5rem;"></div>', unsafe_allow_html=True)
 
     suggestions = [
-        ("📈", "Revenue & Growth", "How did revenue change compared to last quarter?"),
-        ("🤖", "AI Strategy", "What did the CEO say about AI investments?"),
-        ("⚠️", "Risk Factors", "What are the biggest risks mentioned in the filings?"),
-        ("⚖️", "Compare", "Compare Apple and Microsoft's AI strategy"),
+        ("📈", "Revenue & Growth", "How did Apple's revenue grow in Q1 2025?"),
+        ("🤖", "AI Strategy", "What did Nvidia's CEO say about AI investments?"),
+        ("⚠️", "Risk Factors", "What risks did Microsoft highlight in their latest earnings call?"),
+        ("⚖️", "Compare", "Compare Apple and Microsoft's revenue growth"),
     ]
     col1, col2 = st.columns(2, gap="small")
     for i, (icon, title, q) in enumerate(suggestions):
