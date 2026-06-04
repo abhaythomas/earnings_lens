@@ -1,0 +1,2722 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "company",
+      "ticker": "AAPL",
+      "name": "Apple",
+      "aliases": [
+        "Apple",
+        "AAPL",
+        "Apple AAPL Q1 2026 Earnings Call Transcript",
+        "Apple Q4 2025 Earnings Call Transcript"
+      ],
+      "id": "AAPL"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2025",
+      "quarter": "Q2",
+      "doc_type": "pdf",
+      "source": "10Q-Q2-2025-Apple.pdf",
+      "chunk_count": 106,
+      "id": "doc|AAPL|2025|Q2|10Q-Q2-2025-Apple"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2025",
+      "quarter": "Q3",
+      "doc_type": "pdf",
+      "source": "10Q-Q3-2025-Apple.pdf",
+      "chunk_count": 92,
+      "id": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "94.036B",
+      "period": "Q3 2025",
+      "ticker": "AAPL",
+      "id": "metric|revenue|AAPL|Q3 2025"
+    },
+    {
+      "type": "product",
+      "name": "iPhone",
+      "company_ticker": "AAPL",
+      "id": "product|iphone|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "Mac",
+      "company_ticker": "AAPL",
+      "id": "product|mac|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "iPad",
+      "company_ticker": "AAPL",
+      "id": "product|ipad|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "Wearables, Home and Accessories",
+      "company_ticker": "AAPL",
+      "id": "product|wearables, home and accessories|AAPL"
+    },
+    {
+      "type": "company",
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "aliases": [
+        "Amazon",
+        "AMZN",
+        "Amazon.com"
+      ],
+      "id": "AMZN"
+    },
+    {
+      "type": "document",
+      "ticker": "AMZN",
+      "year": "2025",
+      "quarter": "Q3",
+      "doc_type": "transcript",
+      "source": "Amazon (AMZN) Q3 2025 Earnings Call Transcript.txt",
+      "chunk_count": 78,
+      "id": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings"
+    },
+    {
+      "type": "executive",
+      "name": "Andrew Jassy",
+      "role": "CEO",
+      "company_ticker": "AMZN",
+      "id": "exec|andrew jassy|AMZN"
+    },
+    {
+      "type": "executive",
+      "name": "Brian Olsavsky",
+      "role": "CFO",
+      "company_ticker": "AMZN",
+      "id": "exec|brian olsavsky|AMZN"
+    },
+    {
+      "type": "executive",
+      "name": "Dave Fildes",
+      "role": "other",
+      "company_ticker": "AMZN",
+      "id": "exec|dave fildes|AMZN"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "180.2B",
+      "period": "Q3 2025",
+      "ticker": "AMZN",
+      "id": "metric|revenue|AMZN|Q3 2025"
+    },
+    {
+      "type": "metric",
+      "name": "operating_income",
+      "value": "17.4B",
+      "period": "Q3 2025",
+      "ticker": "AMZN",
+      "id": "metric|operating_income|AMZN|Q3 2025"
+    },
+    {
+      "type": "product",
+      "name": "Alexa",
+      "company_ticker": "AMZN",
+      "id": "product|alexa|AMZN"
+    },
+    {
+      "type": "product",
+      "name": "Fire TV",
+      "company_ticker": "AMZN",
+      "id": "product|fire tv|AMZN"
+    },
+    {
+      "type": "product",
+      "name": "Trainium",
+      "company_ticker": "AMZN",
+      "id": "product|trainium|AMZN"
+    },
+    {
+      "type": "product",
+      "name": "Bedrock",
+      "company_ticker": "AMZN",
+      "id": "product|bedrock|AMZN"
+    },
+    {
+      "type": "theme",
+      "name": "AI adoption",
+      "id": "theme|ai_adoption"
+    },
+    {
+      "type": "theme",
+      "name": "cloud growth",
+      "id": "theme|cloud_growth"
+    },
+    {
+      "type": "document",
+      "ticker": "AMZN",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Amazon (AMZN) Q4 2025 Earnings Call Transcript.txt",
+      "chunk_count": 87,
+      "id": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings"
+    },
+    {
+      "type": "executive",
+      "name": "Andy",
+      "role": "other",
+      "company_ticker": "AMZN",
+      "id": "exec|andy|AMZN"
+    },
+    {
+      "type": "executive",
+      "name": "Brian T. Olsavsky",
+      "role": "CFO",
+      "company_ticker": "AMZN",
+      "id": "exec|brian t. olsavsky|AMZN"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "213.4B",
+      "period": "Q4 2025",
+      "ticker": "AMZN",
+      "id": "metric|revenue|AMZN|Q4 2025"
+    },
+    {
+      "type": "metric",
+      "name": "operating_income",
+      "value": "25B",
+      "period": "Q4 2025",
+      "ticker": "AMZN",
+      "id": "metric|operating_income|AMZN|Q4 2025"
+    },
+    {
+      "type": "product",
+      "name": "Amazon Nova",
+      "company_ticker": "AMZN",
+      "id": "product|amazon nova|AMZN"
+    },
+    {
+      "type": "product",
+      "name": "AWS",
+      "company_ticker": "AMZN",
+      "id": "product|aws|AMZN"
+    },
+    {
+      "type": "document",
+      "ticker": "AMZN",
+      "year": "2024",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Amazon.com (AMZN) Q4 2024 Earnings Call Transcript.txt",
+      "chunk_count": 74,
+      "id": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn"
+    },
+    {
+      "type": "metric",
+      "name": "operating_margin",
+      "value": "8%",
+      "period": "Q4 2024",
+      "ticker": "AMZN",
+      "id": "metric|operating_margin|AMZN|Q4 2024"
+    },
+    {
+      "type": "metric",
+      "name": "operating_income",
+      "value": "$1.3 billion",
+      "period": "Q4 2024",
+      "ticker": "AMZN",
+      "id": "metric|operating_income|AMZN|Q4 2024"
+    },
+    {
+      "type": "theme",
+      "name": "supply chain",
+      "id": "theme|supply_chain"
+    },
+    {
+      "type": "theme",
+      "name": "margin expansion",
+      "id": "theme|margin_expansion"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2025",
+      "quarter": "Q1",
+      "doc_type": "transcript",
+      "source": "Apple (AAPL) Q1 2025 Earnings Call Transcript.txt",
+      "chunk_count": 65,
+      "id": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings "
+    },
+    {
+      "type": "executive",
+      "name": "Tim Cook",
+      "role": "CEO",
+      "company_ticker": "AAPL",
+      "id": "exec|tim cook|AAPL"
+    },
+    {
+      "type": "executive",
+      "name": "Kevan Parekh",
+      "role": "CFO",
+      "company_ticker": "AAPL",
+      "id": "exec|kevan parekh|AAPL"
+    },
+    {
+      "type": "executive",
+      "name": "Suhasini Chandramouli",
+      "role": "other",
+      "company_ticker": "AAPL",
+      "id": "exec|suhasini chandramouli|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "Apple TV+",
+      "company_ticker": "AAPL",
+      "id": "product|apple tv+|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "AirTag",
+      "company_ticker": "AAPL",
+      "id": "product|airtag|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "iPhone 16",
+      "company_ticker": "AAPL",
+      "id": "product|iphone 16|AAPL"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2025",
+      "quarter": "Q3",
+      "doc_type": "transcript",
+      "source": "Apple (AAPL) Q3 2025 Earnings Call Transcript.txt",
+      "chunk_count": 78,
+      "id": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings "
+    },
+    {
+      "type": "executive",
+      "name": "Timothy D. Cook",
+      "role": "CEO",
+      "company_ticker": "AAPL",
+      "id": "exec|timothy d. cook|AAPL"
+    },
+    {
+      "type": "metric",
+      "name": "tariff-related costs",
+      "value": "800 million",
+      "period": "Q3 2025",
+      "ticker": "AAPL",
+      "id": "metric|tariff-related costs|AAPL|Q3 2025"
+    },
+    {
+      "type": "metric",
+      "name": "tariff-related costs",
+      "value": "1.1 billion",
+      "period": "next quarter",
+      "ticker": "AAPL",
+      "id": "metric|tariff-related costs|AAPL|next quarter"
+    },
+    {
+      "type": "product",
+      "name": "Wearables",
+      "company_ticker": "AAPL",
+      "id": "product|wearables|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "MacBook Air",
+      "company_ticker": "AAPL",
+      "id": "product|macbook air|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "Mac mini",
+      "company_ticker": "AAPL",
+      "id": "product|mac mini|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "MacBook Pro",
+      "company_ticker": "AAPL",
+      "id": "product|macbook pro|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "iPhone 16e",
+      "company_ticker": "AAPL",
+      "id": "product|iphone 16e|AAPL"
+    },
+    {
+      "type": "theme",
+      "name": "international expansion",
+      "id": "theme|international_expansion"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2026",
+      "quarter": "Q1",
+      "doc_type": "transcript",
+      "source": "Apple AAPL Q1 2026 Earnings Call Transcript.txt",
+      "chunk_count": 76,
+      "id": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca"
+    },
+    {
+      "type": "executive",
+      "name": "Eric Woodring",
+      "role": "other",
+      "company_ticker": "AAPL",
+      "id": "exec|eric woodring|AAPL"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "8.6 billion",
+      "period": "Q1 2026",
+      "ticker": "AAPL",
+      "id": "metric|revenue|AAPL|Q1 2026"
+    },
+    {
+      "type": "metric",
+      "name": "customer_satisfaction",
+      "value": "97%",
+      "period": "Q1 2026",
+      "ticker": "AAPL",
+      "id": "metric|customer_satisfaction|AAPL|Q1 2026"
+    },
+    {
+      "type": "product",
+      "name": "AirPods Pro 3",
+      "company_ticker": "AAPL",
+      "id": "product|airpods pro 3|AAPL"
+    },
+    {
+      "type": "product",
+      "name": "iPad Pro",
+      "company_ticker": "AAPL",
+      "id": "product|ipad pro|AAPL"
+    },
+    {
+      "type": "theme",
+      "name": "consumer demand",
+      "id": "theme|consumer_demand"
+    },
+    {
+      "type": "company",
+      "ticker": "GOOG",
+      "name": "GOOG",
+      "aliases": [
+        "GOOG"
+      ],
+      "id": "GOOG"
+    },
+    {
+      "type": "document",
+      "ticker": "AAPL",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Apple Q4 2025 Earnings Call Transcript.txt",
+      "chunk_count": 68,
+      "id": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr"
+    },
+    {
+      "type": "executive",
+      "name": "Timothy Donald Cook",
+      "role": "CEO",
+      "company_ticker": "AAPL",
+      "id": "exec|timothy donald cook|AAPL"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "102.5B",
+      "period": "Q4 2025",
+      "ticker": "AAPL",
+      "id": "metric|revenue|AAPL|Q4 2025"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "416B",
+      "period": "fiscal 2025",
+      "ticker": "AAPL",
+      "id": "metric|revenue|AAPL|fiscal 2025"
+    },
+    {
+      "type": "metric",
+      "name": "services revenue",
+      "value": "28.8B",
+      "period": "Q4 2025",
+      "ticker": "AAPL",
+      "id": "metric|services revenue|AAPL|Q4 2025"
+    },
+    {
+      "type": "product",
+      "name": "iPhone 17",
+      "company_ticker": "AAPL",
+      "id": "product|iphone 17|AAPL"
+    },
+    {
+      "type": "company",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "aliases": [
+        "Microsoft",
+        "MSFT"
+      ],
+      "id": "MSFT"
+    },
+    {
+      "type": "document",
+      "ticker": "MSFT",
+      "year": "2026",
+      "quarter": "Q1",
+      "doc_type": "transcript",
+      "source": "Microsoft (MSFT) Q1 2026 Earnings Call Transcript.txt",
+      "chunk_count": 83,
+      "id": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni"
+    },
+    {
+      "type": "executive",
+      "name": "Satya Nadella",
+      "role": "CEO",
+      "company_ticker": "MSFT",
+      "id": "exec|satya nadella|MSFT"
+    },
+    {
+      "type": "executive",
+      "name": "Amy E. Hood",
+      "role": "CFO",
+      "company_ticker": "MSFT",
+      "id": "exec|amy e. hood|MSFT"
+    },
+    {
+      "type": "executive",
+      "name": "Alice Jolla",
+      "role": "other",
+      "company_ticker": "MSFT",
+      "id": "exec|alice jolla|MSFT"
+    },
+    {
+      "type": "executive",
+      "name": "Jonathan Neilson",
+      "role": "other",
+      "company_ticker": "MSFT",
+      "id": "exec|jonathan neilson|MSFT"
+    },
+    {
+      "type": "metric",
+      "name": "capex",
+      "value": "19.4B",
+      "period": "Q1 2026",
+      "ticker": "MSFT",
+      "id": "metric|capex|MSFT|Q1 2026"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "lost opportunities",
+      "period": "Q1 2026",
+      "ticker": "MSFT",
+      "id": "metric|revenue|MSFT|Q1 2026"
+    },
+    {
+      "type": "product",
+      "name": "Azure",
+      "company_ticker": "MSFT",
+      "id": "product|azure|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Azure AI Foundry",
+      "company_ticker": "MSFT",
+      "id": "product|azure ai foundry|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Copilot",
+      "company_ticker": "MSFT",
+      "id": "product|copilot|MSFT"
+    },
+    {
+      "type": "company",
+      "ticker": "SAP",
+      "name": "SAP",
+      "aliases": [
+        "SAP"
+      ],
+      "id": "SAP"
+    },
+    {
+      "type": "document",
+      "ticker": "MSFT",
+      "year": "2025",
+      "quarter": "Q2",
+      "doc_type": "transcript",
+      "source": "Microsoft (MSFT) Q2 2025 Earnings Call Transcript.txt",
+      "chunk_count": 72,
+      "id": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni"
+    },
+    {
+      "type": "executive",
+      "name": "Brett Iversen",
+      "role": "other",
+      "company_ticker": "MSFT",
+      "id": "exec|brett iversen|MSFT"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "not specified",
+      "period": "Q2 2025",
+      "ticker": "MSFT",
+      "id": "metric|revenue|MSFT|Q2 2025"
+    },
+    {
+      "type": "metric",
+      "name": "other",
+      "value": "160,000",
+      "period": "last three months",
+      "ticker": "MSFT",
+      "id": "metric|other|MSFT|last three months"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "4% increase",
+      "period": "year over year",
+      "ticker": "MSFT",
+      "id": "metric|revenue|MSFT|year over year"
+    },
+    {
+      "type": "metric",
+      "name": "capex",
+      "value": "$300B",
+      "period": "not specified",
+      "ticker": "MSFT",
+      "id": "metric|capex|MSFT|not specified"
+    },
+    {
+      "type": "product",
+      "name": "Copilot Studio",
+      "company_ticker": "MSFT",
+      "id": "product|copilot studio|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Windows",
+      "company_ticker": "MSFT",
+      "id": "product|windows|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Edge",
+      "company_ticker": "MSFT",
+      "id": "product|edge|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Bing",
+      "company_ticker": "MSFT",
+      "id": "product|bing|MSFT"
+    },
+    {
+      "type": "company",
+      "ticker": "ADBE",
+      "name": "ADBE",
+      "aliases": [
+        "ADBE"
+      ],
+      "id": "ADBE"
+    },
+    {
+      "type": "company",
+      "ticker": "NOW",
+      "name": "NOW",
+      "aliases": [
+        "NOW"
+      ],
+      "id": "NOW"
+    },
+    {
+      "type": "company",
+      "ticker": "WDAY",
+      "name": "WDAY",
+      "aliases": [
+        "WDAY"
+      ],
+      "id": "WDAY"
+    },
+    {
+      "type": "document",
+      "ticker": "MSFT",
+      "year": "2026",
+      "quarter": "Q2",
+      "doc_type": "transcript",
+      "source": "Microsoft (MSFT) Q2 2026 Earnings Call Transcript.txt",
+      "chunk_count": 83,
+      "id": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni"
+    },
+    {
+      "type": "metric",
+      "name": "capex",
+      "value": "19.4B",
+      "period": "Q2 2026",
+      "ticker": "MSFT",
+      "id": "metric|capex|MSFT|Q2 2026"
+    },
+    {
+      "type": "product",
+      "name": "Microsoft 365",
+      "company_ticker": "MSFT",
+      "id": "product|microsoft 365|MSFT"
+    },
+    {
+      "type": "document",
+      "ticker": "MSFT",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Microsoft (MSFT) Q4 2025 Earnings Call Transcript.txt",
+      "chunk_count": 79,
+      "id": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni"
+    },
+    {
+      "type": "executive",
+      "name": "Amy Hood",
+      "role": "CFO",
+      "company_ticker": "MSFT",
+      "id": "exec|amy hood|MSFT"
+    },
+    {
+      "type": "executive",
+      "name": "Alex Jolla",
+      "role": "Chief Accounting Officer",
+      "company_ticker": "MSFT",
+      "id": "exec|alex jolla|MSFT"
+    },
+    {
+      "type": "executive",
+      "name": "Keith Dolliver",
+      "role": "Corporate Secretary and Deputy General Counsel",
+      "company_ticker": "MSFT",
+      "id": "exec|keith dolliver|MSFT"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "168B",
+      "period": "Q4 2025",
+      "ticker": "MSFT",
+      "id": "metric|revenue|MSFT|Q4 2025"
+    },
+    {
+      "type": "metric",
+      "name": "guidance",
+      "value": "30.1-30.4B",
+      "period": "Q4 2025",
+      "ticker": "MSFT",
+      "id": "metric|guidance|MSFT|Q4 2025"
+    },
+    {
+      "type": "product",
+      "name": "Xbox",
+      "company_ticker": "MSFT",
+      "id": "product|xbox|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "PlayStation",
+      "company_ticker": "MSFT",
+      "id": "product|playstation|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Forza Horizon 5",
+      "company_ticker": "MSFT",
+      "id": "product|forza horizon 5|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Oblivion Remastered",
+      "company_ticker": "MSFT",
+      "id": "product|oblivion remastered|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Call of Duty",
+      "company_ticker": "MSFT",
+      "id": "product|call of duty|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Minecraft",
+      "company_ticker": "MSFT",
+      "id": "product|minecraft|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "LinkedIn",
+      "company_ticker": "MSFT",
+      "id": "product|linkedin|MSFT"
+    },
+    {
+      "type": "product",
+      "name": "Dynamics 365",
+      "company_ticker": "MSFT",
+      "id": "product|dynamics 365|MSFT"
+    },
+    {
+      "type": "company",
+      "ticker": "MSGM",
+      "name": "Motorsport Games",
+      "aliases": [
+        "Motorsport Games",
+        "MSGM"
+      ],
+      "id": "MSGM"
+    },
+    {
+      "type": "document",
+      "ticker": "MSGM",
+      "year": "unknown",
+      "quarter": "unknown",
+      "doc_type": "transcript",
+      "source": "Motorsport Games (MSGM) Earnings Call Transcript.txt",
+      "chunk_count": 44,
+      "id": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin"
+    },
+    {
+      "type": "executive",
+      "name": "Stephen Hood",
+      "role": "CEO",
+      "company_ticker": "MSGM",
+      "id": "exec|stephen hood|MSGM"
+    },
+    {
+      "type": "executive",
+      "name": "Stanley Beckley",
+      "role": "CFO",
+      "company_ticker": "MSGM",
+      "id": "exec|stanley beckley|MSGM"
+    },
+    {
+      "type": "metric",
+      "name": "net_income",
+      "value": "$0.15",
+      "period": "2025",
+      "ticker": "MSGM",
+      "id": "metric|net_income|MSGM|2025"
+    },
+    {
+      "type": "metric",
+      "name": "adjusted_EBITDA",
+      "value": "$1.9 million",
+      "period": "2025",
+      "ticker": "MSGM",
+      "id": "metric|adjusted_ebitda|MSGM|2025"
+    },
+    {
+      "type": "metric",
+      "name": "adjusted_EBITDA",
+      "value": "-$2.5 million",
+      "period": "prior year",
+      "ticker": "MSGM",
+      "id": "metric|adjusted_ebitda|MSGM|prior year"
+    },
+    {
+      "type": "product",
+      "name": "Le Mans Ultimate",
+      "company_ticker": "MSGM",
+      "id": "product|le mans ultimate|MSGM"
+    },
+    {
+      "type": "company",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "aliases": [
+        "NVIDIA",
+        "NVDA",
+        "Nvidia"
+      ],
+      "id": "NVDA"
+    },
+    {
+      "type": "document",
+      "ticker": "NVDA",
+      "year": "2026",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "NVIDIA (NVDA) Q4 2026 Earnings Call Transcript.txt",
+      "chunk_count": 68,
+      "id": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings"
+    },
+    {
+      "type": "executive",
+      "name": "Colette Kress",
+      "role": "CFO",
+      "company_ticker": "NVDA",
+      "id": "exec|colette kress|NVDA"
+    },
+    {
+      "type": "executive",
+      "name": "Jensen Huang",
+      "role": "CEO",
+      "company_ticker": "NVDA",
+      "id": "exec|jensen huang|NVDA"
+    },
+    {
+      "type": "executive",
+      "name": "Atif Malik",
+      "role": "other",
+      "company_ticker": "NVDA",
+      "id": "exec|atif malik|NVDA"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "68B",
+      "period": "Q4 2026",
+      "ticker": "NVDA",
+      "id": "metric|revenue|NVDA|Q4 2026"
+    },
+    {
+      "type": "metric",
+      "name": "gross_margin",
+      "value": "75%",
+      "period": "Q4 2026",
+      "ticker": "NVDA",
+      "id": "metric|gross_margin|NVDA|Q4 2026"
+    },
+    {
+      "type": "metric",
+      "name": "operating_income",
+      "value": "record",
+      "period": "Q4 2026",
+      "ticker": "NVDA",
+      "id": "metric|operating_income|NVDA|Q4 2026"
+    },
+    {
+      "type": "product",
+      "name": "Blackwell architecture",
+      "company_ticker": "NVDA",
+      "id": "product|blackwell architecture|NVDA"
+    },
+    {
+      "type": "document",
+      "ticker": "NVDA",
+      "year": "2025",
+      "quarter": "Q2",
+      "doc_type": "transcript",
+      "source": "Nvidia (NVDA) Q2 2025 Earnings Call Transcript.txt",
+      "chunk_count": 75,
+      "id": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings"
+    },
+    {
+      "type": "executive",
+      "name": "Stewart Stecker",
+      "role": "other",
+      "company_ticker": "NVDA",
+      "id": "exec|stewart stecker|NVDA"
+    },
+    {
+      "type": "executive",
+      "name": "Abby",
+      "role": "other",
+      "company_ticker": "NVDA",
+      "id": "exec|abby|NVDA"
+    },
+    {
+      "type": "product",
+      "name": "NVIDIA AI foundry service",
+      "company_ticker": "NVDA",
+      "id": "product|nvidia ai foundry service|NVDA"
+    },
+    {
+      "type": "product",
+      "name": "Llama 3.1",
+      "company_ticker": "NVDA",
+      "id": "product|llama 3.1|NVDA"
+    },
+    {
+      "type": "company",
+      "ticker": "META",
+      "name": "META",
+      "aliases": [
+        "META"
+      ],
+      "id": "META"
+    },
+    {
+      "type": "document",
+      "ticker": "NVDA",
+      "year": "2026",
+      "quarter": "Q3",
+      "doc_type": "transcript",
+      "source": "Nvidia (NVDA) Q3 2026 Earnings Call Transcript.txt",
+      "chunk_count": 85,
+      "id": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings"
+    },
+    {
+      "type": "executive",
+      "name": "Toshiya Hari",
+      "role": "other",
+      "company_ticker": "NVDA",
+      "id": "exec|toshiya hari|NVDA"
+    },
+    {
+      "type": "metric",
+      "name": "gross_margin",
+      "value": "74.875%",
+      "period": "Q3 2026",
+      "ticker": "NVDA",
+      "id": "metric|gross_margin|NVDA|Q3 2026"
+    },
+    {
+      "type": "metric",
+      "name": "operating_income",
+      "value": "$6.7 billion",
+      "period": "Q3 2026",
+      "ticker": "NVDA",
+      "id": "metric|operating_income|NVDA|Q3 2026"
+    },
+    {
+      "type": "metric",
+      "name": "other_income",
+      "value": "$500 million",
+      "period": "Q3 2026",
+      "ticker": "NVDA",
+      "id": "metric|other_income|NVDA|Q3 2026"
+    },
+    {
+      "type": "product",
+      "name": "NVIDIA CUDA X libraries",
+      "company_ticker": "NVDA",
+      "id": "product|nvidia cuda x libraries|NVDA"
+    },
+    {
+      "type": "product",
+      "name": "NVIDIA Corporation GPUs",
+      "company_ticker": "NVDA",
+      "id": "product|nvidia corporation gpus|NVDA"
+    },
+    {
+      "type": "company",
+      "ticker": "CRWD",
+      "name": "CRWD",
+      "aliases": [
+        "CRWD"
+      ],
+      "id": "CRWD"
+    },
+    {
+      "type": "document",
+      "ticker": "NVDA",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Nvidia (NVDA) Q4 2025 Earnings Call Transcript.txt",
+      "chunk_count": 60,
+      "id": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings"
+    },
+    {
+      "type": "product",
+      "name": "Spectrum-X",
+      "company_ticker": "NVDA",
+      "id": "product|spectrum-x|NVDA"
+    },
+    {
+      "type": "product",
+      "name": "NVLink Switch",
+      "company_ticker": "NVDA",
+      "id": "product|nvlink switch|NVDA"
+    },
+    {
+      "type": "company",
+      "ticker": "CSCO",
+      "name": "CSCO",
+      "aliases": [
+        "CSCO"
+      ],
+      "id": "CSCO"
+    },
+    {
+      "type": "company",
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "aliases": [
+        "Tesla",
+        "TSLA"
+      ],
+      "id": "TSLA"
+    },
+    {
+      "type": "document",
+      "ticker": "TSLA",
+      "year": "2025",
+      "quarter": "Q2",
+      "doc_type": "transcript",
+      "source": "Tesla (TSLA) Q2 2025 Earnings Call Transcript.txt",
+      "chunk_count": 70,
+      "id": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings "
+    },
+    {
+      "type": "executive",
+      "name": "Elon Musk",
+      "role": "CEO",
+      "company_ticker": "TSLA",
+      "id": "exec|elon musk|TSLA"
+    },
+    {
+      "type": "executive",
+      "name": "Vaibhav Taneja",
+      "role": "CFO",
+      "company_ticker": "TSLA",
+      "id": "exec|vaibhav taneja|TSLA"
+    },
+    {
+      "type": "executive",
+      "name": "Ashok Elluswamy",
+      "role": "other",
+      "company_ticker": "TSLA",
+      "id": "exec|ashok elluswamy|TSLA"
+    },
+    {
+      "type": "executive",
+      "name": "Lars Moravy",
+      "role": "other",
+      "company_ticker": "TSLA",
+      "id": "exec|lars moravy|TSLA"
+    },
+    {
+      "type": "executive",
+      "name": "Mike Snyder",
+      "role": "other",
+      "company_ticker": "TSLA",
+      "id": "exec|mike snyder|TSLA"
+    },
+    {
+      "type": "executive",
+      "name": "Travis Axelrod",
+      "role": "other",
+      "company_ticker": "TSLA",
+      "id": "exec|travis axelrod|TSLA"
+    },
+    {
+      "type": "metric",
+      "name": "cost of tariffs",
+      "value": "$300 million",
+      "period": "Q2 2025",
+      "ticker": "TSLA",
+      "id": "metric|cost of tariffs|TSLA|Q2 2025"
+    },
+    {
+      "type": "product",
+      "name": "Optimus robots",
+      "company_ticker": "TSLA",
+      "id": "product|optimus robots|TSLA"
+    },
+    {
+      "type": "theme",
+      "name": "regulatory risk",
+      "id": "theme|regulatory_risk"
+    },
+    {
+      "type": "document",
+      "ticker": "TSLA",
+      "year": "2025",
+      "quarter": "Q3",
+      "doc_type": "transcript",
+      "source": "Tesla (TSLA) Q3 2025 Earnings Call Transcript.txt",
+      "chunk_count": 79,
+      "id": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings "
+    },
+    {
+      "type": "executive",
+      "name": "Michael Snyder",
+      "role": "other",
+      "company_ticker": "TSLA",
+      "id": "exec|michael snyder|TSLA"
+    },
+    {
+      "type": "metric",
+      "name": "tariff impacts",
+      "value": "$400 million",
+      "period": "Q3 2025",
+      "ticker": "TSLA",
+      "id": "metric|tariff impacts|TSLA|Q3 2025"
+    },
+    {
+      "type": "product",
+      "name": "Optimus",
+      "company_ticker": "TSLA",
+      "id": "product|optimus|TSLA"
+    },
+    {
+      "type": "document",
+      "ticker": "TSLA",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Tesla (TSLA) Q4 2025 Earnings Call Transcript.txt",
+      "chunk_count": 76,
+      "id": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings "
+    },
+    {
+      "type": "product",
+      "name": "CyberTruck",
+      "company_ticker": "TSLA",
+      "id": "product|cybertruck|TSLA"
+    },
+    {
+      "type": "company",
+      "ticker": "TTAM",
+      "name": "Titan America",
+      "aliases": [
+        "Titan America",
+        "TTAM"
+      ],
+      "id": "TTAM"
+    },
+    {
+      "type": "document",
+      "ticker": "TTAM",
+      "year": "2025",
+      "quarter": "Q4",
+      "doc_type": "transcript",
+      "source": "Titan America (TTAM) Q4 2025 Earnings Transcript.txt",
+      "chunk_count": 59,
+      "id": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E"
+    },
+    {
+      "type": "executive",
+      "name": "Lawrence Wilt",
+      "role": "other",
+      "company_ticker": "TTAM",
+      "id": "exec|lawrence wilt|TTAM"
+    },
+    {
+      "type": "metric",
+      "name": "revenue",
+      "value": "all-time high",
+      "period": "2025",
+      "ticker": "TTAM",
+      "id": "metric|revenue|TTAM|2025"
+    },
+    {
+      "type": "metric",
+      "name": "net_income",
+      "value": "185M",
+      "period": "2025",
+      "ticker": "TTAM",
+      "id": "metric|net_income|TTAM|2025"
+    },
+    {
+      "type": "metric",
+      "name": "adjusted_EBITDA",
+      "value": "390M",
+      "period": "2025",
+      "ticker": "TTAM",
+      "id": "metric|adjusted_ebitda|TTAM|2025"
+    },
+    {
+      "type": "metric",
+      "name": "adjusted_EBITDA_margin",
+      "value": "23.4%",
+      "period": "2025",
+      "ticker": "TTAM",
+      "id": "metric|adjusted_ebitda_margin|TTAM|2025"
+    },
+    {
+      "type": "product",
+      "name": "aggregates",
+      "company_ticker": "TTAM",
+      "id": "product|aggregates|TTAM"
+    },
+    {
+      "type": "product",
+      "name": "ready-mix concrete",
+      "company_ticker": "TTAM",
+      "id": "product|ready-mix concrete|TTAM"
+    },
+    {
+      "type": "product",
+      "name": "cement",
+      "company_ticker": "TTAM",
+      "id": "product|cement|TTAM"
+    },
+    {
+      "type": "product",
+      "name": "concrete block",
+      "company_ticker": "TTAM",
+      "id": "product|concrete block|TTAM"
+    }
+  ],
+  "edges": [
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q2",
+      "source": "AAPL",
+      "target": "doc|AAPL|2025|Q2|10Q-Q2-2025-Apple"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q3",
+      "source": "AAPL",
+      "target": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q1",
+      "source": "AAPL",
+      "target": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings "
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q3",
+      "source": "AAPL",
+      "target": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings "
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "AAPL",
+      "target": "theme|international_expansion"
+    },
+    {
+      "type": "filed",
+      "year": "2026",
+      "quarter": "Q1",
+      "source": "AAPL",
+      "target": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "AAPL",
+      "target": "theme|consumer_demand"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "we were not going to provide any details on our arrangement in collaboration with Google",
+      "source": "AAPL",
+      "target": "GOOG"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "AAPL",
+      "target": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "AAPL",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AAPL|2025|Q2|10Q-Q2-2025-Apple",
+      "target": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple"
+    },
+    {
+      "type": "reports",
+      "value": "94.036B",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "metric|revenue|AAPL|Q3 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "product|iphone|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "product|mac|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "product|ipad|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "product|wearables, home and accessories|AAPL"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AAPL|2025|Q3|10Q-Q3-2025-Apple",
+      "target": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings "
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q3",
+      "source": "AMZN",
+      "target": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 2,
+      "source": "AMZN",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 2,
+      "source": "AMZN",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "AMZN",
+      "target": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings"
+    },
+    {
+      "type": "filed",
+      "year": "2024",
+      "quarter": "Q4",
+      "source": "AMZN",
+      "target": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "AMZN",
+      "target": "theme|supply_chain"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "AMZN",
+      "target": "theme|margin_expansion"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "exec|andrew jassy|AMZN"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "exec|brian olsavsky|AMZN"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "exec|dave fildes|AMZN"
+    },
+    {
+      "type": "reports",
+      "value": "180.2B",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "metric|revenue|AMZN|Q3 2025"
+    },
+    {
+      "type": "reports",
+      "value": "17.4B",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "metric|operating_income|AMZN|Q3 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "product|alexa|AMZN"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "product|fire tv|AMZN"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "product|trainium|AMZN"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "product|bedrock|AMZN"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings",
+      "target": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "exec|andy|AMZN"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "exec|brian t. olsavsky|AMZN"
+    },
+    {
+      "type": "reports",
+      "value": "213.4B",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "metric|revenue|AMZN|Q4 2025"
+    },
+    {
+      "type": "reports",
+      "value": "25B",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "metric|operating_income|AMZN|Q4 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "product|amazon nova|AMZN"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "product|aws|AMZN"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2025|Q4|Amazon (AMZN) Q4 2025 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "speaker",
+      "role": "vice president of investor relations",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "exec|dave fildes|AMZN"
+    },
+    {
+      "type": "reports",
+      "value": "8%",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "metric|operating_margin|AMZN|Q4 2024"
+    },
+    {
+      "type": "reports",
+      "value": "$1.3 billion",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "metric|operating_income|AMZN|Q4 2024"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "theme|supply_chain"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "theme|margin_expansion"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AMZN|2024|Q4|Amazon.com (AMZN) Q4 2024 Earn",
+      "target": "doc|AMZN|2025|Q3|Amazon (AMZN) Q3 2025 Earnings"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "exec|tim cook|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "exec|kevan parekh|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "exec|suhasini chandramouli|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "product|apple tv+|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "product|airtag|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "product|iphone 16|AAPL"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AAPL|2025|Q1|Apple (AAPL) Q1 2025 Earnings ",
+      "target": "doc|AAPL|2025|Q2|10Q-Q2-2025-Apple"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "exec|timothy d. cook|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "exec|kevan parekh|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "exec|suhasini chandramouli|AAPL"
+    },
+    {
+      "type": "reports",
+      "value": "8 billion",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "metric|revenue|AAPL|Q3 2025"
+    },
+    {
+      "type": "reports",
+      "value": "800 million",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "metric|tariff-related costs|AAPL|Q3 2025"
+    },
+    {
+      "type": "reports",
+      "value": "1.1 billion",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "metric|tariff-related costs|AAPL|next quarter"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|iphone|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|ipad|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|wearables|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|mac|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|macbook air|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|mac mini|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|macbook pro|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "product|iphone 16e|AAPL"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "theme|international_expansion"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AAPL|2025|Q3|Apple (AAPL) Q3 2025 Earnings ",
+      "target": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "exec|timothy d. cook|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "exec|kevan parekh|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "exec|eric woodring|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "exec|suhasini chandramouli|AAPL"
+    },
+    {
+      "type": "reports",
+      "value": "8.6 billion",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "metric|revenue|AAPL|Q1 2026"
+    },
+    {
+      "type": "reports",
+      "value": "97%",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "metric|customer_satisfaction|AAPL|Q1 2026"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "product|airpods pro 3|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "product|mac|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "product|ipad pro|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "product|ipad|AAPL"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca",
+      "target": "theme|consumer_demand"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "exec|timothy donald cook|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "exec|kevan parekh|AAPL"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "exec|suhasini chandramouli|AAPL"
+    },
+    {
+      "type": "reports",
+      "value": "49B",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "metric|revenue|AAPL|Q4 2025"
+    },
+    {
+      "type": "reports",
+      "value": "416B",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "metric|revenue|AAPL|fiscal 2025"
+    },
+    {
+      "type": "reports",
+      "value": "28.8B",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "metric|services revenue|AAPL|Q4 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "product|iphone|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "product|iphone 16|AAPL"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "product|iphone 17|AAPL"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|AAPL|2025|Q4|Apple Q4 2025 Earnings Call Tr",
+      "target": "doc|AAPL|2026|Q1|Apple AAPL Q1 2026 Earnings Ca"
+    },
+    {
+      "type": "filed",
+      "year": "2026",
+      "quarter": "Q1",
+      "source": "MSFT",
+      "target": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 4,
+      "source": "MSFT",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 4,
+      "source": "MSFT",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "OpenAI and SAP will rely on Azure to deliver new AI solutions to the public sector",
+      "source": "MSFT",
+      "target": "SAP"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q2",
+      "source": "MSFT",
+      "target": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "partners like Adobe, SAP, ServiceNow, and Workday build their third-party agents and integrate with Copilot",
+      "source": "MSFT",
+      "target": "ADBE"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "partners like Adobe, SAP, ServiceNow, and Workday build their third-party agents and integrate with Copilot",
+      "source": "MSFT",
+      "target": "NOW"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "partners like Adobe, SAP, ServiceNow, and Workday build their third-party agents and integrate with Copilot",
+      "source": "MSFT",
+      "target": "WDAY"
+    },
+    {
+      "type": "filed",
+      "year": "2026",
+      "quarter": "Q2",
+      "source": "MSFT",
+      "target": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "MSFT",
+      "target": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "exec|satya nadella|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "exec|amy e. hood|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "exec|alice jolla|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "exec|jonathan neilson|MSFT"
+    },
+    {
+      "type": "reports",
+      "value": "19.4B",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "metric|capex|MSFT|Q1 2026"
+    },
+    {
+      "type": "reports",
+      "value": "lost opportunities",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "metric|revenue|MSFT|Q1 2026"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "product|azure|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "product|azure ai foundry|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "product|copilot|MSFT"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni",
+      "target": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "exec|brett iversen|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "exec|amy e. hood|MSFT"
+    },
+    {
+      "type": "reports",
+      "value": "not specified",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "metric|revenue|MSFT|Q2 2025"
+    },
+    {
+      "type": "reports",
+      "value": "400,000",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "metric|other|MSFT|last three months"
+    },
+    {
+      "type": "reports",
+      "value": "8% decrease",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "metric|revenue|MSFT|year over year"
+    },
+    {
+      "type": "reports",
+      "value": "$300B",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "metric|capex|MSFT|not specified"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "product|copilot studio|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "product|windows|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "product|edge|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "product|bing|MSFT"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|MSFT|2025|Q2|Microsoft (MSFT) Q2 2025 Earni",
+      "target": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "exec|satya nadella|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "exec|amy e. hood|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "exec|alice jolla|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "exec|jonathan neilson|MSFT"
+    },
+    {
+      "type": "reports",
+      "value": "11.1B",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "metric|capex|MSFT|Q2 2026"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "product|azure|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "product|azure ai foundry|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "product|microsoft 365|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "product|copilot|MSFT"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2026|Q2|Microsoft (MSFT) Q2 2026 Earni",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "exec|satya nadella|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "exec|amy hood|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "Chief Accounting Officer",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "exec|alex jolla|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "Corporate Secretary and Deputy General Counsel",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "exec|keith dolliver|MSFT"
+    },
+    {
+      "type": "speaker",
+      "role": "General Manager, Investor Relations",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "exec|jonathan neilson|MSFT"
+    },
+    {
+      "type": "reports",
+      "value": "5B",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "metric|revenue|MSFT|Q4 2025"
+    },
+    {
+      "type": "reports",
+      "value": "30.1-30.4B",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "metric|guidance|MSFT|Q4 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|azure|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|xbox|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|playstation|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|forza horizon 5|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|oblivion remastered|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|call of duty|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|minecraft|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|microsoft 365|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|linkedin|MSFT"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "product|dynamics 365|MSFT"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|MSFT|2025|Q4|Microsoft (MSFT) Q4 2025 Earni",
+      "target": "doc|MSFT|2026|Q1|Microsoft (MSFT) Q1 2026 Earni"
+    },
+    {
+      "type": "filed",
+      "year": "unknown",
+      "quarter": "unknown",
+      "source": "MSGM",
+      "target": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "MSGM",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "exec|stephen hood|MSGM"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "exec|stanley beckley|MSGM"
+    },
+    {
+      "type": "reports",
+      "value": "$0.15",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "metric|net_income|MSGM|2025"
+    },
+    {
+      "type": "reports",
+      "value": "$1.9 million",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "metric|adjusted_ebitda|MSGM|2025"
+    },
+    {
+      "type": "reports",
+      "value": "-$2.5 million",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "metric|adjusted_ebitda|MSGM|prior year"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "product|le mans ultimate|MSGM"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|MSGM|unknown|unknown|Motorsport Games (MSGM) Earnin",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "filed",
+      "year": "2026",
+      "quarter": "Q4",
+      "source": "NVDA",
+      "target": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 4,
+      "source": "NVDA",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "theme_of",
+      "frequency": 4,
+      "source": "NVDA",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q2",
+      "source": "NVDA",
+      "target": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "Nvidia announced a new NVIDIA AI foundry service to supercharge generative AI for the world's enterprises with Meta's Ll",
+      "source": "NVDA",
+      "target": "META"
+    },
+    {
+      "type": "filed",
+      "year": "2026",
+      "quarter": "Q3",
+      "source": "NVDA",
+      "target": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "The world's most important enterprise software platforms like ServiceNow, CrowdStrike, and SAP are integrating NVIDIA Co",
+      "source": "NVDA",
+      "target": "CRWD"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "The world's most important enterprise software platforms like ServiceNow, CrowdStrike, and SAP are integrating NVIDIA Co",
+      "source": "NVDA",
+      "target": "SAP"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "The world's most important enterprise software platforms like ServiceNow, CrowdStrike, and SAP are integrating NVIDIA Co",
+      "source": "NVDA",
+      "target": "NOW"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "NVDA",
+      "target": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings"
+    },
+    {
+      "type": "competes_with",
+      "evidence": "Cisco announced integration",
+      "source": "NVDA",
+      "target": "CSCO"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "exec|colette kress|NVDA"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "exec|jensen huang|NVDA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "exec|atif malik|NVDA"
+    },
+    {
+      "type": "reports",
+      "value": "68B",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "metric|revenue|NVDA|Q4 2026"
+    },
+    {
+      "type": "reports",
+      "value": "75.2%",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "metric|gross_margin|NVDA|Q4 2026"
+    },
+    {
+      "type": "reports",
+      "value": "record",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "metric|operating_income|NVDA|Q4 2026"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "product|blackwell architecture|NVDA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "exec|stewart stecker|NVDA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "exec|abby|NVDA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "product|nvidia ai foundry service|NVDA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "product|llama 3.1|NVDA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|NVDA|2025|Q2|Nvidia (NVDA) Q2 2025 Earnings",
+      "target": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "exec|jensen huang|NVDA"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "exec|colette kress|NVDA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "exec|toshiya hari|NVDA"
+    },
+    {
+      "type": "reports",
+      "value": "74.875%",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "metric|gross_margin|NVDA|Q3 2026"
+    },
+    {
+      "type": "reports",
+      "value": "$5 billion",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "metric|operating_income|NVDA|Q3 2026"
+    },
+    {
+      "type": "reports",
+      "value": "$500 million",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "metric|other_income|NVDA|Q3 2026"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "product|nvidia cuda x libraries|NVDA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "product|nvidia corporation gpus|NVDA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings",
+      "target": "doc|NVDA|2026|Q4|NVIDIA (NVDA) Q4 2026 Earnings"
+    },
+    {
+      "type": "speaker",
+      "role": "Senior Director",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "exec|stewart stecker|NVDA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "product|spectrum-x|NVDA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "product|nvlink switch|NVDA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "theme|cloud_growth"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|NVDA|2025|Q4|Nvidia (NVDA) Q4 2025 Earnings",
+      "target": "doc|NVDA|2026|Q3|Nvidia (NVDA) Q3 2026 Earnings"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q2",
+      "source": "TSLA",
+      "target": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings "
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "TSLA",
+      "target": "theme|regulatory_risk"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q3",
+      "source": "TSLA",
+      "target": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings "
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "TSLA",
+      "target": "theme|supply_chain"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "TSLA",
+      "target": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings "
+    },
+    {
+      "type": "theme_of",
+      "frequency": 1,
+      "source": "TSLA",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|elon musk|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|vaibhav taneja|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|ashok elluswamy|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|lars moravy|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|mike snyder|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "exec|travis axelrod|TSLA"
+    },
+    {
+      "type": "reports",
+      "value": "$300 million",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "metric|cost of tariffs|TSLA|Q2 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "product|optimus robots|TSLA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "theme|regulatory_risk"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|TSLA|2025|Q2|Tesla (TSLA) Q2 2025 Earnings ",
+      "target": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings "
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|elon musk|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "CFO",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|vaibhav taneja|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|travis axelrod|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|lars moravy|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|ashok elluswamy|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "exec|michael snyder|TSLA"
+    },
+    {
+      "type": "reports",
+      "value": "$400 million",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "metric|tariff impacts|TSLA|Q3 2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "product|optimus|TSLA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "theme|supply_chain"
+    },
+    {
+      "type": "next_quarter",
+      "source": "doc|TSLA|2025|Q3|Tesla (TSLA) Q3 2025 Earnings ",
+      "target": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings "
+    },
+    {
+      "type": "speaker",
+      "role": "CEO",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "exec|elon musk|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "exec|lars moravy|TSLA"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "exec|vaibhav taneja|TSLA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "product|cybertruck|TSLA"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "product|optimus|TSLA"
+    },
+    {
+      "type": "discusses",
+      "source": "doc|TSLA|2025|Q4|Tesla (TSLA) Q4 2025 Earnings ",
+      "target": "theme|ai_adoption"
+    },
+    {
+      "type": "filed",
+      "year": "2025",
+      "quarter": "Q4",
+      "source": "TTAM",
+      "target": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E"
+    },
+    {
+      "type": "speaker",
+      "role": "other",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "exec|lawrence wilt|TTAM"
+    },
+    {
+      "type": "reports",
+      "value": "all-time high",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "metric|revenue|TTAM|2025"
+    },
+    {
+      "type": "reports",
+      "value": "185M",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "metric|net_income|TTAM|2025"
+    },
+    {
+      "type": "reports",
+      "value": "390M",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "metric|adjusted_ebitda|TTAM|2025"
+    },
+    {
+      "type": "reports",
+      "value": "23.4%",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "metric|adjusted_ebitda_margin|TTAM|2025"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "product|aggregates|TTAM"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "product|ready-mix concrete|TTAM"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "product|cement|TTAM"
+    },
+    {
+      "type": "mentions",
+      "source": "doc|TTAM|2025|Q4|Titan America (TTAM) Q4 2025 E",
+      "target": "product|concrete block|TTAM"
+    }
+  ],
+  "built_at": "2026-06-04T15:15:30.598645+00:00",
+  "doc_count": 22
+}
