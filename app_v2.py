@@ -354,6 +354,49 @@ hr { border-color: rgba(255,255,255,0.05) !important; margin: 1rem 0 !important;
     border-color: rgba(99,102,241,0.5) !important;
     box-shadow: 0 0 0 2px rgba(99,102,241,0.12) !important;
 }
+
+/* Welcome screen — company pills */
+.company-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 999px;
+    padding: 5px 14px 5px 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    margin: 3px;
+    white-space: nowrap;
+}
+.company-pill .ticker {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Welcome screen — question cards (rendered via st.button with custom CSS override) */
+div[data-testid="stVerticalBlock"] button.starter-btn {
+    background: rgba(99,102,241,0.06) !important;
+    border: 1px solid rgba(99,102,241,0.2) !important;
+    border-radius: 12px !important;
+    color: #c7d2fe !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    text-align: left !important;
+    padding: 0.75rem 1rem !important;
+    line-height: 1.4 !important;
+    height: auto !important;
+    white-space: normal !important;
+    transition: background 0.15s, border-color 0.15s !important;
+}
+div[data-testid="stVerticalBlock"] button.starter-btn:hover {
+    background: rgba(99,102,241,0.13) !important;
+    border-color: rgba(99,102,241,0.45) !important;
+    color: #e0e7ff !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -417,6 +460,9 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "starter_question" not in st.session_state:
+    st.session_state.starter_question = None
+
 if "graph" not in st.session_state:
     with st.spinner("Connecting to Pinecone and loading EarningsLens v2..."):
         st.session_state.graph = build_graph_v2()
@@ -433,6 +479,61 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# ── Welcome / Onboarding (shown only when chat is empty) ─────────────
+if not st.session_state.messages:
+    # Companies available
+    companies = [
+        ("Apple", "AAPL", "🍎"),
+        ("Microsoft", "MSFT", "🪟"),
+        ("Nvidia", "NVDA", "🟢"),
+        ("Amazon", "AMZN", "📦"),
+        ("Tesla", "TSLA", "⚡"),
+    ]
+    pills_html = "".join(
+        f'<span class="company-pill">{emoji}&nbsp;{name} <span class="ticker">{ticker}</span></span>'
+        for name, ticker, emoji in companies
+    )
+    st.markdown(
+        f"""
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.07em;
+                      color:#475569;text-transform:uppercase;margin-bottom:0.6rem;">
+                Indexed companies
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:2px;">
+                {pills_html}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Sample question cards
+    st.markdown(
+        '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.07em;'
+        'color:#475569;text-transform:uppercase;margin-bottom:0.75rem;">Try asking</p>',
+        unsafe_allow_html=True,
+    )
+
+    _starter_questions = [
+        ("📈", "What was Apple's revenue and EPS in the most recent quarter?"),
+        ("🤖", "How is Nvidia describing AI demand and data center growth?"),
+        ("☁️", "Compare Microsoft and Amazon's cloud revenue growth"),
+        ("🚗", "What is Tesla's guidance and outlook for the next quarter?"),
+        ("💰", "What drove Amazon's profit growth in Q4 2025?"),
+        ("📊", "How did Microsoft's Azure growth trend over the last few quarters?"),
+    ]
+
+    col_a, col_b = st.columns(2, gap="small")
+    for i, (icon, q) in enumerate(_starter_questions):
+        col = col_a if i % 2 == 0 else col_b
+        with col:
+            if st.button(f"{icon}  {q}", key=f"starter_{i}", use_container_width=True):
+                st.session_state.starter_question = q
+                st.rerun()
+
+    st.markdown("<div style='height:1.5rem;'></div>", unsafe_allow_html=True)
 
 # ── Chat History ─────────────────────────────────────────────────────
 for message in st.session_state.messages:
@@ -544,7 +645,16 @@ def needs_company_clarification(question: str, chat_history: list) -> bool:
 
 
 # ── Handle Input ─────────────────────────────────────────────────────
-question = st.chat_input("Ask about earnings calls or SEC filings...")
+_typed = st.chat_input("Ask about earnings calls or SEC filings...")
+
+# Accept either typed input or a starter-card click
+if st.session_state.starter_question:
+    question = st.session_state.starter_question
+    st.session_state.starter_question = None
+elif _typed:
+    question = _typed
+else:
+    question = None
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
