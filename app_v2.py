@@ -213,6 +213,9 @@ html, body, [class*="css"] {
 /* Hide Streamlit chrome */
 #MainMenu, footer, header { visibility: hidden; }
 
+/* Hide auto-generated pages nav (app_v2, RAG Performance links) */
+[data-testid="stSidebarNav"] { display: none !important; }
+
 /* Hide sidebar collapse button — sidebar is always visible */
 [data-testid="collapsedControl"] { display: none !important; }
 
