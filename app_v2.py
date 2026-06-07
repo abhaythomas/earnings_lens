@@ -403,18 +403,42 @@ div[data-testid="stVerticalBlock"] button.starter-btn:hover {
 # ── Sidebar ──────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(
-        '<div style="margin-bottom:1.25rem;">'
+        '<div style="margin-bottom:1.5rem;">'
         '<span style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;color:#f1f5f9;">EarningsLens</span>'
-        '&nbsp;&nbsp;<span style="background:rgba(99,102,241,0.15);color:#818cf8;border:1px solid rgba(99,102,241,0.3);'
-        'padding:1px 8px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.06em;">BETA</span>'
         '</div>',
         unsafe_allow_html=True,
     )
 
+    # ── RAG Performance — prominent CTA ─────────────────────────────
+    st.markdown(
+        """
+        <div style="background:linear-gradient(135deg,rgba(99,102,241,0.18),rgba(79,70,229,0.1));
+                    border:1px solid rgba(99,102,241,0.35);border-radius:12px;
+                    padding:0.85rem 1rem;margin-bottom:1.25rem;">
+            <p style="margin:0 0 2px 0;font-size:0.78rem;font-weight:700;
+                      letter-spacing:0.05em;color:#818cf8;text-transform:uppercase;">RAG Performance</p>
+            <p style="margin:0;font-size:0.8rem;color:#94a3b8;line-height:1.4;">
+                Retrieval metrics, latency stats &amp; grounding scores
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("View Performance Dashboard →", use_container_width=True, type="primary"):
+        st.switch_page("pages/RAG_Performance.py")
+
+    st.divider()
+
     # ── Upload ───────────────────────────────────────────────────────
     st.markdown(
         '<p style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;'
-        'color:#64748b;text-transform:uppercase;margin-bottom:0.5rem;">Upload Document</p>',
+        'color:#64748b;text-transform:uppercase;margin-bottom:0.4rem;">Upload Document</p>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<p style="font-size:0.78rem;color:#64748b;margin-bottom:0.6rem;line-height:1.4;">'
+        'Want to analyse a specific company? Drop in its earnings PDF and ask away.'
+        '</p>',
         unsafe_allow_html=True,
     )
     uploaded = st.file_uploader("PDF", type=["pdf"], label_visibility="collapsed")
@@ -450,10 +474,6 @@ with st.sidebar:
             col3.metric("Grounded", f"{stats['grounded_pct']}%")
         if stats.get("mrr") is not None:
             col4.metric("MRR", f"{stats['mrr']}", help=f"Mean Reciprocal Rank across {stats['mrr_queries']} retrieval queries. Closer to 1.0 is better.")
-        st.divider()
-
-    if st.button("📊 RAG Performance Stats", use_container_width=True, type="secondary"):
-        st.switch_page("pages/RAG_Performance.py")
 
 
 # ── Initialize ───────────────────────────────────────────────────────
