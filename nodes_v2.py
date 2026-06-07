@@ -14,6 +14,7 @@ usefulness check, rewrite logic — is IDENTICAL to v1.
 import os
 import sys
 import json
+import networkx as nx
 from dotenv import load_dotenv
 
 if sys.stdout.encoding != "utf-8":
@@ -36,6 +37,36 @@ llm = ChatGroq(model=GROQ_MODEL, temperature=0)
 
 # ── Cached Pinecone vectorstore ──────────────────────────────────────
 _vectorstore_cache = None
+
+# ── Cached knowledge graph ───────────────────────────────────────────
+_graph_cache = None
+_graph_load_attempted = False   # avoids re-attempting if file doesn't exist
+
+
+def _load_graph() -> nx.DiGraph | None:
+    """
+    Load graph.json once and cache it for the lifetime of the process.
+    Returns None (silently) if graph.json doesn't exist yet — the system
+    falls back to chunks-only generation in that case.
+    """
+    global _graph_cache, _graph_load_attempted
+    if _graph_load_attempted:
+        return _graph_cache
+    _graph_load_attempted = True
+
+    graph_path = "graph.json"
+    if not os.path.exists(graph_path):
+        return None
+    try:
+        with open(graph_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        _graph_cache = nx.node_link_graph(data)
+        n_nodes = _graph_cache.number_of_nodes()
+        n_edges = _graph_cache.number_of_edges()
+        print(f"📊 Knowledge graph loaded: {n_nodes} nodes, {n_edges} edges")
+    except Exception as e:
+        print(f"⚠️  Could not load graph.json: {e}")
+    return _graph_cache
 
 def get_vectorstore() -> PineconeVectorStore:
     """
@@ -259,6 +290,143 @@ def retrieve(state: dict) -> dict:
     return {**state, "documents": documents}
 
 
+# ── Node 2b: Retrieve Graph Context ─────────────────────────────────
+def retrieve_graph(state: dict) -> dict:
+    """
+    Enriches state with graph-derived context after vector retrieval.
+
+    Runs after retrieve() and before grade_documents(). Uses the tickers
+    found in retrieved chunk metadata to look up related entities in the
+    knowledge graph — executives, financial metrics, themes discussed, and
+    cross-company theme connections.
+
+    Returns graph_context=None (no-op) if:
+    - graph.json doesn't exist (run build_graph.py to create it)
+    - No tickers found in retrieved document metadata
+    - No matching nodes in graph for those tickers
+    """
+    G = _load_graph()
+    if G is None:
+        return {**state, "graph_context": None}
+
+    documents = state.get("documents") or []
+    if not documents:
+        return {**state, "graph_context": None}
+
+    # Extract tickers from retrieved chunk metadata (no extra LLM call needed)
+    tickers = []
+    seen_tickers = set()
+    for doc in documents:
+        t = (doc.metadata.get("ticker") or "").strip().upper()
+        if t and t not in seen_tickers:
+            tickers.append(t)
+            seen_tickers.add(t)
+
+    if not tickers:
+        return {**state, "graph_context": None}
+
+    fact_lines = []
+    theme_to_companies: dict[str, set] = {}  # theme_id → set of tickers
+
+    for ticker in tickers:
+        if not G.has_node(ticker):
+            continue
+
+        company_name = G.nodes[ticker].get("name", ticker)
+
+        # Find all document nodes for this ticker
+        doc_nodes = [
+            n for n, d in G.nodes(data=True)
+            if d.get("type") == "document" and d.get("ticker") == ticker
+        ]
+
+        metrics: list[str] = []
+        execs: list[str] = []
+        themes: list[str] = []
+        competitors: list[str] = []
+
+        for doc_node_id in doc_nodes:
+            for _, target, edge_data in G.out_edges(doc_node_id, data=True):
+                edge_type = edge_data.get("type", "")
+                target_data = G.nodes.get(target, {})
+
+                if edge_type == "reports":
+                    val = edge_data.get("value", "")
+                    name = target_data.get("name", "")
+                    period = target_data.get("period", "")
+                    if name and val:
+                        entry = f"{name} {val}"
+                        if period:
+                            entry += f" ({period})"
+                        if entry not in metrics:
+                            metrics.append(entry)
+
+                elif edge_type == "speaker":
+                    name = target_data.get("name", "")
+                    role = edge_data.get("role", "")
+                    entry = f"{name} ({role})" if role else name
+                    if name and entry not in execs:
+                        execs.append(entry)
+
+                elif edge_type == "discusses":
+                    theme_name = target_data.get("name", "")
+                    if theme_name and theme_name not in themes:
+                        themes.append(theme_name)
+                    # Track for cross-company analysis
+                    if target not in theme_to_companies:
+                        theme_to_companies[target] = set()
+                    theme_to_companies[target].add(ticker)
+
+        # Company-level competitor edges
+        for _, target, edge_data in G.out_edges(ticker, data=True):
+            if edge_data.get("type") == "competes_with":
+                comp_name = G.nodes.get(target, {}).get("name", target)
+                if comp_name not in competitors:
+                    competitors.append(comp_name)
+
+        # Format company block (max 3 per category to keep context tight)
+        lines = [f"[{company_name} ({ticker})]"]
+        if metrics:
+            lines.append(f"  Metrics: {' | '.join(metrics[:3])}")
+        if execs:
+            lines.append(f"  Key speakers: {', '.join(execs[:3])}")
+        if themes:
+            lines.append(f"  Themes: {', '.join(themes[:4])}")
+        if competitors:
+            lines.append(f"  Competitors mentioned: {', '.join(competitors[:3])}")
+
+        fact_lines.extend(lines)
+
+    # Cross-company theme connections — find themes shared across multiple companies
+    cross_lines = []
+    for theme_id, companies_in_theme in theme_to_companies.items():
+        theme_name = G.nodes.get(theme_id, {}).get("name", "")
+        if not theme_name:
+            continue
+        # Find all other tickers connected to this theme (via company → theme edges)
+        for pred in G.predecessors(theme_id):
+            pred_data = G.nodes.get(pred, {})
+            if pred_data.get("type") == "company" and pred not in seen_tickers:
+                companies_in_theme.add(pred)
+
+        others = [t for t in companies_in_theme if t not in tickers]
+        if others:
+            cross_lines.append(
+                f"  '{theme_name}' also discussed by: {', '.join(sorted(others)[:4])}"
+            )
+
+    if cross_lines:
+        fact_lines.append("[Cross-company themes]")
+        fact_lines.extend(cross_lines[:5])
+
+    if not fact_lines:
+        return {**state, "graph_context": None}
+
+    graph_context = "Knowledge Graph Context:\n" + "\n".join(fact_lines)
+    print(f"📊 Graph context: {len(fact_lines)} lines for tickers={tickers}")
+    return {**state, "graph_context": graph_context}
+
+
 # ── Node 3: Grade Documents ──────────────────────────────────────────
 def grade_documents(state: dict) -> dict:
     """
@@ -328,6 +496,9 @@ def generate(state: dict) -> dict:
 
     history_block = f"\n\nConversation history:\n{history}" if history else ""
 
+    graph_context = state.get("graph_context")
+    graph_block = f"\n\n{graph_context}" if graph_context else ""
+
     prompt = ChatPromptTemplate.from_messages([
         ("system", """You are an expert financial analyst assistant. Answer the question based ONLY on the provided earnings call transcript excerpts.
 
@@ -337,12 +508,13 @@ Rules:
 - If the context doesn't contain enough information, say so clearly
 - Be concise and specific — use numbers and quotes when available
 - Structure your answer with clear points
-- Use the conversation history only to resolve references (e.g. "they", "it", "that company") — do not repeat previous answers"""),
-        ("human", "Context:\n{context}{history_block}\n\nQuestion: {question}"),
+- Use the conversation history only to resolve references (e.g. "they", "it", "that company") — do not repeat previous answers
+- The Knowledge Graph Context (if present) provides supplementary structured facts — use it to corroborate or enrich your answer, but always prefer the transcript excerpts for direct quotes"""),
+        ("human", "Context:\n{context}{graph_block}{history_block}\n\nQuestion: {question}"),
     ])
 
     chain = prompt | llm | StrOutputParser()
-    answer = chain.invoke({"context": context, "history_block": history_block, "question": question})
+    answer = chain.invoke({"context": context, "graph_block": graph_block, "history_block": history_block, "question": question})
 
     generation_count = state.get("generation_count", 0) + 1
     print(f"💡 Generated answer (attempt {generation_count})")

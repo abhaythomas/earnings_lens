@@ -16,6 +16,7 @@ from langgraph.graph import StateGraph, END
 from nodes_v2 import (
     route_question,
     retrieve,
+    retrieve_graph,
     grade_documents,
     generate,
     direct_answer,
@@ -42,6 +43,7 @@ class GraphState(TypedDict):
     generation_count: int                  # How many times we've generated (loop limit)
     companies_compared: Optional[list]     # Companies in a comparison query
     grade_vector: Optional[List[int]]      # Relevance at each retrieved rank: e.g. [1,0,1,0,0]
+    graph_context: Optional[str]           # Formatted text from knowledge graph traversal (None if graph.json absent)
 
 
 # ── Conditional Edge Functions ───────────────────────────────────────
@@ -111,6 +113,7 @@ def build_graph_v2() -> StateGraph:
     # ── Add nodes ────────────────────────────────────────────────────
     workflow.add_node("route_question", route_question)
     workflow.add_node("retrieve", retrieve)
+    workflow.add_node("retrieve_graph", retrieve_graph)
     workflow.add_node("grade_documents", grade_documents)
     workflow.add_node("generate", generate)
     workflow.add_node("direct_answer", direct_answer)
@@ -133,7 +136,8 @@ def build_graph_v2() -> StateGraph:
         },
     )
 
-    workflow.add_edge("retrieve", "grade_documents")
+    workflow.add_edge("retrieve", "retrieve_graph")
+    workflow.add_edge("retrieve_graph", "grade_documents")
 
     workflow.add_conditional_edges(
         "grade_documents",
