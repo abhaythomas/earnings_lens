@@ -37,7 +37,7 @@ GRAPH_PATH = "graph.json"
 PROGRESS_PATH = "graph_build_progress.json"
 DATA_DIR = "data"
 
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = "openai/gpt-oss-120b"
 CHUNKS_PER_FILE = 5      # Chunks sampled per document (1 LLM call per file)
 BATCH_SIZE = 5           # Chunks per LLM call
 RATE_LIMIT_SLEEP = 2.5   # Seconds between LLM calls (Groq free tier: ~30 req/min)

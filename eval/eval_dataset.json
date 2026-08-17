@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Who is the analyst that asked about the competitive landscape in the markets businesses?",
+    "ground_truth": "The analyst who asked about the competitive landscape is Christian Bolu with Autonomous Research.",
+    "reference_contexts": [
+      "[Source: GS_Q1_2025_hf_transcript.txt]\nOperator: Thank you. We'll take our next question from Christian Bolu with Autonomous Research.\nChristian Bolu: Good morning, David and Denis. Maybe just staying on the topic of the markets businesses, I wanted to talk about the competitive landscape. You guys did very well in the quarter on an absolute basis, but it did lag peers in the quarter. And I appreciate it's just one quarter. You do have a track record of share gains, but just curious what you're seeing currently on the competitive landscape in markets."
+    ],
+    "source": "GS_Q1_2025_hf_transcript.txt"
+  },
+  {
+    "question": "Who is the analyst asking about margins and operations from the line of Baird?",
+    "ground_truth": "The analyst asking about margins and operations from the line of Baird is Michael Bellisario.",
+    "reference_contexts": [
+      "[Source: HST_Q1_2025_hf_transcript.txt]\nOperator: Your next question comes from the line of Michael Bellisario with Baird.\nMichael Bellisario: Jim, a question for you on sort of margins and operations. Have you guys implemented broader cost-cutting initiatives yet? Are you making any staffing changes or kind of any [indiscernible] cuts at this point to manage margin for the remainder of the year?"
+    ],
+    "source": "HST_Q1_2025_hf_transcript.txt"
+  },
+  {
+    "question": "When will the full year 2025 guidance be provided?",
+    "ground_truth": "The full year 2025 guidance will be provided with earnings in January.",
+    "reference_contexts": [
+      "[Source: CCI_Q2_2024_hf_transcript.txt]\n. Before starting Q&A, I'd like to note that we are changing the timing of when we provide guidance for the upcoming year. Going forward, we will provide forward-year guidance with fourth quarter earnings as opposed to our past practice of providing guidance in our third quarter release. This means you should expect to receive our full year 2025 guide with earnings in January. With that, Betsy, I'd like to open the call for questions."
+    ],
+    "source": "CCI_Q2_2024_hf_transcript.txt"
+  },
+  {
+    "question": "What factor has been revised in estimates due to the recent strengthening of the U.S. dollar?",
+    "ground_truth": "The factor revised in estimates due to the recent strengthening of the U.S. dollar is foreign exchange impacts.",
+    "reference_contexts": [
+      "[Source: IDXX_Q1_2024_hf_transcript.txt]\nTurning to 2024 guidance. We've updated our full year P&L outlook to reflect adjustments to the high end of our full year organic growth goals. Our outlook reinforces our full year goals for solid comparable operating margin improvement and incorporates favorable adjustments to estimates for net interest expense. We've also revised estimates for foreign exchange impacts, reflecting the recent strengthening of the U.S. dollar."
+    ],
+    "source": "IDXX_Q1_2024_hf_transcript.txt"
+  },
+  {
+    "question": "Who is asking a follow-up question about the print business and its competitive landscape?",
+    "ground_truth": "Samik Chatterjee is asking the follow-up question about the print business.",
+    "reference_contexts": [
+      "[Source: HPQ_Q3_2024_hf_transcript.txt]\nSamik Chatterjee: Got it, got it. Thanks for that. And if for my follow-up, I can just ask you on the print business. I understand the sort of headwinds and the competitive landscape that you're calling out, but how should we think about what's the sort of what are you seeing in terms of market-share play-out, particularly as the competitive landscape sounds like it's tougher, would you sort of look at it from a market-share perspective and say the Japanese competitors are more competitive and you're giving up some share in certain segments? Or do you think it's more just the underlying market that's a challenge here relative to market share? Thank you."
+    ],
+    "source": "HPQ_Q3_2024_hf_transcript.txt"
+  },
+  {
+    "question": "What factors are contributing to near-term uncertainty, according to the discussion?",
+    "ground_truth": "The factors contributing to near-term uncertainty include tariffs, the economy, SAR, and pricing, as mentioned by Sherry. These uncertainties are currently preventing the company from providing guidance, but they expect to reassess with second quarter earnings.",
+    "reference_contexts": [
+      "[Source: F_Q1_2025_hf_transcript.txt]\nAdam Jonas: Thanks, Kumar. Maybe Lynn will let you use the dog and see if it gets along with her dogs. We can talk about that offline. Thanks.\nOperator: Your next question will come from the line of Joseph Spak with UBS. Please unmute and ask your question.\nJoseph Spak: Thanks. Good afternoon. Sherry, you did mention that it looks like you'll be able to give guidance again with second quarter earnings. But you also started off by saying there's a lot of near-term uncertainty as it relates to tariffs, the economy, SAR, pricing, et cetera. So what really are you looking for here over the coming months to give you confidence to be able to put the guidance and outlook back in? Like, what do you expect to know that you don't know today?"
+    ],
+    "source": "F_Q1_2025_hf_transcript.txt"
+  },
+  {
+    "question": "What was the company's year-end net debt to adjusted EBITDA ratio at the end of 2024, and what is the targeted range for this ratio?",
+    "ground_truth": "The company's year-end net debt to adjusted EBITDA ratio was 5.3 times, which is just below the targeted range of 5.5 to 6 times.",
+    "reference_contexts": [
+      "[Source: INVH_Q4_2024_hf_transcript.txt]\nJohn Olson: Thanks, Charles. Today, I'll cover the following three topics. First, an update on our balance sheet and liquidity. Second, our fourth quarter and full-year 2024 financial results. And third, the introduction of our 2025 guidance and assumptions. I'll start with our balance sheet. At year-end 2024, we had a robust liquidity position of nearly $1.4 billion comprised of unrestricted cash on the balance sheet and undrawn revolver capacity. Our year-end net debt to adjusted EBITDA ratio was 5.3 times, just below our targeted range of 5.5 to 6 times. Over the last several years, we've made substantial progress in optimizing our debt structure. Today, over 83% of our total debt is unsecured, nearly 90% of our wholly-owned homes are unencumbered, and over 91% of our total debt is either fixed rate or swapped to fixed rate"
+    ],
+    "source": "INVH_Q4_2024_hf_transcript.txt"
+  },
+  {
+    "question": "What range of non-GAAP earnings per share is expected for the full year?",
+    "ground_truth": "The expected range of non-GAAP earnings per share is $10.90 to $11.40.",
+    "reference_contexts": [
+      "[Source: CRL_Q1_2024_hf_transcript.txt]\nAs Jim mentioned, we continue to expect full year reported revenue growth of 1% to 4% and organic revenue growth of flat to a 3% increase as well as non-GAAP earnings per share in a range of $10.90 to $11.40. We reaffirmed our annual revenue and non-GAAP earnings per share guidance because the first quarter outperformance was largely driven by the timing of NHP shipments, which only affects the quarterly gating in 2024 and not our full year outlook."
+    ],
+    "source": "CRL_Q1_2024_hf_transcript.txt"
+  },
+  {
+    "question": "What was the increase in quarterly operating cash flow compared to the prior year, and what was the resulting free cash flow?",
+    "ground_truth": "The quarterly operating cash flow increased by $20 million to $157 million, resulting in a free cash flow of $107 million.",
+    "reference_contexts": [
+      "[Source: JKHY_Q1_2024_hf_transcript.txt]\n. Finally, our complementary segment, revenue increased 9% on both a GAAP and non-GAAP basis with strong non-GAAP operating margin expansion of 47 basis points to 61%. Our diverse mix of solutions, including key headliners like Banno, LoanVantage, Treasury Management in addition to the numerous additional solutions contribute to this strong growth trend. And our new fraud Financial Crimes Defender solution will soon contribute to the growth in this segment as well. Now let's turn to a review of cash flow and capital allocation. Quarterly operating cash flow was $157 million a $20 million increase over prior year producing free cash flow of $107 million, slightly less than the $116 million last year. Last year included $26 million contribution from asset sales that was non-reoccurring in nature. Our consistent dedication to value creation resulted in an annual return on invested capital of 20%"
+    ],
+    "source": "JKHY_Q1_2024_hf_transcript.txt"
+  },
+  {
+    "question": "What percentage growth does the company expect for the back half of the year, compared to their typical 3%?",
+    "ground_truth": "The company expects 1.5% growth for the back half of the year, which is lower than their typical 3%.",
+    "reference_contexts": [
+      "[Source: CHD_Q1_2025_hf_transcript.txt]\nRick Dierker: Yes, it's a fair question. I would say it's probably the expectation that Q2 looks a lot like Q1 given what we see in orders that there's not a bounce back coming. I think when you have negative or flat consumption across many categories, the retailer doesn't maybe want to lean back in to get to what we think is the right level. And we have heard other retailers, continue to talk about taking down weeks of supply. Do I think there's an incremental risk for retail inventory? I absolutely do not overall, because there's only a certain level that the businesses can be run effectively with. So I don't really feel like it's an incremental risk, maybe it's a little bit of conservatism and maybe we'll be proven wrong. We just think there's flat to slowing consumption in the near-term. And we said for the back half, we think it's closer to 1.5%, which is lower than our 3% typically. So yes, just the inflection point a little bit is what's driving our thinking there."
+    ],
+    "source": "CHD_Q1_2025_hf_transcript.txt"
+  }
+]
