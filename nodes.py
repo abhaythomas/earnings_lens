@@ -25,7 +25,7 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
 # ── Config ──────────────────────────────────────────────────────────
-GROQ_MODEL = "llama-3.3-70b-versatile"  # Free on Groq, very capable
+GROQ_MODEL = "openai/gpt-oss-120b"  # Open model on Groq
 CHROMA_DIR = "chroma_db"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 

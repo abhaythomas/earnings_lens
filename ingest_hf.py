@@ -286,7 +286,19 @@ def main():
 
     # ── Connect to Pinecone ──────────────────────────────────────────
     print("🔗 Connecting to Pinecone...")
-    get_pinecone_index()
+    pinecone_index = get_pinecone_index()
+
+    # Check current vector count against free tier cap
+    FREE_TIER_CAP = 100_000
+    SAFETY_BUFFER = 2_000   # stop this many vectors before the hard cap
+    stats = pinecone_index.describe_index_stats()
+    vectors_used = stats.get("total_vector_count", 0)
+    vectors_remaining = FREE_TIER_CAP - SAFETY_BUFFER - vectors_used
+    print(f"📊 Pinecone: {vectors_used:,} / {FREE_TIER_CAP:,} vectors used "
+          f"({vectors_remaining:,} remaining before cap)\n")
+    if vectors_remaining <= 0:
+        print("❌ Pinecone free tier is full. Delete vectors or upgrade your plan.")
+        return
 
     manifest = load_manifest()
     print(f"📋 Manifest: {len(manifest)} entry/entries previously ingested\n")
@@ -327,21 +339,35 @@ def main():
     batches_ingested = 0
     batches_skipped = 0
     total_chunks = 0
+    cap_reached = False
 
-    def flush_batch():
-        nonlocal total_chunks, batches_ingested, current_docs, current_key
+    def flush_batch() -> bool:
+        """Returns False if the vector cap was hit and ingestion should stop."""
+        nonlocal total_chunks, batches_ingested, current_docs, current_key, vectors_remaining
         if not current_docs or current_key is None:
-            return
+            return True
         ticker, year, quarter = current_key
+
+        # Estimate chunks before committing — bail if we'd exceed the cap
+        estimated = len(splitter.split_documents(current_docs))
+        if estimated > vectors_remaining:
+            print(f"\n⚠️  Cap reached — {ticker} Q{quarter} {year} would add ~{estimated} vectors "
+                  f"but only {vectors_remaining} remain. Stopping.")
+            current_docs = []
+            current_key = None
+            return False
+
         n = ingest_batch(
             current_docs, ticker, year, quarter,
             dataset_name, vectorstore, splitter, manifest,
         )
         total_chunks += n
+        vectors_remaining -= n
         batches_ingested += 1
-        print(f"   ✅ {ticker} Q{quarter} {year}: {n} chunks")
+        print(f"   ✅ {ticker} Q{quarter} {year}: {n} chunks  ({vectors_remaining:,} vectors remaining)")
         current_docs = []
         current_key = None
+        return True
 
     for row in dataset:
         rows_seen += 1
@@ -374,12 +400,15 @@ def main():
         # Group by (ticker, year, quarter) — flush when the key changes
         batch_key = (ticker, year, quarter)
         if batch_key != current_key:
-            flush_batch()
+            if not flush_batch():
+                cap_reached = True
+                break
             current_key = batch_key
 
         current_docs.extend(docs)
 
-    flush_batch()  # flush the last batch
+    if not cap_reached:
+        flush_batch()  # flush the last batch
 
     # ── Summary ──────────────────────────────────────────────────────
     print(f"\n{'=' * 60}")

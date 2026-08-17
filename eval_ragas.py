@@ -34,6 +34,7 @@ load_dotenv()
 
 EVAL_DIR = "eval"
 DATASET_FILE = os.path.join(EVAL_DIR, "eval_dataset.json")
+PIPELINE_RESULTS_FILE = os.path.join(EVAL_DIR, "pipeline_results.json")
 os.makedirs(EVAL_DIR, exist_ok=True)
 
 # ── Seed queries: diverse financial topics to pull varied chunks ──────
@@ -85,7 +86,7 @@ def generate_dataset(n: int = 40) -> list[dict]:
     print(f"  Generating synthetic eval dataset  (target: {n} rows)")
     print(f"{'='*60}\n")
 
-    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.3)
+    llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0.3)
     vs = get_vectorstore()
 
     # Sample chunks via diverse seed queries, deduplicate by content hash
@@ -307,6 +308,12 @@ def run_pipeline_on_dataset(dataset: list[dict]) -> list[dict]:
         time.sleep(22.0)
 
     print(f"\n  ✅ Pipeline ran on {len(results)} questions  ({failed} failed)\n")
+
+    # Save to disk so scoring can be retried without re-running the pipeline
+    with open(PIPELINE_RESULTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+    print(f"  💾 Pipeline results saved to {PIPELINE_RESULTS_FILE}\n")
+
     return results
 
 
@@ -322,87 +329,107 @@ def score_with_ragas(results: list[dict]) -> dict:
     - context_recall: did retrieval get back the info needed to answer?
     - context_precision: of what was retrieved, how much was actually needed?
     """
-    from datasets import Dataset
-    from ragas import evaluate
+    import math
     from ragas.metrics.collections import (
         Faithfulness,
         AnswerRelevancy,
         ContextRecall,
         ContextPrecision,
     )
-    from ragas.llms import LangchainLLMWrapper
-    from ragas.embeddings import LangchainEmbeddingsWrapper
-    from langchain_groq import ChatGroq
-    from langchain_huggingface import HuggingFaceEmbeddings
+    from ragas.llms import llm_factory
+    from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
+    from groq import AsyncGroq
+    import instructor
 
     print(f"\n{'='*60}")
     print(f"  Scoring {len(results)} rows with RAGAS")
     print(f"{'='*60}\n")
 
-    # Use Groq as the RAGAS judge LLM
-    judge_llm = LangchainLLMWrapper(
-        ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+    # Use async Groq client — RAGAS Collections metrics use agenerate() internally
+    groq_client = instructor.from_groq(
+        AsyncGroq(api_key=os.environ["GROQ_API_KEY"]),
+        mode=instructor.Mode.JSON,
+    )
+    judge_llm = llm_factory(
+        "openai/gpt-oss-120b",
+        provider="groq",
+        client=groq_client,
     )
 
-    # Use the same embedding model as the pipeline
-    embed_model = LangchainEmbeddingsWrapper(
-        HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2",
-            model_kwargs={"device": "cpu"},
-        )
-    )
+    # Use the same embedding model as the pipeline (ragas>=0.4 native HF provider)
+    embed_model = RagasHFEmbeddings(model="all-MiniLM-L6-v2", device="cpu")
 
-    # Instantiate metrics as objects (required in ragas>=0.4)
-    metrics = [
-        Faithfulness(llm=judge_llm),
-        AnswerRelevancy(llm=judge_llm, embeddings=embed_model),
-        ContextRecall(llm=judge_llm),
-        ContextPrecision(llm=judge_llm),
-    ]
-
-    # Build HuggingFace Dataset
-    hf_dataset = Dataset.from_list([
-        {
-            "question": r["question"],
-            "answer": r["answer"],
-            "contexts": r["contexts"],
-            "ground_truth": r["ground_truth"],
-        }
-        for r in results
-    ])
+    # Instantiate metrics (ragas>=0.4 Collections API — scored per-row, not via evaluate())
+    faithfulness_metric = Faithfulness(llm=judge_llm)
+    relevancy_metric = AnswerRelevancy(llm=judge_llm, embeddings=embed_model)
+    recall_metric = ContextRecall(llm=judge_llm)
+    precision_metric = ContextPrecision(llm=judge_llm)
 
     print("  Running RAGAS evaluation (this makes multiple LLM calls per row)...")
-    print(f"  Expected time: ~2-4 min for {len(results)} rows\n")
+    print(f"  Expected time: ~3-6 min for {len(results)} rows\n")
 
-    score_result = evaluate(
-        hf_dataset,
-        metrics=metrics,
-        raise_exceptions=False,
-    )
-
-    scores_df = score_result.to_pandas()
-
-    # Aggregate means
-    agg = {}
-    for col in ["faithfulness", "answer_relevancy", "context_recall", "context_precision"]:
-        if col in scores_df.columns:
-            agg[col] = round(float(scores_df[col].dropna().mean()), 4)
-
-    # Attach per-row metadata back
     per_row = []
+    all_scores = {"faithfulness": [], "answer_relevancy": [], "context_recall": [], "context_precision": []}
+
     for i, r in enumerate(results):
+        q = r["question"]
+        ans = r["answer"]
+        ctxs = r["contexts"]
+        gt = r["ground_truth"]
+        print(f"  [{i+1}/{len(results)}] scoring: {q[:60]}...", end="", flush=True)
+
         row_scores = {}
-        for col in ["faithfulness", "answer_relevancy", "context_recall", "context_precision"]:
-            if col in scores_df.columns and i < len(scores_df):
-                val = scores_df[col].iloc[i]
-                row_scores[col] = round(float(val), 4) if val == val else None  # NaN check
+        try:
+            res = faithfulness_metric.score(user_input=q, response=ans, retrieved_contexts=ctxs)
+            v = res.value
+            row_scores["faithfulness"] = round(v, 4) if v is not None and not math.isnan(v) else None
+        except Exception as e:
+            print(f" [F-err:{e}]", end="")
+            row_scores["faithfulness"] = None
+
+        try:
+            res = relevancy_metric.score(user_input=q, response=ans)
+            v = res.value
+            row_scores["answer_relevancy"] = round(v, 4) if v is not None and not math.isnan(v) else None
+        except Exception as e:
+            print(f" [AR-err:{e}]", end="")
+            row_scores["answer_relevancy"] = None
+
+        try:
+            res = recall_metric.score(user_input=q, retrieved_contexts=ctxs, reference=gt)
+            v = res.value
+            row_scores["context_recall"] = round(v, 4) if v is not None and not math.isnan(v) else None
+        except Exception as e:
+            print(f" [CR-err:{e}]", end="")
+            row_scores["context_recall"] = None
+
+        try:
+            res = precision_metric.score(user_input=q, reference=gt, retrieved_contexts=ctxs)
+            v = res.value
+            row_scores["context_precision"] = round(v, 4) if v is not None and not math.isnan(v) else None
+        except Exception as e:
+            print(f" [CP-err:{e}]", end="")
+            row_scores["context_precision"] = None
+
+        for k, v in row_scores.items():
+            if v is not None:
+                all_scores[k].append(v)
+
+        print(f"  F={row_scores.get('faithfulness','?')}  AR={row_scores.get('answer_relevancy','?')}  CR={row_scores.get('context_recall','?')}  CP={row_scores.get('context_precision','?')}")
+
         per_row.append({
-            "question": r["question"],
+            "question": q,
             "source": r.get("source", ""),
             "route": r.get("route", ""),
             "is_grounded": r.get("is_grounded"),
             "scores": row_scores,
         })
+
+        # Small pause between rows to avoid rate limits
+        time.sleep(2.0)
+
+    # Aggregate means
+    agg = {k: round(sum(v) / len(v), 4) if v else None for k, v in all_scores.items()}
 
     return {"aggregate": agg, "per_row": per_row}
 
@@ -424,16 +451,20 @@ def save_and_print_report(scores: dict, results: list[dict]):
         json.dump(report, f, indent=2, ensure_ascii=False)
 
     agg = scores["aggregate"]
+
+    def fmt(v):
+        return f"{v:<6}" if v is not None else "n/a   "
+
     print(f"\n{'='*60}")
     print(f"  RAGAS Evaluation Results")
     print(f"{'='*60}")
     print(f"  Questions evaluated : {len(results)}")
     print(f"  Run date            : {timestamp}")
     print()
-    print(f"  Faithfulness        : {agg.get('faithfulness', 'n/a'):<6}  (are claims grounded in sources?)")
-    print(f"  Answer Relevancy    : {agg.get('answer_relevancy', 'n/a'):<6}  (does answer address the question?)")
-    print(f"  Context Recall      : {agg.get('context_recall', 'n/a'):<6}  (did retrieval get the right chunks?)")
-    print(f"  Context Precision   : {agg.get('context_precision', 'n/a'):<6}  (were retrieved chunks all needed?)")
+    print(f"  Faithfulness        : {fmt(agg.get('faithfulness'))}  (are claims grounded in sources?)")
+    print(f"  Answer Relevancy    : {fmt(agg.get('answer_relevancy'))}  (does answer address the question?)")
+    print(f"  Context Recall      : {fmt(agg.get('context_recall'))}  (did retrieval get the right chunks?)")
+    print(f"  Context Precision   : {fmt(agg.get('context_precision'))}  (were retrieved chunks all needed?)")
     print()
 
     # Surface worst-performing rows
@@ -475,9 +506,18 @@ def main():
         "--n", type=int, default=20,
         help="Number of Q&A pairs to generate (default: 20). Groq free tier supports ~2-3 pipeline runs/min.",
     )
+    parser.add_argument(
+        "--pipeline-only", action="store_true",
+        help=f"Run only the RAG pipeline (no RAGAS scoring). Saves results to {PIPELINE_RESULTS_FILE}. "
+             "Use --score-only the next day to score without re-running the pipeline.",
+    )
+    parser.add_argument(
+        "--score-only", action="store_true",
+        help=f"Skip the pipeline, load saved results from {PIPELINE_RESULTS_FILE}, and re-run RAGAS scoring only.",
+    )
     args = parser.parse_args()
 
-    if not args.generate and not args.run:
+    if not args.generate and not args.run and not args.score_only and not args.pipeline_only:
         parser.print_help()
         return
 
@@ -485,6 +525,29 @@ def main():
 
     if args.generate:
         dataset = generate_dataset(n=args.n)
+
+    if args.pipeline_only:
+        if dataset is None:
+            if not os.path.exists(DATASET_FILE):
+                print(f"❌ No dataset found at {DATASET_FILE}. Run with --generate first.")
+                return
+            with open(DATASET_FILE, "r", encoding="utf-8") as f:
+                dataset = json.load(f)
+            print(f"  Loaded {len(dataset)} rows from {DATASET_FILE}")
+        run_pipeline_on_dataset(dataset)
+        print(f"  Pipeline complete. Run --score-only tomorrow to score with a fresh token budget.")
+        return
+
+    if args.score_only:
+        if not os.path.exists(PIPELINE_RESULTS_FILE):
+            print(f"❌ No pipeline results found at {PIPELINE_RESULTS_FILE}. Run with --pipeline-only first.")
+            return
+        with open(PIPELINE_RESULTS_FILE, "r", encoding="utf-8") as f:
+            results = json.load(f)
+        print(f"  Loaded {len(results)} pipeline results from {PIPELINE_RESULTS_FILE}")
+        scores = score_with_ragas(results)
+        save_and_print_report(scores, results)
+        return
 
     if args.run:
         if dataset is None:

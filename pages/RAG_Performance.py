@@ -241,7 +241,7 @@ else:
     run_date = ragas_data.get("run_at", "")[:10]
     n_q = ragas_data.get("n_questions", 0)
 
-    st.caption(f"Last run: **{run_date}** · {n_q} questions evaluated · judge: llama-3.3-70b-versatile")
+    st.caption(f"Last run: **{run_date}** · {n_q} questions evaluated · judge: openai/gpt-oss-120b")
 
     # Metric cards
     cols = st.columns(4)

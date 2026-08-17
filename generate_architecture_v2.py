@@ -401,7 +401,7 @@ node(ax, 22.45, 28.2, 5.0, 0.7, "Pinecone (Cloud)", "earningslens-v2  •  384-d
 ax.text(22.45, 27.6, "AWS us-east-1 serverless", ha="center",
         fontsize=7.2, color=C["subtext"], style="italic", zorder=4)
 
-node(ax, 22.45, 26.6, 5.0, 0.7, "Groq API", "llama-3.3-70b-versatile  •  T=0",
+node(ax, 22.45, 26.6, 5.0, 0.7, "Groq API", "openai/gpt-oss-120b  •  T=0",
      "#180b2e", "#a78bfa")
 ax.text(22.45, 26.0, "Router · Grader · Generate · Hallucination\nUsefulness · Rewrite · Compare · Extract",
         ha="center", fontsize=7, color=C["subtext"], zorder=4)

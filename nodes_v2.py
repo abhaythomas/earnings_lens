@@ -28,7 +28,7 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
 # ── Config ──────────────────────────────────────────────────────────
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = "openai/gpt-oss-120b"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 PINECONE_INDEX_NAME = "earningslens-v2"   # Must match ingest_v2.py
 
